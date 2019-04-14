@@ -9,8 +9,8 @@ class HomePageContainer extends React.Component {
   render() {
       return(
           <div>
-              <Login />
-              <Register/>
+              <Login onSubmit={this.submitHandler}/>
+              <Register onSubmit={this.submitHandler}/>
           </div>
       ) 
   }
