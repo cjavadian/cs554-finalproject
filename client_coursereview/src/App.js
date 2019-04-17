@@ -5,6 +5,7 @@ import Home from './pages/Home.js'
 import About from './pages/About.js'
 
 class App extends Component {
+  Firebase
   render() {
     return (
       <Router>
