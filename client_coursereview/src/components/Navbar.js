@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
 import './Navbar.css';
 import Firebase from './Firebase/firebase';
-import {FaUser,FaLock,FaAt,FaAddressBook,FaEnvelope } from 'react-icons/fa';
+import {FaUser,FaLock,FaAt,FaAddressBook } from 'react-icons/fa';
 class Navbar extends Component {
     constructor(props) {
         super(props);
@@ -35,7 +35,7 @@ class Navbar extends Component {
       }
 
       onSignup(e){
-        //e.preventDefault();
+        e.preventDefault();
         Firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password).then((u)=>{
         }).then((u)=>{console.log(u)})
         .catch((error) => {
@@ -46,7 +46,7 @@ class Navbar extends Component {
     render() {
         return (
             <div>
-                <nav className="navbar navbar-expand-lg  navbar-dark bg-dark justify-content-end">
+                <nav className="navbar navbar-expand-lg  navbar-dark  justify-content-end">
                     <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
                     </button>
@@ -55,9 +55,10 @@ class Navbar extends Component {
                         <ul className="navbar-nav mr-auto">
                         </ul>
                         <form className="form-inline my-2 my-lg-0 justify-content-end" >
-                            <input className="form-control mr-sm-2" type="text" placeholder="email" aria-label="Username" id="email" value={this.state.email} onChange={this.handleChange} />
+                            <input className="form-control mr-sm-2" type="text" placeholder="Email" aria-label="Username" id="email" value={this.state.email} onChange={this.handleChange} />
                             <input className="form-control mr-sm-2" type="password" placeholder="Password" aria-label="Password" id="password" value={this.state.password} onChange={this.handleChange} />
                             <button className="btn btn-outline-success my-2 my-sm-0" type="submit" onClick={this.onLogin}>Login</button>
+                            <div class="divider"/>
                             <button className="btn btn-outline-success my-2 my-sm-0" type="submit" name="signup" id="signup"
                             data-toggle="modal" data-target="#modalRegisterForm" onClick={(event) => {event.preventDefault()}}>SignUp</button>
                         </form>
@@ -75,9 +76,11 @@ class Navbar extends Component {
                                     </button>
                                 </div>
                                 <div className="modal-body mx-3">
+                                <form>
                                     <div className="md-form mb-5">
+
                                         <FaUser/>
-                                        <input required type="text" id="firstname" className="form-control validate" placeholder="First Name" value={this.state.firstname} onChange={this.handleChange}/>
+                                        <input required type ="text" id="firstname" className="form-control validate" placeholder="First Name" value={this.state.firstname} onChange={this.handleChange} />
                                     </div>
                                     <div className="md-form mb-5">
                                         <FaUser/>
@@ -95,6 +98,7 @@ class Navbar extends Component {
                                         <FaLock/>
                                         <input required type="password" id="password" className="form-control validate" placeholder="Password" value={this.state.password} onChange={this.handleChange}/>
                                     </div>
+                                    </form>
                                 </div>
                                 <div className="modal-footer-dark bg-dark d-flex justify-content-center">
                                     <button className="btn btn-secondary" onClick={this.onSignup}>Sign up</button>
