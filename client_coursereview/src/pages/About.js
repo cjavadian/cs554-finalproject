@@ -17,7 +17,7 @@ class About extends Component{
                 <div className="container">
                 <h2>About Page</h2>
                 <p>Welcome User on home page. You've successfully logged in!</p>
-                <button onClick={this.onLogOut}>LogOut</button>
+                <button class ="btn btn-outline-success my-2 my-sm-0" onClick={this.onLogOut}>LogOut</button>
                 </div>
                 <Footer/>
             </div>
