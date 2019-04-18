@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import './Navbar.css';
 import Firebase from './Firebase/firebase';
 class Navbar extends Component {
@@ -7,7 +7,10 @@ class Navbar extends Component {
         super(props);
         this.state = {
             username: '',
-            password: ''
+            password: '',
+            error :{
+                message:''
+            }
         };
        // this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
@@ -24,6 +27,7 @@ class Navbar extends Component {
         Firebase.auth().signInWithEmailAndPassword(this.state.username, this.state.password).then((u)=>{
         }).catch((error) => {
             console.log(error);
+            this.setState({error})
           });
       }
 
@@ -33,6 +37,7 @@ class Navbar extends Component {
         }).then((u)=>{console.log(u)})
         .catch((error) => {
             console.log(error);
+            this.setState({error})
           })
       }
 
@@ -48,7 +53,7 @@ class Navbar extends Component {
                         <span className="navbar-toggler-icon"></span>
                     </button>
                     <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
-                        <a className="navbar-brand" href="#">Course Review</a>
+                        <Link className="navbar-brand" to="#">Course Review</Link>
                         <ul className="navbar-nav mr-auto">
                         </ul>
                         <form className="form-inline my-2 my-lg-0 justify-content-end" >
@@ -57,9 +62,9 @@ class Navbar extends Component {
                             <button className="btn btn-outline-success my-2 my-sm-0" type="submit" onClick={this.onLogin}>Login</button>
                             <button className="btn btn-outline-success my-2 my-sm-0" type="submit" onClick={this.onSignup}>SignUp</button>
                         </form>
-
                     </div>
                 </nav>
+                <div>{this.state.error.message}</div>
             </div>
 
         );
