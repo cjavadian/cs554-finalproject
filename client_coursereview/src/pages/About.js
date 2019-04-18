@@ -16,7 +16,7 @@ class About extends Component{
                 <Navbar callBackFromParent={this.onLogIn}/>
                 <div className="container">
                 <h2>About Page</h2>
-                <p>Welcome User on home page. You've successfully logged on!</p>
+                <p>Welcome User on home page. You've successfully logged in!</p>
                 <button onClick={this.onLogOut}>LogOut</button>
                 </div>
                 <Footer/>
