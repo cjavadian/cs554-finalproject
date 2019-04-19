@@ -6,7 +6,7 @@ class Footer extends Component {
             <div>
                 <footer className="footer  mt-auto py-3">
                     <div className="container">
-                    <p className="para">@CopyRight</p>
+                    <p className="para">@Copyright</p>
                     </ div>
                 </footer>
             </div>

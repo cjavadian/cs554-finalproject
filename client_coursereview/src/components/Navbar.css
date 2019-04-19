@@ -3,6 +3,8 @@
 }
 .navbar-brand{
     color: white;
+    font: outline;
+    font-family: Georgia, 'Times New Roman', Times, serif
 }
 .divider{
     width:5px;
@@ -13,5 +15,5 @@
     background-color:#192A56
 }
 .modal-footer {
-    background-color:#192A56
+    background-color:#192A56;
 }
