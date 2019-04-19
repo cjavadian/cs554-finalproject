@@ -69,7 +69,7 @@ class Navbar extends Component {
                         aria-labelledby="myModalLabel" aria-hidden="true">
                         <div className="modal-dialog" role="document">
                             <div className="modal-content">
-                                <div className="modal-header-dark bg-dark btn-secondary text-center">
+                                <div className="modal-header btn-outline-success text-center">
                                     <h4 className="modal-title w-100 font-weight-bold">Sign up</h4>
                                     <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
@@ -77,12 +77,12 @@ class Navbar extends Component {
                                 </div>
                                 <div className="modal-body mx-3">
                                 <form>
-                                    <div className="md-form mb-5">
+                                    <div className="md-form mb-4">
 
                                         <FaUser/>
                                         <input required type ="text" id="firstname" className="form-control validate" placeholder="First Name" value={this.state.firstname} onChange={this.handleChange} />
                                     </div>
-                                    <div className="md-form mb-5">
+                                    <div className="md-form mb-4">
                                         <FaUser/>
                                         <input required type="text" id="lastname" className="form-control validate" placeholder="Last Name" value={this.state.lastname} onChange={this.handleChange}/>
                                     </div>
@@ -100,8 +100,8 @@ class Navbar extends Component {
                                     </div>
                                     </form>
                                 </div>
-                                <div className="modal-footer-dark bg-dark d-flex justify-content-center">
-                                    <button className="btn btn-secondary" onClick={this.onSignup}>Sign up</button>
+                                <div className="modal-footer d-flex justify-content-center">
+                                    <button className="btn btn-outline-success" onClick={this.onSignup}>Sign up</button>
                                 </div>
                             </div>
                         </div>

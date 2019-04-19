@@ -9,3 +9,9 @@
     height:auto;
     display:inline-block;
 }
+.modal-header{
+    background-color:#192A56
+}
+.modal-footer {
+    background-color:#192A56
+}
