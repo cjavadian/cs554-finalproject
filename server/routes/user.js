@@ -1,10 +1,10 @@
 const express = require("express");
 const router = express.Router();
-const data=require("../data/");
-const userData=data.user;
+const data = require("../data/");
+const userData = data.user;
 
 router.post("/",async(req,res)=>{
-  const postData=req.body;
+  const postData = req.body;
   try{
     const {first_name,last_name,user_name,email}=postData;
     //check_para(first_name,last_name,user_name,email);

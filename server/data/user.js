@@ -8,9 +8,9 @@ function check(num){
   return !isNaN(parseFloat(num))&&isFinite(num);
 }
 
-const exportedMethods={
+const exportedMethods = {
   async getUserById(id){
-      if (id==null||id==undefined||id=="") throw "You must provide an id to search for";
+      if (id == null || id == undefined || id == "") throw "You must provide an id to search for";
       if (typeof(id) !== 'string') throw "Invalid id";
 
       const user_collection = await user();

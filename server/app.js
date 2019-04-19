@@ -1,12 +1,16 @@
-const express=require("express");
-const app=express();
-const configRoutes=require("./routes");
-const bodyParser = require("body-parser");
+const express = require("express");
+const expressgraphql = require("express-graphql");
+const schema =  require("./schema/schema.js")
 
-app.use(bodyParser.json());
-configRoutes(app);
+const app = express();
+
+app.use("/graphql",expressgraphql({
+	schema:schema,
+	graphiql: true
+}));
 
 app.listen(7050,()=>{
-	console.log("We've got a server!");
-	console.log("Your routes will be running on http://localhost:7050");
+ 	console.log("We've got a server!");
+ 	console.log("Your routes will be running on http://localhost:7050");
 });
+
