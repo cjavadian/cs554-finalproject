@@ -50,7 +50,7 @@ const RootMutation =  new GraphQLObjectType({
 	fields:{
 		addUser:{
 			type:user,
-			args:{first_name: {type: GraphQLString}, last_name: {type: GraphQLString}, user_name: {type: GraphQLString}, email: {type: GraphQLString},},//id as query parameter
+			args:{first_name: {type: GraphQLString}, last_name: {type: GraphQLString}, user_name: {type: GraphQLString}, email: {type: GraphQLString}},//id as query parameter
 			async resolve(parent,args){
 				//code to get data from db
 				return await userData.addUser(args.first_name, args.last_name, args.user_name, args.email);

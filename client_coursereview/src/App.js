@@ -1,9 +1,16 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router } from "react-router-dom";
+import ApolloClient from "apollo-boost";
+import {ApolloProvider} from "react-apollo";
 import "./App.css";
 import Home from "./pages/Home.js";
 import About from "./pages/About.js";
 import Firebase from "./components/Firebase/firebase";
+
+const client = new ApolloClient({
+  uri:'http://localhost:7050/graphql'
+})
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -30,9 +37,11 @@ class App extends Component {
 
   render() {
     return (
-      <Router>
-        <div>{this.state.user ? <About /> : <Home />}</div>
-      </Router>
+      <ApolloProvider client = {client}>
+        <Router>
+          <div>{this.state.user ? <About /> : <Home />}</div>
+        </Router>
+      </ApolloProvider>
     );
   }
 }

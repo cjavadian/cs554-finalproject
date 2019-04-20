@@ -3,6 +3,9 @@ import { Link } from 'react-router-dom';
 import './Navbar.css';
 import Firebase from './Firebase/firebase';
 import { FaUser, FaLock, FaAt, FaAddressBook, FaSteamSymbol } from 'react-icons/fa';
+import {graphql,compose} from "react-apollo";
+import {addUserMutation} from "../queries/queries";
+
 class Navbar extends Component {
     constructor(props) {
         super(props);
@@ -41,6 +44,14 @@ class Navbar extends Component {
         e.preventDefault();
         try {
             const user = await Firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password);
+            await this.props.addUserMutation({
+                variables:{
+                    first_name: this.state.firstname,
+                    last_name: this.state.lastname,
+                    user_name: this.state.username,
+                    email: this.state.email
+                }
+            });
             console.log(user);
             this.props.history.push("/")
 
@@ -123,4 +134,4 @@ class Navbar extends Component {
 }
 
 
-export default Navbar;
+export default compose(graphql(addUserMutation,{name:"addUserMutation"}))(Navbar);
