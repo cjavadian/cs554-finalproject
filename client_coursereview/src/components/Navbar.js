@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import './Navbar.css';
 import Firebase from './Firebase/firebase';
-import { FaUser, FaLock, FaAt, FaAddressBook } from 'react-icons/fa';
+import { FaUser, FaLock, FaAt, FaAddressBook, FaSteamSymbol } from 'react-icons/fa';
 class Navbar extends Component {
     constructor(props) {
         super(props);
@@ -26,28 +26,28 @@ class Navbar extends Component {
         this.setState({ [event.target.id]: event.target.value });
     }
 
-    onLogin(e) {
+    async onLogin(e) {
         e.preventDefault();
-        Firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password).then((u) => {
-
-        }).catch((error) => {
+        try {
+            const user = await Firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password);
+            console.log(user);
+        }catch(error) {
             console.log(error);
-            this.setState({ error })
-        });
+            this.setState({error:error})
+        }
     }
 
-    onSignup(e) {
+    async onSignup(e) {
         e.preventDefault();
-        Firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password).then((u) => {
+        try {
+            const user = await Firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password);
+            console.log(user);
+            this.props.history.push("/")
 
-        }).then((u) => {
-            console.log(u)
-            this.props.history.push("/about")
-        })
-            .catch((error) => {
-                console.log(error);
-                this.setState({ error })
-            })
+        }catch(error) {
+            console.log(error);
+            this.setState({error:error})
+        }
     }
     render() {
         return (
@@ -79,18 +79,18 @@ class Navbar extends Component {
                                         </div>
                                         <div className="modal-body mx-3">
                                             <div class="registration-form">
-                                                <form>
+                                                <form onSubmit={this.onSignup}>
                                                     <div class="form-group mb-4">
                                                         <FaUser />
-                                                        <input required type="text" id="firstname" className="form-control validate" placeholder="First Name" value={this.state.firstname} onChange={this.handleChange} />
+                                                        <input required type="text" id="firstname" className="form-control validate" minLength={3} placeholder="First Name" value={this.state.firstname} onChange={this.handleChange} />
                                                     </div>
                                                     <div class="form-group mb-4">
                                                         <FaUser />
-                                                        <input required type="text" id="lastname" className="form-control validate" placeholder="Last Name" value={this.state.lastname} onChange={this.handleChange} />
+                                                        <input required type="text" id="lastname" className="form-control validate" minLength={3} placeholder="Last Name" value={this.state.lastname} onChange={this.handleChange} />
                                                     </div>
                                                     <div class="form-group mb-4">
                                                         <FaAddressBook />
-                                                        <input required type="text" id="username" className="form-control validate" placeholder="username" value={this.state.username} onChange={this.handleChange} />
+                                                        <input required type="text" id="username" className="form-control validate" minLength={3} placeholder="username" value={this.state.username} onChange={this.handleChange} />
                                                     </div>
                                                     <div class="form-group mb-4">
                                                         <FaAt />
@@ -98,11 +98,11 @@ class Navbar extends Component {
                                                     </div>
                                                     <div class="form-group mb-4">
                                                         <FaLock />
-                                                        <input required type="password" id="password" className="form-control validate" placeholder="Password" value={this.state.password} onChange={this.handleChange} />
+                                                        <input required type="password" id="password" className="form-control validate" minLength={6} placeholder="Password" value={this.state.password} onChange={this.handleChange} />
                                                     </div>
                                                     <div className="modal-footer d-flex justify-content-center">
                                                         <div className="form-group mb-4">
-                                                            <button className="btn btn-outline-success" type="submit" onSubmit={this.onSignup}>Sign up</button>
+                                                            <button className="btn btn-outline-success" type="submit" >Sign up</button>
                                                         </div>
                                                     </div>
                                                 </form>
