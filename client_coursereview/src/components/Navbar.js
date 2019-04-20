@@ -42,8 +42,7 @@ class Navbar extends Component {
         try {
             const user = await Firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password);
             console.log(user);
-            this.props.history.push("/")
-
+            window.location.reload();
         }catch(error) {
             console.log(error);
             this.setState({error:error})
