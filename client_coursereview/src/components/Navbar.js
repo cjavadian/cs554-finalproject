@@ -44,7 +44,8 @@ class Navbar extends Component {
         e.preventDefault();
         try {
             const user = await Firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password);
-            await this.props.addUserMutation({
+            console.log("aaa",this.state.firstname,this.state.lastname,this.state.username,this.state.email)
+            this.props.addUserMutation({
                 variables:{
                     first_name: this.state.firstname,
                     last_name: this.state.lastname,
@@ -53,7 +54,8 @@ class Navbar extends Component {
                 }
             });
             console.log(user);
-            window.location.reload();
+            this.props.history.push("/")
+
         }catch(error) {
             console.log(error);
             this.setState({error:error})
