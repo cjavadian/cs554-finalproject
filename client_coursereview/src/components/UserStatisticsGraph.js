@@ -21,9 +21,10 @@ render() {
           data: [[0, 3], [1, 1], [2, 5], [3, 6], [4, 4]]
         }
       ]}
+      series={{ type: 'bar' }}
       axes={[
         { primary: true, type: "linear", position: "bottom" },
-        { type: "linear", position: "left" }
+        { type: "linear", position: "left"}
       ]}
     />
   </div>

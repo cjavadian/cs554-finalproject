@@ -1,0 +1,48 @@
+.p-image:hover {
+    cursor: pointer;
+}
+
+.profilepic {
+    max-width: 200px;
+    max-height: 200px;
+    display: block;
+    top:200px;
+}
+
+.file-upload {
+    position: relative;
+    left:200px;
+    top: 1px;
+    
+} 
+
+.circle {
+    border-radius: 6000px !important;
+    overflow: hidden;
+    width: 200px;
+    height: 200px;
+    border: 8px solid rgba(255, 255, 255, 0.7);
+    position: absolute;
+    top: 72px;
+}
+
+.p-image {
+    position: absolute;
+    top: 230px;
+    right: 300px;
+    color: #666666;
+    transition: all .3s cubic-bezier(.175, .885, .32, 1.275);
+  }
+
+  .p-image:hover {
+    transition: all .3s cubic-bezier(.175, .885, .32, 1.275);
+  }
+
+  .upload-button {
+    font-size: 1.2em;
+  }
+  
+  .upload-button:hover {
+    transition: all .3s cubic-bezier(.175, .885, .32, 1.275);
+    color: #999;
+  }

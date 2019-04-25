@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import './Navbar.css';
 import Firebase from './Firebase/firebase';
-import { FaUser, FaLock, FaAt, FaAddressBook, FaSteamSymbol } from 'react-icons/fa';
+import { FaUser, FaLock, FaAt, FaAddressBook } from 'react-icons/fa';
 import {graphql,compose} from "react-apollo";
 import {addUserMutation} from "../queries/queries";
 
