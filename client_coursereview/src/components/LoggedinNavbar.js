@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import { Link } from 'react-router-dom';
 import './Navbar.css';
 import Firebase from '../components/Firebase/firebase'
+import { FaUser} from 'react-icons/fa';
 
 class LoggedinNavbar extends Component {
     constructor(props) {
@@ -33,18 +34,18 @@ class LoggedinNavbar extends Component {
                     </li>
                     <li className="nav-item dropdown">
                         <Link className="nav-link dropdown-toggle" to="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Dropdown
+                        <FaUser/>
                         </Link>
                         <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <Link className="dropdown-item" to="#">Action</Link>
-                            <Link className="dropdown-item" to="#">Another action</Link>
+                            <Link className="dropdown-item" to="#">View Profile</Link>
+                            <Link className="dropdown-item" to="#">Edit Profile</Link>
                             <div className="dropdown-divider"></div>
-                            <Link className="dropdown-item" to="#">Something else here</Link>
+                            <Link className="dropdown-item" to="#" onClick={this.onLogOut}>LogOut</Link>
                         </div>
                     </li>
                     <li className="nav-item">
                         {/* <Link className="nav-link " to="#">Disabled</Link> */}
-                        <button className ="btn btn-outline-success my-2 my-sm-0" onClick={this.onLogOut}>LogOut</button>
+                        {/* <button className ="btn btn-outline-success my-2 my-sm-0" onClick={this.onLogOut}>LogOut</button> */}
                     </li>
                 </ul>
                 <form className="form-inline my-2 my-lg-0">
