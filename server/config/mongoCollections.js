@@ -17,7 +17,7 @@ let getCollectionFn = collection => {
 
 /* Now, you can list your collections here: */
 module.exports = {
-  course: getCollectionFn("product"),
+  course: getCollectionFn("course"),
   user: getCollectionFn("user"),
   review: getCollectionFn("review"),
 };
