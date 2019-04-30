@@ -56,6 +56,23 @@ const exportedMethods = {
       }
 
       return await this.getCourseById(update_course._id);
+  },
+  async addRatingCourse(course_id, rating){
+      const course_collection = await course();
+      let update_course = await this.getCourseById(course_id);
+      update_course.ratings.push(rating);
+      const updatedInfo = await course_collection.updateOne({_id: update_course._id}, { $set: { "title" : update_course.title,
+          "campus" : update_course.campus,
+          "reviews" : update_course.reviews,
+          "ratings" : update_course.ratings,
+          "syllabus" : update_course.syllabus,
+          "book" : update_course.book,
+          "recommended" : update_course.recommended} },{ upsert: true });
+      if (updatedInfo.modifiedCount === 0) {
+          throw "could not add new review to user successfully";
+      }
+
+      return await this.getCourseById(update_course._id);
   }
 }
 
