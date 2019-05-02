@@ -19,26 +19,73 @@ const exportedMethods = {
       return result;
   },// get /users/:id
   async addUser(first_name,last_name,user_name,email) {
-
-      const newUser = {
-          _id: uuidv4(),
-          first_name: first_name,
-          last_name: last_name,
-          user_name:user_name,
-          email:email,
-          validated:false,
-          courses:[],
-          reviews:[]
-      };
+      try{
+          const newUser = {
+            _id: uuidv4(),
+            first_name: first_name,
+            last_name: last_name,
+            user_name:user_name,
+            email:email,
+            validated:false,
+            courses:[],
+            reviews:[]
+          };
       
-      const user_collection = await user();
+          const user_collection = await user();
 
-      const newInsertInformation = await user_collection.insertOne(newUser);
-      if (newInsertInformation.insertedCount === 0)throw "Could not add task";
-      const newId = newInsertInformation.insertedId;
+          const newInsertInformation = await user_collection.insertOne(newUser);
+          if (newInsertInformation.insertedCount === 0)throw "Could not add task";
+          const newId = newInsertInformation.insertedId;
 
-      return await this.getUserById(newId);;
+          return await this.getUserById(newId);
+      }
+      catch(e){
+          console.log(e);
+      }
+      
   },//post /users
+  async addCourseUser(user_id, course_id){
+    try{
+        const user_collection = await user();
+        let update_user = await this.getUserById(user_id);
+        update_user.courses.push(course_id);
+        const updatedInfo = await user_collection.updateOne({_id: update_user._id}, { $set: {"first_name" : update_user.first_name, "last_name" : update_user.last_name, "user_name" : update_user.user_name,
+            "email" : update_user.email,
+            "validated" : update_user.validated,
+            "courses" : update_user.courses,
+            "reviews" : update_user.reviews} },{ upsert: true });
+        if (updatedInfo.modifiedCount === 0) {
+            throw "could not add new course to user successfully";
+        }
+
+        return await this.getUserById(update_user._id);
+    }
+    catch(e){
+        console.log(e);
+    }  
+  },
+  async addReviewUser(user_id, review_id){
+      try{
+          const user_collection = await user();
+          let update_user = await this.getUserById(user_id);
+          update_user.reviews.push(review_id);
+          //console.log(update_user);
+          const updatedInfo = await user_collection.updateOne({_id: update_user._id}, { $set: {"first_name" : update_user.first_name, "last_name" : update_user.last_name, "user_name" : update_user.user_name,
+          "email" : update_user.email,
+          "validated" : update_user.validated,
+          "courses" : update_user.courses,
+          "reviews" : update_user.reviews} },{ upsert: true });
+
+          if (updatedInfo.modifiedCount === 0) {
+              throw "could not add new review to user successfully";
+          }
+
+          return await this.getUserById(update_user._id);
+      }
+      catch(e){
+        console.log(e);
+      }
+  }
 }
 
 module.exports = exportedMethods;
