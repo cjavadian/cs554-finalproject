@@ -33,10 +33,10 @@ class UserProfilePicture extends Component {
 
   render() {
     return (
-      <div className="col-mt-4">
-        <div className="text-center avatar rounded-circle m-auto">
+      <div className="col-mt-2">
+         <div className="profilepic"> 
           <img
-            className="profilepic"
+            className="text-center avatar rounded-circle m-auto"
             src="https://placeimg.com/444/445"
             alt="Card cap"
           />
