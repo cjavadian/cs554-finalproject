@@ -20,23 +20,24 @@ class UserProfilePicture extends Component {
 
    handleImageChange(event) {
     event.preventDefault();
-    let reader = new FileReader();
     let file = event.target.files[0];
+    let reader = new FileReader();
+    reader.readAsDataURL(file);
      reader.onloadend = async() => {
         await this.setState({
         file: file,
         imagePreviewUrl: reader.result
       });
     };
-    reader.readAsDataURL(file);
+    
   }
 
   render() {
     return (
-      <div className="col-mt-4">
-        <div className="text-center avatar rounded-circle m-auto">
+      <div className="col-mt-2">
+         <div className="profilepic"> 
           <img
-            className="profilepic"
+            className="text-center avatar rounded-circle m-auto"
             src="https://placeimg.com/444/445"
             alt="Card cap"
           />
