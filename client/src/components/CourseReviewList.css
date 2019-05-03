@@ -1,0 +1,20 @@
+.table {
+    table-layout: auto;
+    width: 1200px;
+}
+
+.td .rating{
+    background-color: antiquewhite
+}
+
+.td .comments {
+    background-color: bisque;
+}
+
+.button {
+    position: relative;
+}
+
+.span .grouping{
+    margin-left: 1;
+}

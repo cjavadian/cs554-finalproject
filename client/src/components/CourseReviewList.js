@@ -1,10 +1,11 @@
 import React, { Component } from "react";
-
+import {Link} from "react-router-dom";
+import './CourseReviewList.css';
 class CourseReviewList extends Component {
   render() {
     return (
       <div>
-        <table class="table table-hover">
+        <table className="table table-hover">
           <thead>
             <tr>
               <th scope="col">Rating</th>
@@ -12,49 +13,60 @@ class CourseReviewList extends Component {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td className="rating">
+            <tr className="active">
+              <td className="rating success" >
                 <div className="date">Date: </div>
                 <div className="rating-block-awesome">
                   <div className="rating-wrapper">
                     <div className="icon awesome-icon" />
-                    <span class="rating-type">awesome</span>
+                    <span className="rating-type">Student Name : </span>
                   </div>
                   <div className="courseclass">
                     <span className="attendance">
                       Attendance:
-                      <span class="response">Not Mandatory</span>
+                      <span className="response"> Not Mandatory</span>
                     </span>
+                    <br/>
                     <span className="grade">
                       Grade Recieved:
-                      <span class="response">A+</span>
+                      <span className="response"> A+</span>
                     </span>
+                    <br/>
                     <span className="textbook">
-                      Textbook Used:
-                      <span class="response">No</span>
+                      Campus:
+                      <span className="response"> Main/Web</span>
                     </span>
                   </div>
                 </div>
               </td>
-              <td colspan="2" className="comments">
+              <td colSpan="2" className="comments">
                 <p className="commentsParagrah">
                   CS-554 is well structured, teaches new treding web
                   technologies
                 </p>
                 <div className="helpful-links-thumbs">
-                  <a href="#" className="helpful">
-                    <span className="count">0</span>
-                  </a>
+                  <Link to="#" className="helpful">
+                    <span className="count">0 </span>
+                    <span className="grouping">people found this useful</span>
+                  </Link>
+                  <Link to="#" className="not helpful">
+                    <span className="count">0 </span>
+                    <span className="grouping">people did not find this useful</span>
+                  </Link>
+                
                 </div>
+                <br/>
+                <button type="button" className="btn btn-outline-success">Edit</button>
+                <button type="button" className="btn btn-outline-success">Delete</button>
               </td>
             </tr>
             <tr>
               <th scope="row">2</th>
-              <td colspan="2">Jacob</td>
+              <td colSpan="2">Jacob</td>
             </tr>
             <tr>
               <th scope="row">3</th>
-              <td colspan="2">Larry the Bird</td>
+              <td colSpan="2">Larry the Bird</td>
             </tr>
           </tbody>
         </table>

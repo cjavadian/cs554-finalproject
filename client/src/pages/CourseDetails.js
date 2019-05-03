@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import LoggedinNavbar from "../components/LoggedinNavbar";
 import CourseCard from '../components/CourseCard';
 import CourseReviewStatistics from '../components/CourseReviewStatistics';
 import CourseReviewList from '../components/CourseReviewList';
@@ -7,7 +8,11 @@ class CourseDetails extends Component {
   render() {
     return (
       <div>
-        <LoggedinNavbar />
+        <LoggedinNavbar/>
+        <br/>
+        <h5>Course CS-554 Details</h5>
+        <br/>
+        
         <div className="container">
           <div className="row">
             <div className="col-4">
@@ -17,6 +22,7 @@ class CourseDetails extends Component {
               <CourseReviewStatistics />
             </div>
           </div>
+          <br/>
           <div className="row" >
           <CourseReviewList/>
           </div>

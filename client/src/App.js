@@ -6,6 +6,7 @@ import "./App.css";
 import Home from "./pages/Home.js";
 import About from "./pages/About.js";
 import Firebase from "./components/Firebase/firebase";
+import CourseDetails from "./pages/CourseDetails";
 
 const client = new ApolloClient({
   uri:'http://localhost:7050/graphql'
@@ -39,7 +40,8 @@ class App extends Component {
     return (
       <ApolloProvider client = {client}>
         <Router>
-          <div>{this.state.user ? <About/> : <Home />}</div>
+          {/* <div>{this.state.user ? <About/> : <Home />}</div> */}
+          <div>{this.state.user ? <CourseDetails/> : <Home />}</div>
         </Router>
       </ApolloProvider>
     );
