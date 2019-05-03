@@ -24,11 +24,10 @@ const exportedMethods = {
       const newCourse = {
           _id: uuidv4(),
           title: title,
-          campus: campus,
+          campus: campus,//true campus, false off campus
           reviews: [],
-          ratings: [],
-          syllabus: syllabus,
-          book: book,
+          ratings: 0.0,
+          rating_number: 0,
           recommended: recommended
       };
       
@@ -48,8 +47,7 @@ const exportedMethods = {
           "campus" : update_course.campus,
           "reviews" : update_course.reviews,
           "ratings" : update_course.ratings,
-          "syllabus" : update_course.syllabus,
-          "book" : update_course.book,
+          "rating_number": update_course.rating_number,
           "recommended" : update_course.recommended} },{ upsert: true });
       if (updatedInfo.modifiedCount === 0) {
           throw "could not add new review to user successfully";
@@ -60,13 +58,13 @@ const exportedMethods = {
   async addRatingCourse(course_id, rating){
       const course_collection = await course();
       let update_course = await this.getCourseById(course_id);
-      update_course.ratings.push(rating);
+      update_course.ratings = (update_course.ratings * update_course.rating_number + rating) / (update_course.rating_number + 1);
+      update_course.rating_number++;
       const updatedInfo = await course_collection.updateOne({_id: update_course._id}, { $set: { "title" : update_course.title,
           "campus" : update_course.campus,
           "reviews" : update_course.reviews,
           "ratings" : update_course.ratings,
-          "syllabus" : update_course.syllabus,
-          "book" : update_course.book,
+          "rating_number": update_course.rating_number,
           "recommended" : update_course.recommended} },{ upsert: true });
       if (updatedInfo.modifiedCount === 0) {
           throw "could not add new review to user successfully";

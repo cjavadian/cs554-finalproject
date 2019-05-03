@@ -13,7 +13,9 @@ const main = async () =>{
 
     let new_review = await review.addReview(new_user._id, new_course._id, "Bob", "hhhh", "yes"); 
     await course.addRatingCourse(new_course._id,95);
-    await user.addCourseUser(new_user._id, new_course._id)
+    await user.addCourseUser(new_user._id, new_course._id);
+    await course.addRatingCourse(new_course._id,97);
+    await review.addLike(new_review._id);
     //console.log(new_review);
     await db.serverConfig.close();
 };

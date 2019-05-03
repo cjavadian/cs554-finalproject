@@ -26,7 +26,6 @@ const exportedMethods = {
             last_name: last_name,
             user_name:user_name,
             email:email,
-            validated:false,
             courses:[],
             reviews:[]
           };
@@ -51,7 +50,6 @@ const exportedMethods = {
         update_user.courses.push(course_id);
         const updatedInfo = await user_collection.updateOne({_id: update_user._id}, { $set: {"first_name" : update_user.first_name, "last_name" : update_user.last_name, "user_name" : update_user.user_name,
             "email" : update_user.email,
-            "validated" : update_user.validated,
             "courses" : update_user.courses,
             "reviews" : update_user.reviews} },{ upsert: true });
         if (updatedInfo.modifiedCount === 0) {
@@ -72,7 +70,6 @@ const exportedMethods = {
           //console.log(update_user);
           const updatedInfo = await user_collection.updateOne({_id: update_user._id}, { $set: {"first_name" : update_user.first_name, "last_name" : update_user.last_name, "user_name" : update_user.user_name,
           "email" : update_user.email,
-          "validated" : update_user.validated,
           "courses" : update_user.courses,
           "reviews" : update_user.reviews} },{ upsert: true });
 
