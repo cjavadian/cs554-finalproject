@@ -8,7 +8,7 @@ const main = async () =>{
 	const db = await dbConnection();
 	await db.dropDatabase();
 	let new_user = await user.addUser("Xinzhe","Li","HHH","xil144@stevens.edu");
-    let new_course = await course.addCourse("Science", ["campus", "web"], "xxxx", "Science Book", "yes");
+    let new_course = await course.addCourse("Science", ["campus", "web"], "yes");
     //console.log(review);
 
     let new_review = await review.addReview(new_user._id, new_course._id, "Bob", "hhhh", "yes"); 

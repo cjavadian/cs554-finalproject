@@ -19,7 +19,7 @@ const exportedMethods = {
       if(result === null) throw "No such task in MongoDB";
       return result;
   },// get /users/:id
-  async addCourse(title, campus, syllabus, book, recommended) {
+  async addCourse(title, campus, recommended) {
 
       const newCourse = {
           _id: uuidv4(),
