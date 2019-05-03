@@ -20,15 +20,16 @@ class UserProfilePicture extends Component {
 
    handleImageChange(event) {
     event.preventDefault();
-    let reader = new FileReader();
     let file = event.target.files[0];
+    let reader = new FileReader();
+    reader.readAsDataURL(file);
      reader.onloadend = async() => {
         await this.setState({
         file: file,
         imagePreviewUrl: reader.result
       });
     };
-    reader.readAsDataURL(file);
+    
   }
 
   render() {
