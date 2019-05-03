@@ -1,4 +1,7 @@
 import React, { Component } from "react";
+import CourseCard from '../components/CourseCard';
+import CourseReviewStatistics from '../components/CourseReviewStatistics';
+import CourseReviewList from '../components/CourseReviewList';
 
 class CourseDetails extends Component {
   render() {
