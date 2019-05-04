@@ -28,7 +28,7 @@ const exportedMethods = {
           course_id: course_id,
           professor: professor,
           review_body: review_body,
-          likes: likes
+          likes: 0
       };
       
       const review_collection = await review();
@@ -42,6 +42,20 @@ const exportedMethods = {
       await course.addReviewCourse(course_id, newId);
       return await this.getReviewById(newId);
   },//post /users
+  async addLike(review_id){
+      const review_collection = await review();
+      let update_review = await this.getReviewById(review_id);
+      update_review.likes++;
+      const updatedInfo = await review_collection.updateOne({_id: update_review._id}, { $set: { "user_id" : update_review.user_id,
+          "course_id": update_review.course_id,
+          "professor": update_review.professor,
+          "review_body": update_review.review_body,
+          "likes" : update_review.likes} },{ upsert: true });
+      if (updatedInfo.modifiedCount === 0) {
+          throw "could not add new review to user successfully";
+      }
+      return await this.getReviewById(update_review._id);
+  }
 }
 
 module.exports = exportedMethods;
