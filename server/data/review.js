@@ -19,7 +19,25 @@ const exportedMethods = {
       const result = await review_collection.findOne({_id:id});
       if(result === null) throw "No such task in MongoDB";
       return result;
-  },// get /users/:id
+  },
+  async getReviewByUserId(user_id){
+      if (user_id == null || user_id == undefined || user_id == "") throw "You must provide an user id to search for";
+      if (typeof(user_id) !== 'string') throw "Invalid user id";
+
+      const review_collection = await review();
+      const result = await review_collection.find({user_id: user_id}).toArray();;
+      if(result === null) throw "No such task in MongoDB";
+      return result;
+  },
+  async getReviewByCourseId(course_id){
+      if (course_id == null || course_id == undefined || course_id == "") throw "You must provide a course id to search for";
+      if (typeof(course_id) !== 'string') throw "Invalid course id";
+
+      const review_collection = await review();
+      const result = await review_collection.find({course_id: course_id}).toArray();;
+      if(result === null) throw "No such task in MongoDB";
+      return result;
+  },
   async addReview(user_id, course_id, professor, review_body, likes) {
 
       const newReview = {
@@ -36,8 +54,7 @@ const exportedMethods = {
       const newInsertInformation = await review_collection.insertOne(newReview);
       if (newInsertInformation.insertedCount === 0)throw "Could not add review";
       const newId = newInsertInformation.insertedId;
-      console.log(user.addReviewUser);
-      console.log(course);
+
       await user.addReviewUser(user_id, newId);
       await course.addReviewCourse(course_id, newId);
       return await this.getReviewById(newId);
