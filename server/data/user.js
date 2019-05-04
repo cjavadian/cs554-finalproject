@@ -3,7 +3,7 @@ const Promise = bluebird.Promise;
 const uuidv4 = require("uuid/v4");
 const collection = require("../config/mongoCollections");
 const user = collection.user;
-
+const course = require("./course"); 
 function check(num){
   return !isNaN(parseFloat(num))&&isFinite(num);
 }
@@ -25,6 +25,17 @@ const exportedMethods = {
       const user_collection = await user();
       const result = await user_collection.findOne({user_name : user_name});
       if(result === null) throw "No such task in MongoDB";
+      return result;
+  },// get /users/:id
+  async getUserCourseById(id){
+      const user_collection = await user();
+      let query_user = await this.getUserById(id);
+      let result = [];
+      for(let i = 0; i < query_user.courses.length; ++i){
+          let tmp = await course.getCourseById(query_user.courses[i]);
+          result.push(tmp);
+      }
+      //if(result === null) throw "No such task in MongoDB";
       return result;
   },// get /users/:id
   async addUser(first_name,last_name,user_name,email) {
