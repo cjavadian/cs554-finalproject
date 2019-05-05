@@ -10,16 +10,22 @@ function check(num){
 }
 
 const exportedMethods = {
+  async getAllCourse(){
+      const course_collection = await course();
+      const result = await course_collection.find({}).toArray();;
+      if(result === null) throw "No such course in MongoDB";
+      return result;
+  },
   async getCourseById(id){
       if (id == null || id == undefined || id == "") throw "You must provide an id to search for";
       if (typeof(id) !== 'string') throw "Invalid id";
 
       const course_collection = await course();
       const result = await course_collection.findOne({_id:id});
-      if(result === null) throw "No such task in MongoDB";
+      if(result === null) throw "No such course in MongoDB";
       return result;
   },// get /users/:id
-  async addCourse(title, campus, recommended) {
+  async addCourse(title, campus) {
 
       const newCourse = {
           _id: uuidv4(),
@@ -27,8 +33,7 @@ const exportedMethods = {
           campus: campus,//true campus, false off campus
           reviews: [],
           ratings: 0.0,
-          rating_number: 0,
-          recommended: recommended
+          rating_number: 0
       };
       
       const course_collection = await course();
@@ -47,8 +52,7 @@ const exportedMethods = {
           "campus" : update_course.campus,
           "reviews" : update_course.reviews,
           "ratings" : update_course.ratings,
-          "rating_number": update_course.rating_number,
-          "recommended" : update_course.recommended} },{ upsert: true });
+          "rating_number": update_course.rating_number} },{ upsert: true });
       if (updatedInfo.modifiedCount === 0) {
           throw "could not add new review to user successfully";
       }
@@ -64,8 +68,7 @@ const exportedMethods = {
           "campus" : update_course.campus,
           "reviews" : update_course.reviews,
           "ratings" : update_course.ratings,
-          "rating_number": update_course.rating_number,
-          "recommended" : update_course.recommended} },{ upsert: true });
+          "rating_number": update_course.rating_number} },{ upsert: true });
       if (updatedInfo.modifiedCount === 0) {
           throw "could not add new review to user successfully";
       }

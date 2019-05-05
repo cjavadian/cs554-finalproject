@@ -8,10 +8,10 @@ const main = async () =>{
 	const db = await dbConnection();
 	await db.dropDatabase();
 	let new_user = await user.addUser("Xinzhe","Li","HHH","xil144@stevens.edu");
-    let new_course = await course.addCourse("Science", true, "yes");
-
-    let new_review = await review.addReview(new_user._id, new_course._id, "Bob", "hhhh", "yes"); 
-    await review.addReview(new_user._id, new_course._id, "Bob1", "hhhh", "yes"); 
+    let new_course = await course.addCourse("Science", true);
+    await course.addCourse("Physics", true);
+    let new_review = await review.addReview(new_user._id, new_course._id, "Bob", "hhhh", true); 
+    await review.addReview(new_user._id, new_course._id, "Bob1", "hhhh", true); 
     
     
     await course.addRatingCourse(new_course._id,95);
@@ -24,6 +24,8 @@ const main = async () =>{
     console.log("new commet",new_comment);
     let re_course = await user.getUserCourseById(new_user._id);
     console.log("course",re_course);
+    let course_list = await course.getAllCourse();
+    console.log("course list",course_list);
     //console.log(new_review);
     await db.serverConfig.close();
 };

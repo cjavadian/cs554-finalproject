@@ -25,7 +25,7 @@ const exportedMethods = {
       if (typeof(user_id) !== 'string') throw "Invalid user id";
 
       const review_collection = await review();
-      const result = await review_collection.find({user_id: user_id}).toArray();;
+      const result = await review_collection.find({user_id: user_id}).toArray();
       if(result === null) throw "No such task in MongoDB";
       return result;
   },
@@ -34,11 +34,11 @@ const exportedMethods = {
       if (typeof(course_id) !== 'string') throw "Invalid course id";
 
       const review_collection = await review();
-      const result = await review_collection.find({course_id: course_id}).toArray();;
+      const result = await review_collection.find({course_id: course_id}).toArray();
       if(result === null) throw "No such task in MongoDB";
       return result;
   },
-  async addReview(user_id, course_id, professor, review_body, likes) {
+  async addReview(user_id, course_id, professor, review_body, recommend) {
 
       const newReview = {
           _id: uuidv4(),
@@ -46,7 +46,8 @@ const exportedMethods = {
           course_id: course_id,
           professor: professor,
           review_body: review_body,
-          likes: 0
+          likes: 0,
+          recommend: recommend
       };
       
       const review_collection = await review();
@@ -67,7 +68,8 @@ const exportedMethods = {
           "course_id": update_review.course_id,
           "professor": update_review.professor,
           "review_body": update_review.review_body,
-          "likes" : update_review.likes} },{ upsert: true });
+          "likes" : update_review.likes,
+          "recommend" : update_review.recommend} },{ upsert: true });
       if (updatedInfo.modifiedCount === 0) {
           throw "could not add new review to user successfully";
       }
