@@ -3,7 +3,7 @@ const Promise = bluebird.Promise;
 const uuidv4 = require("uuid/v4");
 const collection = require("../config/mongoCollections");
 const user = collection.user;
-
+const course = require("./course"); 
 function check(num){
   return !isNaN(parseFloat(num))&&isFinite(num);
 }
@@ -16,6 +16,26 @@ const exportedMethods = {
       const user_collection = await user();
       const result = await user_collection.findOne({_id:id});
       if(result === null) throw "No such task in MongoDB";
+      return result;
+  },// get /users/:id
+  async getUserByName(user_name){
+      if (user_name == null || user_name == undefined || user_name == "") throw "You must provide an user name to search for";
+      if (typeof(user_name) !== 'string') throw "Invalid id";
+
+      const user_collection = await user();
+      const result = await user_collection.findOne({user_name : user_name});
+      if(result === null) throw "No such task in MongoDB";
+      return result;
+  },// get /users/:id
+  async getUserCourseById(id){
+      const user_collection = await user();
+      let query_user = await this.getUserById(id);
+      let result = [];
+      for(let i = 0; i < query_user.courses.length; ++i){
+          let tmp = await course.getCourseById(query_user.courses[i]);
+          result.push(tmp);
+      }
+      //if(result === null) throw "No such task in MongoDB";
       return result;
   },// get /users/:id
   async addUser(first_name,last_name,user_name,email) {
@@ -34,9 +54,9 @@ const exportedMethods = {
 
           const newInsertInformation = await user_collection.insertOne(newUser);
           if (newInsertInformation.insertedCount === 0)throw "Could not add task";
-          const newId = newInsertInformation.insertedId;
+          const newName = newInsertInformation.ops[0].user_name;
 
-          return await this.getUserById(newId);
+          return await this.getUserByName(newName);
       }
       catch(e){
           console.log(e);
@@ -56,7 +76,7 @@ const exportedMethods = {
             throw "could not add new course to user successfully";
         }
 
-        return await this.getUserById(update_user._id);
+        return await this.getUserByName(update_user.user_name);
     }
     catch(e){
         console.log(e);
@@ -77,7 +97,7 @@ const exportedMethods = {
               throw "could not add new review to user successfully";
           }
 
-          return await this.getUserById(update_user._id);
+          return await this.getUserByName(update_user.user_name);
       }
       catch(e){
         console.log(e);
@@ -86,3 +106,5 @@ const exportedMethods = {
 }
 
 module.exports = exportedMethods;
+//用user_name读取user
+//
