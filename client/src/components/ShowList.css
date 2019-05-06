@@ -1,0 +1,29 @@
+.container{
+   text-align: center;
+   position: relative; 
+   right:500px;
+   color:black;
+}
+.my-form{
+   text-align: left; 
+   position: relative; 
+   right:50px;
+}
+.searchlabel{
+   text-align: center;
+   right:500px;
+   position: relative;
+}
+.showlink {
+   padding: 0.4rem 0.8rem;
+
+   border-radius: 3px;
+   color: #1e8678;
+   text-decoration: none !important;
+}
+
+.showlink:hover {
+   background-color: transparent;
+   color: #192A56;
+   border: 2px solid white;
+}
