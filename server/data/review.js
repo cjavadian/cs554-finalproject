@@ -38,7 +38,7 @@ const exportedMethods = {
       if(result === null) throw "No such task in MongoDB";
       return result;
   },
-  async addReview(user_id, course_id, professor, review_body, recommend) {
+  async addReview(user_id, course_id, professor, review_body, recommend, rating) {
 
       const newReview = {
           _id: uuidv4(),
@@ -56,8 +56,9 @@ const exportedMethods = {
       if (newInsertInformation.insertedCount === 0)throw "Could not add review";
       const newId = newInsertInformation.insertedId;
 
-      await user.addReviewUser(user_id, newId);
-      await course.addReviewCourse(course_id, newId);
+      //await user.addReviewUser(user_id, newId);
+      //await course.addReviewCourse(course_id, newId);
+      await course.addRatingCourse(course_id, rating);
       return await this.getReviewById(newId);
   },//post /users
   async addLike(review_id){
