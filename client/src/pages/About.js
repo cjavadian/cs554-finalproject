@@ -4,6 +4,7 @@ import Footer from "../components/Footer.js";
 import "./About.css";
 import UserProfilePicture from "../components/UserProfilePicture";
 import UserStatisticsGraph from "../components/UserStatisticsGraph";
+import UserChat from "../components/Chat";
 class About extends Component {
   render() {
     return (
@@ -14,6 +15,7 @@ class About extends Component {
             <div className="col-md-4">
               <br />            
                 <UserProfilePicture/>
+                <UserChat />
             </div>
             <div className="col-8">
               <div className="col-8">

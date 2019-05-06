@@ -9,7 +9,6 @@ import Firebase from "./components/Firebase/firebase";
 import CourseDetails from "./pages/CourseDetails";
 import ShowsContainer from './components/ShowsContainer'
 
-
 const client = new ApolloClient({
   uri:'http://localhost:7050/graphql'
 })
