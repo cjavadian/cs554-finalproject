@@ -9,9 +9,11 @@ class About extends Component {
     return (
       <div>
         <LoggedinNavbar />
-        <UserProfilePicture/>
+        <div className="container-fluid">
+          <UserProfilePicture/>
+          </div>
         <Footer /> 
-        </div>
+      </div>
     );
   }
 }
