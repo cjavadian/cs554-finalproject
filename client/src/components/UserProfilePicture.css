@@ -7,18 +7,15 @@
     max-height: 200px;
     display: block;
     position: relative;
-    left: 50px;
     /* background: yellow; */
 }
 
 .file-upload {
-    /* position: center;
-    margin: auto; */
-    /* left:270px;
-    margin-bottom: 55px;
-    margin-top: 45px; */
-  position: absolute;
-  background-color: orange;
+    /* left:270px; */
+    /* margin-bottom: 55px; */
+    /* margin-top: 45px; */
+    position: relative;
+    left: 325px;
 }
 
 .rounded-circle {
@@ -51,7 +48,7 @@
     transition: all .3s cubic-bezier(.175, .885, .32, 1.275);
     color: #999;
   }
-  .pl-2{
+  .pl-2 {
     margin-top:250px;
   }
 
@@ -61,6 +58,18 @@
     width: 100%;
   } */
 
-  .chat-container {
-    background-color: purple;
+.chat-container {
+    text-align: center;
+    position: relative;
+    left: 50px;
+}
+
+  .card {
+    overflow: hidden;
+    background-color: #d8d8d8;
   }
+
+  .scroll {
+    max-height: 100%;
+    overflow-y: auto;
+}

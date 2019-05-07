@@ -37,57 +37,45 @@ class UserProfilePicture extends Component {
   render() {
     return (
       <div>
-      <div class="row">
-        <div className="col-3">
-          <div className="profile-pic">
-            <img
-              className="text-center avatar rounded-circle m-auto"
-              src="https://placeimg.com/444/445"
-              alt="Card cap"
-            />
-          </div>
-          <div className="p-image">
-            {/* <FaCamera upload-button /> */}
-            <form onSubmit={this.handleSubmit}>
-              <input
-                className="file-upload"
-              type="file"
-              accept="image/*"
-              onChange={this.handleImageChange}
+        <div class="row">
+          <div className="col-3">
+            <div className="profile-pic">
+              <img
+                className="text-center avatar rounded-circle m-auto"
+                src="https://placeimg.com/444/445"
+                alt="Card cap"
               />
-            </form>
-          </div>
-          <br />
-          <h4 className="card-title text-left">First Name Last Name</h4>
-          <hr />
-          <dl className="text-secondary">
-            <dt>Username: </dt>
-            <dd>User's user name</dd>
-            <dt>Email: </dt>
-            <dd>User's email</dd>
-          </dl>
-        </div>
-        <div className="col-7">
-          <div className="card">
-            <div className="card-body">
-              <h5 className="card-title">
-                User's Course Review Statisitics
-              </h5>
-              <h6 className="card-subtitle cols-6">
-                Card subtitle
-              </h6>
-              <UserStatisticsGraph />
-              <p className="card-text">
-                Some quick example text to build on the card title and
-                make up the bulk of the card's content.
-              </p>
             </div>
+            <div className="p-image">
+              {/* <FaCamera upload-button /> */}
+              <form onSubmit={this.handleSubmit}>
+                <input
+                  className="file-upload"
+                type="file"
+                accept="image/*"
+                onChange={this.handleImageChange}
+                />
+              </form>
+            </div>
+            <br />
+            <br />
+            <br />
+            <h4 className="card-title text-left">First Name Last Name</h4>
+            <hr />
+            <dl className="text-secondary">
+              <dt>Username: </dt>
+              <dd>User's user name</dd>
+              <dt>Email: </dt>
+              <dd>User's email</dd>
+            </dl>
           </div>
-          <div className="useruseful">
+          <div className="col-6">
             <div className="card">
               <div className="card-body">
-                <h5 className="card-title">Useful Statisitics</h5>
-                <h6 className="card-subtitle md-2 text-muted col-6">
+                <h5 className="card-title">
+                  User's Course Review Statisitics
+                </h5>
+                <h6 className="card-subtitle cols-6">
                   Card subtitle
                 </h6>
                 <UserStatisticsGraph />
@@ -97,14 +85,29 @@ class UserProfilePicture extends Component {
                 </p>
               </div>
             </div>
-        </div>
-        <div className="col-2">
-          <div className="chat-container">
-            <UserChat />
+            <div className="useruseful">
+              <div className="card">
+                <div className="card-body">
+                  <h5 className="card-title">Useful Statisitics</h5>
+                  <h6 className="card-subtitle md-2 text-muted col-6">
+                    Card subtitle
+                  </h6>
+                  <UserStatisticsGraph />
+                  <p className="card-text">
+                    Some quick example text to build on the card title and
+                    make up the bulk of the card's content.
+                  </p>
+                </div>
+              </div>
+              
+            </div> 
           </div>
-        </div> 
-        </div>
-        </div>
+          <div className="col-3">
+              <div className="chat-container">
+                <UserChat />
+              </div>
+          </div>
+          </div>
       </div>
     );
   }

@@ -35,10 +35,10 @@ class Chat extends React.Component{
     }
     render(){
         return (
-            <div className="container">
-                <div className="row">
-                    <div className="col-4">
-                        <div className="card">
+            // <div className="container">
+            //     <div className="row">
+            //         <div className="col-4">
+                        <div className="card scroll">
                             <div className="card-body">
                                 <div className="card-title">Chat Room</div>
                                 <hr/>
@@ -58,9 +58,9 @@ class Chat extends React.Component{
                                 <button onClick={this.sendMessage} className="btn btn-primary form-control">Send</button>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
+            //         </div>
+            //     </div>
+            // </div>
         );
     }
 }

@@ -20,10 +20,10 @@
 }
 
 
-.container-fluid {
+/* .container-fluid {
     width: 100%;
-    /* background-color: #66ffff; */
-}
+    background-color: #66ffff;
+} */
 
 .chatbox {
     position: relative;
