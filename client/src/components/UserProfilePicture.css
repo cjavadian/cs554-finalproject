@@ -2,31 +2,35 @@
     cursor: pointer;
 }
 
-.profilepic {
+.profile-pic {
     max-width: 200px;
     max-height: 200px;
     display: block;
-    top:200px;
+    position: relative;
+    left: 50px;
+    /* background: yellow; */
 }
 
 .file-upload {
-    position: relative;
-    left:270px;
+    /* position: center;
+    margin: auto; */
+    /* left:270px;
     margin-bottom: 55px;
-    margin-top: 45px;
-    
-} 
+    margin-top: 45px; */
+  position: absolute;
+  background-color: orange;
+}
 
 .rounded-circle {
-    border-radius: 6000px !important;
+    /* border-radius: 6000px !important; */
     overflow: hidden;
     width: 200px;
     height: 200px;
     border: 8px solid rgba(255, 255, 255, 0.7);
-    position: absolute;
+    display: block;
+    margin: 0 auto;
     top: 72px;
 }
-
 .p-image {
     position: absolute;
     top: 230px;
@@ -49,4 +53,14 @@
   }
   .pl-2{
     margin-top:250px;
+  }
+
+  /* .container-fluid {
+    text-align: center;
+    height: 100%;
+    width: 100%;
+  } */
+
+  .chat-container {
+    background-color: purple;
   }
