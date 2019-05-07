@@ -1,13 +1,38 @@
-
 .userprofilestat {
     width: 50rem;
     height: 50%;
     margin-top: 5%;
     margin-bottom: 5%
 }
+
+.user {
+    text-align: center;
+}
+
 .useruseful {
     width: 50rem;
     height: 50%;
     margin-bottom: 10%
 }
 
+.footer {
+    width: 100%
+}
+
+
+.container-fluid {
+    width: 100%;
+    /* background-color: #66ffff; */
+}
+
+.chatbox {
+    position: relative;
+    left: 50%;
+}
+
+html, body, form{ height: 100%;}
+
+div {
+    width: 100%
+    /* background-color: #66ffff; */
+}
