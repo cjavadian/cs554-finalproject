@@ -41,7 +41,7 @@ class App extends Component {
     return (
       <ApolloProvider client = {client}>
         <Router>
-          <div>{this.state.user ? <About/> : <Home />}</div> 
+          {/* <div>{this.state.user ? <About/> : <Home />}</div>  */}
           {/* <Route path="/shows/" exact component={ShowsContainer} /> */}
           <div>{this.state.user ? <CourseDetails/> : <Home />}</div>
         </Router>
