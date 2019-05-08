@@ -16,11 +16,35 @@ const userInfoInCourseReview = new GraphQLObjectType({
 	name: "userInfoInCourseReview",
 	description: "User Info in the review when Query a specific course",
 	fields: () => ({
+		_id: {
+			type: GraphQLString,
+			resolve: (user, args) => {
+				return user._id;
+			}
+		},
 		user_name: {
 			type: GraphQLString,
 			resolve: (user, args) => {
 				return user.user_name;
-			}}
+			}},
+		first_name: {
+			type: GraphQLString,
+			resolve: (user, args) => {
+				return user.first_name;
+			}
+		},
+		last_name: {
+			type: GraphQLString,
+			resolve: (user, args) => {
+				return user.last_name;
+			}
+		},
+		email: {
+			type: GraphQLString,
+			resolve: (user, args) => {
+				return user.email;
+			}
+		}
 	})
 });
 
@@ -72,6 +96,18 @@ const userCourseReview = new GraphQLObjectType ({
 	name: "userCourseReview",
 	description: "User course review type",
 	fields: ()=>({
+		review_id: {
+			type: GraphQLString,
+			resolve: (userReview, args) => {
+				return userReview._id;
+			}
+		},
+		course_id: {
+			type: GraphQLString,
+			resolve: (userReview, args) => {
+				return userReview.course_id;
+			}
+		},
 		course_title: {
 			type: GraphQLString,
 			async resolve(userReview, args) {
@@ -82,6 +118,12 @@ const userCourseReview = new GraphQLObjectType ({
 					console.log(e);
 				}
 		}},
+		professor: {
+			type: GraphQLString,
+			async resolve(userReview, args) {
+				return userReview.professor;
+			}
+		},
 		review_content: {
 			type: GraphQLString,
 			async resolve(userReview, args) {
@@ -214,11 +256,12 @@ const RootMutation =  new GraphQLObjectType({
 				user_id: {type: new GraphQLNonNull(GraphQLString)},
 				professor: {type: new GraphQLNonNull(GraphQLString)},
 				review_body: {type: new GraphQLNonNull(GraphQLString)},
-				recommended: {type: new GraphQLNonNull(GraphQLBoolean)}
+				recommended: {type: new GraphQLNonNull(GraphQLBoolean)},
+				ratings: {type: new GraphQLNonNull(GraphQLInt)}
 			},
 			async resolve(parent, args) {
 				try {
-					await review.addReview(args.user_id, args.course_id, args.professor, args.review_body, args.recommended);
+					await review.addReview(args.user_id, args.course_id, args.professor, args.review_body, args.recommended, args.ratings);
 					return await course.getCourseById(args.course_id);
 				} catch (e) {
 					console.log(e);

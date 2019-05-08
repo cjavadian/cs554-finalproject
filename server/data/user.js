@@ -45,9 +45,9 @@ const exportedMethods = {
             first_name: first_name,
             last_name: last_name,
             user_name:user_name,
-            email:email,
-            courses:[],
-            reviews:[]
+            email:email
+            //courses:[],
+            //reviews:[]
           };
       
           const user_collection = await user();

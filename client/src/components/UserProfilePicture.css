@@ -2,31 +2,32 @@
     cursor: pointer;
 }
 
-.profilepic {
+.profile-pic {
     max-width: 200px;
     max-height: 200px;
     display: block;
-    top:200px;
+    position: relative;
+    /* background: yellow; */
 }
 
 .file-upload {
+    /* left:270px; */
+    /* margin-bottom: 55px; */
+    /* margin-top: 45px; */
     position: relative;
-    left:270px;
-    margin-bottom: 55px;
-    margin-top: 45px;
-    
-} 
+    left: 325px;
+}
 
 .rounded-circle {
-    border-radius: 6000px !important;
+    /* border-radius: 6000px !important; */
     overflow: hidden;
     width: 200px;
     height: 200px;
     border: 8px solid rgba(255, 255, 255, 0.7);
-    position: absolute;
+    display: block;
+    margin: 0 auto;
     top: 72px;
 }
-
 .p-image {
     position: absolute;
     top: 230px;
@@ -47,6 +48,28 @@
     transition: all .3s cubic-bezier(.175, .885, .32, 1.275);
     color: #999;
   }
-  .pl-2{
+  .pl-2 {
     margin-top:250px;
   }
+
+  /* .container-fluid {
+    text-align: center;
+    height: 100%;
+    width: 100%;
+  } */
+
+.chat-container {
+    text-align: center;
+    position: relative;
+    left: 50px;
+}
+
+  .card {
+    overflow: hidden;
+    background-color: #d8d8d8;
+  }
+
+  .scroll {
+    max-height: 100%;
+    overflow-y: auto;
+}
