@@ -21,9 +21,10 @@ class App extends Component {
     };
   }
 
-  componentDidMount() {
+  componentWillMount() {
     this.authListener();
   }
+ 
   authListener() {
     Firebase.auth().onAuthStateChanged(user => {
       console.log(user);
@@ -41,9 +42,12 @@ class App extends Component {
     return (
       <ApolloProvider client = {client}>
         <Router>
-          {/* <div>{this.state.user ? <About/> : <Home />}</div>  */}
-          {/* <Route path="/shows/" exact component={ShowsContainer} /> */}
-          <div>{this.state.user ? <CourseDetails/> : <Home />}</div>
+          {/* <div>{this.state.user ? <About/> : <Home />}</div>   */}
+          <Route path="/" exact component={Home} />
+          <Route path="/about/" exact component={About} />
+          <Route path="/shows/" exact component={ShowsContainer} />
+          {/* <div>{this.state.user ? <CourseDetails/> : <Home />}</div> */}
+          
         </Router>
       </ApolloProvider>
     );

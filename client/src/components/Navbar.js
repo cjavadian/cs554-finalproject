@@ -5,6 +5,8 @@ import Firebase from './Firebase/firebase';
 import { FaUser, FaLock, FaAt, FaAddressBook } from 'react-icons/fa';
 import {graphql,compose} from "react-apollo";
 import {addUserMutation} from "../queries/queries";
+import { withRouter } from "react-router";
+
 
 class Navbar extends Component {
     constructor(props) {
@@ -33,6 +35,7 @@ class Navbar extends Component {
         e.preventDefault();
         try {
             const user = await Firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password);
+            this.props.history.push("/about")
             console.log(user);
         }catch(error) {
             console.log(error);
@@ -54,7 +57,7 @@ class Navbar extends Component {
             });
             console.log(user);
             window.location.reload();
-            //this.props.history.push("/")
+            this.props.history.push("/")
 
         }catch(error) {
             console.log(error);
@@ -135,4 +138,4 @@ class Navbar extends Component {
 }
 
 
-export default compose(graphql(addUserMutation,{name:"addUserMutation"}))(Navbar);
+export default withRouter (Navbar) ;compose(graphql(addUserMutation,{name:"addUserMutation"}));

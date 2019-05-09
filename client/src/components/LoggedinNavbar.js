@@ -4,6 +4,8 @@ import './Navbar.css';
 import Firebase from '../components/Firebase/firebase'
 import { FaUser} from 'react-icons/fa';
 import EditProfile from '../pages/EditUserProfile';
+import { withRouter } from "react-router";
+
 class LoggedinNavbar extends Component {
     constructor(props) {
         super(props);
@@ -13,6 +15,8 @@ class LoggedinNavbar extends Component {
     
       onLogOut() {
         Firebase.auth().signOut();
+        this.props.history.push("/")
+
     }
 
     render() {
@@ -63,4 +67,4 @@ class LoggedinNavbar extends Component {
     }
 }
 
-export default LoggedinNavbar;
+export default withRouter (LoggedinNavbar);
