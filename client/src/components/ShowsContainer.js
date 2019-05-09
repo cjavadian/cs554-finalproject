@@ -4,7 +4,7 @@ import ShowList from './ShowList';
 import Show from './Show';
 import './ShowList.css'
 import LoggedInNavbar from '../components/LoggedinNavbar';
-
+import CourseDetails from '../pages/CourseDetails';
 class ShowsContainer extends Component {
    render() {
       return (
@@ -13,7 +13,7 @@ class ShowsContainer extends Component {
             <br/>
             <Switch>
                <Route path="/shows" exact component={ShowList} />
-               <Route path="/shows/:id" exact component={Show} />
+               <Route path="/course/:id" exact component={CourseDetails} />
             </Switch>
          </div>
       );

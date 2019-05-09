@@ -11,6 +11,7 @@ import ShowsContainer from './components/ShowsContainer';
 import Show from "./components/Show"
 import IsAuthenticated from "./components/isAuthenticated"
 import { withRouter } from "react-router";
+import ShowList from "./components/ShowList";
 
 const client = new ApolloClient({
   uri: 'http://localhost:7050/graphql'
@@ -48,11 +49,10 @@ class App extends Component {
         <Router>
           {/* {<div>{this.state.user ? <About/> : <Home />}</div>    */}
           <Route path="/" exact component={Home} />
-          <Route path="/about/" exact component={About} />
-          <Route path="/shows/" exact render={() => <IsAuthenticated><ShowsContainer /></IsAuthenticated>} />
-          <Route path="/shows/:id" exact component={Show} />
-
-          <Route path="/course" exact component={CourseDetails} />
+          <Route path="/about/" exact render={() => <IsAuthenticated><About /></IsAuthenticated>} />
+          <Route path="/shows/" exact render={() => <IsAuthenticated><ShowsContainer /></IsAuthenticated>} />     
+          <Route path="/course/:id" exact exact render={() => <IsAuthenticated><CourseDetails /></IsAuthenticated>} />
+          <Route path="/course" exact exact render={() => <IsAuthenticated><CourseDetails /></IsAuthenticated>} />
           {/* <div>{this.state.user ? <CourseDetails/> : <Home />}</div> */}
 
         </Router>

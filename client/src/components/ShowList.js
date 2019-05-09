@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Show from '../components/Show';
 import './ShowList.css';
 
+
 class ShowList extends Component {
    constructor(props) {
       super(props);
@@ -72,6 +73,7 @@ class ShowList extends Component {
       }
    }
    render() {
+      
       let body = null;
       let li = null;
       const { searchData, searchTerm } = this.state
@@ -81,7 +83,7 @@ class ShowList extends Component {
             searchData && searchData.map(course => {
                return (
                   <li key={course.id}>
-                     <Link to={`/shows/${course.id}`}>{course.coursename}</Link>
+                     <Link to={`/course/${course.id}`}>{course.coursename}</Link>
                   </li>
                );
             });
@@ -90,14 +92,14 @@ class ShowList extends Component {
             this.state.data &&
             this.state.data.map(course => (
                <li key={course.id}>
-                  <Link className="showlink" to={`/shows/${course.id}`}>{course.coursename}</Link>
+                  <Link className="showlink" to={`/course/${course.id}`}>{course.coursename}</Link>
                </li>
             ));
       }
       body = (
          <div className="container">
-
             <form className="my-form" method="POST " name="formName" onSubmit={this.onSubmit}>
+               
                <label name="searchlabel">
                   {' '}
                   Search Term:
