@@ -11,7 +11,9 @@ class About extends Component {
         <LoggedinNavbar />
         <div className="container-fluid">
           <UserProfilePicture/>
+          
           </div>
+          
         <Footer /> 
       </div>
     );

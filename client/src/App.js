@@ -1,16 +1,19 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router,Route } from "react-router-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import ApolloClient from "apollo-boost";
-import {ApolloProvider} from "react-apollo";
+import { ApolloProvider } from "react-apollo";
 import "./App.css";
 import Home from "./pages/Home.js";
 import About from "./pages/About.js";
 import Firebase from "./components/Firebase/firebase";
 import CourseDetails from "./pages/CourseDetails";
-import ShowsContainer from './components/ShowsContainer'
+import ShowsContainer from './components/ShowsContainer';
+import Show from "./components/Show"
+import IsAuthenticated from "./components/isAuthenticated"
+import { withRouter } from "react-router";
 
 const client = new ApolloClient({
-  uri:'http://localhost:7050/graphql'
+  uri: 'http://localhost:7050/graphql'
 })
 
 class App extends Component {
@@ -21,34 +24,43 @@ class App extends Component {
     };
   }
 
-  componentWillMount() {
+  componentDidMount() {
     this.authListener();
   }
- 
+
   authListener() {
     Firebase.auth().onAuthStateChanged(user => {
-      console.log(user);
+      console.log("user:", user);
       if (user) {
         this.setState({ user });
         localStorage.setItem("user", user.uid);
       } else {
         this.setState({ user: null });
         localStorage.removeItem("user");
+
       }
     });
   }
 
   render() {
     return (
-      <ApolloProvider client = {client}>
+      <ApolloProvider client={client}>
         <Router>
-          {/* <div>{this.state.user ? <About/> : <Home />}</div>   */}
+          {/* {<div>{this.state.user ? <About/> : <Home />}</div>    */}
           <Route path="/" exact component={Home} />
           <Route path="/about/" exact component={About} />
-          <Route path="/shows/" exact component={ShowsContainer} />
+          <Route path="/shows/" exact render={() => <IsAuthenticated><ShowsContainer /></IsAuthenticated>} />
+          <Route path="/shows/:id" exact component={Show} />
+
+          <Route path="/course" exact component={CourseDetails} />
           {/* <div>{this.state.user ? <CourseDetails/> : <Home />}</div> */}
-          
+
         </Router>
+
+
+
+
+
       </ApolloProvider>
     );
   }

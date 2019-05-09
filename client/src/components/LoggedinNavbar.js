@@ -32,10 +32,10 @@ class LoggedinNavbar extends Component {
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul className="navbar-nav mr-auto">
                     <li className="nav-item active">
-                        <Link className="nav-link" to="#">Home <span className="sr-only">(current)</span></Link>
+                        <Link className="nav-link" to="/About">Home <span className="sr-only">(current)</span></Link>
                     </li>
                     <li className="nav-item">
-                        <Link className="nav-link" to="#">Link</Link>
+                        <Link className="nav-link" to="/course">CourseDetails</Link>
                     </li>
                     <li className="nav-item dropdown">
                         <Link className="nav-link dropdown-toggle" to="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

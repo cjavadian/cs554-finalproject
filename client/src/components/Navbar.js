@@ -35,8 +35,13 @@ class Navbar extends Component {
         e.preventDefault();
         try {
             const user = await Firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password);
+            if(user){
             this.props.history.push("/about")
             console.log(user);
+            }
+            else{
+                this.props.history.push("/")
+            }
         }catch(error) {
             console.log(error);
             this.setState({error:error})
