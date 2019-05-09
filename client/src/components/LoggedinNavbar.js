@@ -42,7 +42,7 @@ class LoggedinNavbar extends Component {
                         <FaUser/>
                         </Link>
                         <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <Link className="dropdown-item" to="#">View Profile</Link>
+                            <Link className="dropdown-item" to="/about">View Profile</Link>
                             <Link className="dropdown-item" to="/editprofile" onClick={this.editProfile}>Edit Profile</Link>
                             <div className="dropdown-divider"></div>
                             <Link className="dropdown-item" to="#" onClick={this.onLogOut}>LogOut</Link>

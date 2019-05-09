@@ -11,6 +11,7 @@ export class SignUp extends Component {
             username: '',
             email:'',
             password: '',
+            confirmpassword:'',
             show:false,
             error :{
                 message:''
@@ -27,6 +28,7 @@ export class SignUp extends Component {
         this.props.onSignup && this.props.onSignup(e)
     }
     render() {
+        const isInvalid = password!==confirmpassword;
     return (
       <div>
         <div className="modal fade" id="modalRegisterForm" tabIndex="-1" role="dialog"
@@ -62,10 +64,14 @@ export class SignUp extends Component {
                                         <FaLock/>
                                         <input required type="password" id="password" className="form-control validate" placeholder="Password" value={this.state.password} onChange={this.handleChange}/>
                                     </div>
+                                    <div className="md-form mb-4">
+                                        <FaLock/>
+                                        <input required type="password" id="confirmpassword" className="form-control validate" placeholder="Password" value={this.state.confirmpassword} onChange={this.handleChange}/>
+                                    </div>
                                     </form>
                                 </div>
                                 <div className="modal-footer d-flex justify-content-center">
-                                    <button className="btn btn-outline-success" onClick = {this.onSignup}>Sign up</button>
+                                    <button className="btn btn-outline-success" disabled={isInvalid} onClick = {this.onSignup}>Sign up</button>
                                 </div>
                             </div>
                         </div>
