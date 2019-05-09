@@ -51,9 +51,7 @@ class Navbar extends Component {
   }
 
   async onSignup(e) {
-    const { password, confirmpassword } = this.state;
-    const isInvalid = password !== confirmpassword;
-    e.preventDefault();
+     e.preventDefault();
     try {
       const user = await Firebase.auth().createUserWithEmailAndPassword(
         this.state.email,
