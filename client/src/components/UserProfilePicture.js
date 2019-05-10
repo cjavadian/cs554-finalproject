@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { FaCamera } from "react-icons/fa";
 import "./UserProfilePicture.css";
 import UserStatisticsGraph from "../components/UserStatisticsGraph";
-import UserChat from "../components/Chat";
 
 class UserProfilePicture extends Component {
   constructor(props) {
@@ -101,11 +100,6 @@ class UserProfilePicture extends Component {
               </div>
               
             </div> 
-          </div>
-          <div className="col-3">
-              <div className="chat-container">
-                <UserChat />
-              </div>
           </div>
           </div>
       </div>

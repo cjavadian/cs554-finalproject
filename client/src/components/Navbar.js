@@ -7,6 +7,7 @@ import { graphql, compose } from "react-apollo";
 import { addUserMutation } from "../queries/queries";
 import { withRouter } from "react-router";
 import {GET_USER} from "../queries/queries";
+
 class Navbar extends Component {
   constructor(props) {
     super(props);

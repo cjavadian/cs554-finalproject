@@ -37,6 +37,9 @@ class LoggedinNavbar extends Component {
                     <li className="nav-item">
                         <Link className="nav-link" to="/course">CourseList</Link>
                     </li>
+                    <li className="nav-item">
+                    <Link className="nav-link" to="/chat">Chat</Link>
+                    </li>
                     <li className="nav-item dropdown">
                         <Link className="nav-link dropdown-toggle" to="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <FaUser/>
