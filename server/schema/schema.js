@@ -186,11 +186,17 @@ const RootQuery = new GraphQLObjectType({
 			type: courseType,
 			description: "Query a single course",
 			args: {
-				id: {type: new GraphQLNonNull(GraphQLString)}
+				id: {type: GraphQLString},
+				title: {type: GraphQLString}
 			},
 			async resolve(parent, args) {
 				try {
+					if(args.id) {
 					return await course.getCourseById(args.id);
+					}
+					else {
+						return await course.getCourseByTitle(args.title);
+					}
 				} catch(e) {
 					console.log(e);
 				}

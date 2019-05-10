@@ -37,15 +37,15 @@ class App extends Component {
   authListener() {
     Firebase.auth().onAuthStateChanged(user => {
       console.log("user:", user);
-      console.log("user:", user.email);
-      if (user.email && !this.state.user) {
-        this.setState({ user: user.email });
+      if (!this.state.user) {
+        this.setState({ user: user.email});
         localStorage.setItem("user", user.uid);
       } else {
         this.setState({ user: null });
         localStorage.removeItem("user");
 
       }
+      console.log("user email:",this.state.user)
     });
   }
 
@@ -55,11 +55,11 @@ class App extends Component {
       <ApolloProvider client={client}>
         <Router>
           <Route path="/" exact component={Home} />
-          <Route path="/about/" exact render={() => <IsAuthenticated><About /></IsAuthenticated>} />
-          <Route path="/courses/" exact render={() => <IsAuthenticated><CourseContainer /></IsAuthenticated>} />     
-          <Route path="/coursedetails/:id" exact render={() => <IsAuthenticated><CourseDetails /></IsAuthenticated>} />
+          <Route path="/about/" exact render={() => <IsAuthenticated><About email={this.state.user}/></IsAuthenticated>} />
+          <Route path="/courses/" exact render={() => <IsAuthenticated><CourseContainer email={this.state.user}/></IsAuthenticated>} />     
+          <Route path="/coursedetails/:id" exact render={() => <IsAuthenticated><CourseDetails email={this.state.user}/></IsAuthenticated>} />
           {/* <Route path="/course" exact render={() => <IsAuthenticated><CourseList /></IsAuthenticated>} /> */}
-          <Route path="/editprofile" exact render={() => <IsAuthenticated><EditUserProfile/></IsAuthenticated>} />
+          <Route path="/editprofile" exact render={() => <IsAuthenticated><EditUserProfile email={this.state.user}/></IsAuthenticated>} />
           <Route path="/chat" exact render={() => <IsAuthenticated><Chat/></IsAuthenticated>} />
         </Router>
       </ApolloProvider>

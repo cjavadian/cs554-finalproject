@@ -9,18 +9,17 @@ import {Route, Redirect} from "react-router"
 class About extends Component {
   constructor(props) {
 		super(props);
-		console.log(`About user email  ${this.props.user_mail}`);
 		this.state = {
-			user_email: this.props.user_mail
+			email: this.props.email
 		};
 
-	}
+  }
   render() {
     return (
       <div>
         <LoggedinNavbar />
         <div className="container-fluid">
-          <UserProfilePicture user_email={this.state.user_email}/>
+          <UserProfilePicture useremail={this.state.email}/>
           </div>
           
         <Footer /> 

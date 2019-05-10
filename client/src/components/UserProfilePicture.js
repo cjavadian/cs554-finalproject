@@ -1,19 +1,19 @@
 import React, { Component } from "react";
 import { FaCamera } from "react-icons/fa";
 import "./UserProfilePicture.css";
-import UserStatisticsGraph from "../components/UserStatisticsGraph";
 
 class UserProfilePicture extends Component {
   constructor(props) {
     super(props);
     this.state = {
       file: "",
-      imagePreviewUrl: ""
+      imagePreviewUrl: "",
+      email: this.props.useremail
     };
     this.handleImageChange = this.handleImageChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
-
+ 
   handleSubmit(e) {
     e.preventDefault();
     console.log("handle uploading-", this.state.file);
@@ -68,38 +68,8 @@ class UserProfilePicture extends Component {
               <dd>User's email</dd>
             </dl>
           </div>
-          <div className="col-6">
-            <div className="card-stat">
-              <div className="card-body">
-                <h5 className="card-title">
-                  User's Course Review Statisitics
-                </h5>
-                <h6 className="card-subtitle cols-6">
-                  Card subtitle
-                </h6>
-                <UserStatisticsGraph />
-                <p className="card-text">
-                  Some quick example text to build on the card title and
-                  make up the bulk of the card's content.
-                </p>
-              </div>
-            </div>
-            <div className="useruseful">
-              <div className="card-stat">
-                <div className="card-body">
-                  <h5 className="card-title">Useful Statisitics</h5>
-                  <h6 className="card-subtitle md-2 text-muted col-6">
-                    Card subtitle
-                  </h6>
-                  <UserStatisticsGraph />
-                  <p className="card-text">
-                    Some quick example text to build on the card title and
-                    make up the bulk of the card's content.
-                  </p>
-                </div>
-              </div>
-              
-            </div> 
+          <div className="col-9">
+          <img className="laptop" src={require('../images/laptop.png')} alt="laptop image"/>
           </div>
           </div>
       </div>

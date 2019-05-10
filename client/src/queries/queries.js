@@ -78,6 +78,24 @@ query($id: String!){
 }
 `
 
+const GET_COURSE_BY_TITLE = gql`
+query($title: String!){
+    course(title: $title){
+    _id
+    title
+    campus
+    ratings
+    review{
+      _id
+      professor
+      review_body
+      likes
+      recommend
+    }
+  }
+}
+`
+
 const REVIEW_COURSE = gql`
 mutation($course_id: String!, $user_id: String!, $professor: String, $review_body: String!, $recommended: Boolean!, $ratings: Number){
     reviewCourse(course_id: $course_id, user_id: $user_id, professor: $professor, review_body: $review_body, recommended: $recommended, ratings: $ratings){
@@ -134,6 +152,7 @@ export{
     UPDATE_USER,
     GET_ALL_COURSES,
     GET_COURSE_BY_ID,
+    GET_COURSE_BY_TITLE,
     REVIEW_COURSE,
     ADD_LIKES
 }
