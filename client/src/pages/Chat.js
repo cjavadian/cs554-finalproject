@@ -35,12 +35,12 @@ class Chat extends React.Component{
             this.setState({message: ''});
 
         }
+        
     }
     render(){
         return (
             <div>
                 <LoggedinNavbar />
-                <div className="wrap">
                     <h1>Chat Room</h1>
                     <hr/>
                     <div className="chat-body">
@@ -51,13 +51,15 @@ class Chat extends React.Component{
                             )
                         })}
                         </div>
-                        <input type="text" placeholder="Username" value={this.state.username} onChange={ev => this.setState({username: ev.target.value})} className="form-control"/>
-                        <br/>
-                        <input type="text" placeholder="Message" className="form-control" value={this.state.message} onChange={ev => this.setState({message: ev.target.value})}/>
-                        <br/>
-                        <button onClick={this.sendMessage} className="btn btn-primary form-control">Send</button>
+                        <div className="chat-container">
+                            <input type="text" placeholder="Username" value={this.state.username} onChange={ev => this.setState({username: ev.target.value})} className="form-control"/>
+                            <br/>
+                            <div class="button-container">
+                                <input type="text" placeholder="Message" className="form-control" value={this.state.message} onChange={ev => this.setState({message: ev.target.value})}/>
+                                <button onClick={this.sendMessage} className="btn btn-primary form-chat-control">Send</button>
+                            </div>
+                        </div>
                     </div>
-                </div>
                 <Footer />
              </div>
         );

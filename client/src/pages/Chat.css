@@ -1,15 +1,7 @@
-.chat-chat {
-    width: 100%;
-    height: 100%
-}
-
-.body {
-    width: 100%;
-    height: 100%;
-}
-
 html, body {
-    height: 100%;
+   margin:0;
+   padding:0;
+   height:100%;
 }
 
 .wrap {
@@ -19,6 +11,38 @@ html, body {
     margin: 0 auto -60px;
 }
 
-.btn btn-primary form-control {
-    background-color: purple;
+.chat-container {
+    min-height:100%;
+    position:relative;
 }
+
+.button-container {
+    position: absolute;
+    bottom: 0;
+    justify-content: flex-end;
+    display:flex;
+}
+
+.message-container {
+    position: absolute;
+    bottom: 0;
+    justify-content: flex-end;
+    display:flex;
+}
+
+.form-control {
+    width: 100%;
+}
+
+.footer {
+    /* position:absolute; */
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    text-align: center;
+ }
+
+ .body-container {
+    position: relative;
+ }
