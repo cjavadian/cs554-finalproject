@@ -26,7 +26,7 @@ class CourseDetails extends Component {
           <div className="row" >
           <CourseReviewList/>
           </div>
-          <button className="add">Add Review</button>
+          
         </div>
       </div>
     );

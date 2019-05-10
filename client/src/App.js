@@ -54,7 +54,7 @@ class App extends Component {
           <Route path="/shows/" exact render={() => <IsAuthenticated><ShowsContainer /></IsAuthenticated>} />     
           <Route path="/course/:id" exact exact render={() => <IsAuthenticated><CourseDetails /></IsAuthenticated>} />
           <Route path="/course" exact exact render={() => <IsAuthenticated><CourseDetails /></IsAuthenticated>} />
-                    <Route path="/editprofile" exact exact render={() => <IsAuthenticated><EditUserProfile/></IsAuthenticated>} />
+          <Route path="/editprofile" exact exact render={() => <IsAuthenticated><EditUserProfile/></IsAuthenticated>} />
           {/* <div>{this.state.user ? <CourseDetails/> : <Home />}</div> */}
 
         </Router>

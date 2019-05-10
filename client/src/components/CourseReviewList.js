@@ -1,16 +1,19 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import "./CourseReviewList.css";
-import EditCommentModal from "./EditCommentModal";
+import EditCommentModal from "./CommentModals/EditCommentModal";
+import AddCommentModal from "./CommentModals/AddCommentModal";
 class CourseReviewList extends Component {
   constructor(props) {
     super(props);
     this.state = {
       showEditModal: false,
-      showDeleteModal: false
+      showDeleteModal: false,
+      showAddModal: false
     };
     this.handleOpenEditModal = this.handleOpenEditModal.bind(this);
     this.handleCloseModals = this.handleCloseModals.bind(this);
+    this.handleOpenAddModal = this.handleOpenAddModal.bind(this);
   }
   handleOpenEditModal() {
     this.setState({
@@ -19,8 +22,13 @@ class CourseReviewList extends Component {
   }
 
   handleCloseModals() {
-    this.setState({ showEditModal: false });
+    this.setState({ showEditModal: false, showAddModal: false });
   }
+
+  handleOpenAddModal() {
+    this.setState({ showAddModal: true });
+  }
+
   render() {
     return (
       <div>
@@ -81,7 +89,7 @@ class CourseReviewList extends Component {
                   className="btn btn-outline-success"
                   onClick={() => {
                     this.handleOpenEditModal();
-                }}
+                  }}
                 >
                   Edit
                 </button>
@@ -100,11 +108,29 @@ class CourseReviewList extends Component {
             </tr>
           </tbody>
         </table>
-        {this.state && this.state.showEditModal &&  (
-          <EditCommentModal
-          isOpen={this.state.showEditModal}
+        <button
+          type="button"
+          className="btn btn-outline-success"
+          onClick={this.handleOpenAddModal}
+        >
+        Add Review
+        </button>
+
+        {/* Edit Comment Modal */}
+        {this.state && this.state.showEditModal && (
+        <EditCommentModal
+            isOpen={this.state.showEditModal}
+            handleClose={this.handleCloseModals}
+          />
+        )}
+
+        {/* Add Comment Modal */}
+        {this.state && this.state.showAddModal && (
+        <AddCommentModal
+          isOpen={this.state.showAddModal}
           handleClose={this.handleCloseModals}
-        />
+          modal='addReview'
+          />
         )}
       </div>
     );
