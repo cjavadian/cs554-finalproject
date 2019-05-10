@@ -29,6 +29,27 @@ query($username: String!){
   }
 `
 
+const UPDATE_USER = gql`
+mutation($user_old_name: String!, $first_name: String, $last_name: String, $user_name: String){
+    updateUser(user_old_name: $user_old_name,first_name: $first_name,last_name: $last_name,user_name: $user_name){
+      _id
+      first_name
+      last_name
+      user_name
+      email
+      courses_reviewed{
+        review_id
+        course_id
+        course_title
+        professor
+        review_content
+        recommend
+        likes
+      }
+    }
+  }
+`
+
 const GET_ALL_COURSES = gql `
     query{
     courses{
@@ -108,6 +129,7 @@ mutation($review_id: String!, $course_id: String!){
 export{
     addUserMutation,
     GET_USER,
+    UPDATE_USER,
     GET_ALL_COURSES,
     GET_COURSE_BY_ID,
     REVIEW_COURSE,
