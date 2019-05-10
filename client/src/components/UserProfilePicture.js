@@ -70,7 +70,7 @@ class UserProfilePicture extends Component {
             </dl>
           </div>
           <div className="col-6">
-            <div className="card">
+            <div className="card-stat">
               <div className="card-body">
                 <h5 className="card-title">
                   User's Course Review Statisitics
@@ -86,7 +86,7 @@ class UserProfilePicture extends Component {
               </div>
             </div>
             <div className="useruseful">
-              <div className="card">
+              <div className="card-stat">
                 <div className="card-body">
                   <h5 className="card-title">Useful Statisitics</h5>
                   <h6 className="card-subtitle md-2 text-muted col-6">
