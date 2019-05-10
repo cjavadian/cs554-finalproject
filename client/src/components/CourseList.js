@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import Show from '../components/Show';
-import './ShowList.css';
+import Course from '../components/Course';
+import './CourseList.css';
 import {GET_ALL_COURSES} from "../queries/queries"
 import { Query } from 'react-apollo';
 
@@ -140,7 +140,7 @@ import { Query } from 'react-apollo';
 // }
 
 // export default ShowList;
-class ShowList extends Component {
+class CourseList extends Component {
 constructor(props) {
    super(props);
    this.state = {
@@ -150,7 +150,7 @@ constructor(props) {
       searchData: undefined
    };
 }
-async getShows() {
+async getCourses() {
    try {
       //  const response = await axios.get('http://api.tvmaze.com/shows');
       const response = [
@@ -174,18 +174,18 @@ async getShows() {
    }
 }
 componentDidMount() {
-   this.getShows();
+   this.getCourses();
 }
 handleChange = (e) => {
    let value = e.target.value;
    this.setState({ searchTerm: value }, () => {
-      this.searchShows();
+      this.searchCourses();
    });
 }
 onSubmit(e) {
    e.preventDefault();
 }
-async searchShows() {
+async searchCourses() {
    const { searchTerm, data } = this.state
    if (searchTerm) {
       try {
@@ -213,7 +213,7 @@ render() {
          searchData && searchData.map(course => {
             return (
                <li key={course.id}>
-                  <Link to={`/shows/${course.id}`}>{course.coursename}</Link>
+                  <Link to={`/coursedetails/${course.id}`}>{course.coursename}</Link>
                </li>
             );
          });
@@ -222,7 +222,7 @@ render() {
          this.state.data &&
          this.state.data.map(course => (
             <li key={course.id}>
-               <Link className="showlink" to={`/shows/${course.id}`}>{course.coursename}</Link>
+               <Link className="showlink" to={`/coursedetails/${course.id}`}>{course.coursename}</Link>
             </li>
          ));
    }
@@ -249,4 +249,4 @@ render() {
       return body;
    }
 }
-export default ShowList;
+export default CourseList;
