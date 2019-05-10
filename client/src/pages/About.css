@@ -36,3 +36,11 @@ div {
     width: 100%
     /* background-color: #66ffff; */
 }
+
+.form-control{
+    width: 300px;
+}
+
+.form-edit{
+    margin: 20px;
+}
