@@ -1,7 +1,4 @@
-.container {
-    height: auto;
-    width: auto; 
+.home-container {
     max-width: 100%;
-    margin: auto;
-    overflow: hidden;
+    padding: 0px;
 }

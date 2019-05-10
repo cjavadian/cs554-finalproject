@@ -7,7 +7,7 @@ class Home extends Component{
         return(
             <div>
                 <Navbar/>
-                <div className = "container">
+                <div className = "home-container">
                 <h2>Welcome to Home</h2>
                 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                     <ol class="carousel-indicators">
