@@ -8,7 +8,34 @@ const addUserMutation = gql`
     }
 `
 
+const getUser = gql`
+	query($username:String!){
+		user(username: username){
+			_id
+			first_name
+			last_name
+			user_name
+			email
+			courses_reviewed
+		}
+	}
+`
+
+const updateUser = gql`
+	mutation($first_name:String!, $last_name:String!, $user_name:String!, $email:String!){
+		updateUser(first_name: $first_name, last_name: $last_name, user_name: $user_name, email: $email){
+			_id
+			first_name
+			last_name
+			user_name
+			email
+			courses_reviewed
+		}
+	}
+`
 export{
-	addUserMutation
+	addUserMutation,
+	getUser,
+	updateUser
 }
 

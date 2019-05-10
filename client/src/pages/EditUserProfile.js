@@ -2,6 +2,9 @@ import React, { Component } from "react";
 import LoggedinNavbar from "../components/LoggedinNavbar";
 import "./About.css";
 import Firebase from '../components/Firebase/firebase'
+import { graphql, compose } from "react-apollo";
+import { getUser, updateUser } from "../queries/queries";
+
 class EditUserProfile extends Component {
   constructor(props) {
     super(props);
@@ -26,6 +29,7 @@ class EditUserProfile extends Component {
     Firebase.auth().currentUser.updatePassword(this.state.password);
     alert("Password updated, please login again")
   }
+
   render() {
     return (
       <div>
@@ -91,4 +95,7 @@ class EditUserProfile extends Component {
   }
 }
 
-export default EditUserProfile;
+export default compose(
+  graphql(getUser, {name: getUser}),
+  graphql(updateUser, {name: updateUser})
+)(EditUserProfile);
