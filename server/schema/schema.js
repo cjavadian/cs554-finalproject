@@ -236,6 +236,19 @@ const RootMutation =  new GraphQLObjectType({
 				}
 			}
 		},
+		user:{
+			type: userType,
+			args: {e_mail: {type: new GraphQLNonNull(GraphQLString)}},//username as query parameter
+			async resolve(parent,args){
+				try {
+					const userInfo = await userData.getUserByEmail(args.e_mail);
+					console.log(JSON.stringify(userInfo));
+					return userInfo;
+				} catch (e) {
+					console.log(e);
+				}
+			}
+		},
 		updateUser: {
 			type: userType,
 			args:{

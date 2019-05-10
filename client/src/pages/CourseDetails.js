@@ -6,6 +6,7 @@ import CourseReviewList from '../components/CourseReviewList';
 import {GET_COURSE_BY_ID} from "../queries/queries";
 import { Query, Mutation } from 'react-apollo';
 
+ 
 class CourseDetails extends Component {
   constructor(props) {
     super(props);
@@ -13,12 +14,12 @@ class CourseDetails extends Component {
     console.log(`CourseDetails: ${this.props.params}`)
     this.state = {
         email: this.props.email,
-        course_id: "d05aeef2-b0bc-4a4a-9255-46ffae2bd5cf"
+        course_id: "97f5ccdc-5965-4ec3-8857-59047ae027a2"
     }
   }
 
   render() {
-    console.log(this.props)
+    console.log("course_details",this.props)
     return (
       
       <div>
@@ -48,7 +49,7 @@ class CourseDetails extends Component {
                   </div>
                   <br/>
                   <div className="row" >
-                  <CourseReviewList course = {course} email = {this.state.email}/>
+                  <CourseReviewList course = {course} email = {this.props.email}/>
                   </div>
                   
                 </div>

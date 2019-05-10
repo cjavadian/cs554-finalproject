@@ -11,12 +11,12 @@ const main = async () =>{
     let new_course = await course.addCourse("Science", true);
     await course.addCourse("Physics", true);
     let new_review = await review.addReview(new_user._id, new_course._id, "Bob", "hhhh", true); 
-    await review.addReview(new_user._id, new_course._id, "Bob1", "hhhh", true); 
+    await review.addReview(new_user._id, new_course._id, "Bob1", "hhhh", true,3,5); 
     
     
-    await course.addRatingCourse(new_course._id,95);
+    await course.addRatingCourse(new_course._id,3);
     await user.addCourseUser(new_user._id, new_course._id);
-    await course.addRatingCourse(new_course._id,97);
+    await course.addRatingCourse(new_course._id,5);
     await review.addLike(new_review._id);
     await review.adddisLike(new_review._id);
     let comment = await review.getReviewByUserId(new_user._id);
