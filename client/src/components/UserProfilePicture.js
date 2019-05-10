@@ -21,17 +21,39 @@ class UserProfilePicture extends Component {
     console.log("handle uploading-", this.state.file);
   }
 
+  async foo(base64url) {
+
+  }
+
    handleImageChange(event) {
+    var profilePic = document.getElementById("prpic");
+    console.log(profilePic.src);
+     var baseUrl;
+     console.log("inside handleimage")
     event.preventDefault();
     let file = event.target.files[0];
     let reader = new FileReader();
     reader.readAsDataURL(file);
-     reader.onloadend = async() => {
-        await this.setState({
-        file: file,
-        imagePreviewUrl: reader.result
-      });
-    };
+
+    reader.addEventListener("load", function () {
+      profilePic.src = reader.result;
+
+      //let updatProfilePic = await foo();
+
+      
+    }, false);
+    //  reader.onloadend = (data) => {
+    //   baseUrl = data.target.result;
+    //   profilePic = data.target.result;
+    //   // console.log(baseUrl);
+    //   //  console.log("data os ::")
+    //   //  console.log(data.target.result);
+    //   //    this.setState({
+    //   //   file: data.target.result
+    //   // });
+    // };
+    // console.log(baseUrl);
+    console.log("exit handleimage")
     
   }
 
@@ -39,11 +61,12 @@ class UserProfilePicture extends Component {
     console.log("pic",this.props.useremail);
     return (
       <div>
-        <div class="row">
+        <div className="row">
           <div className="col-3">
             <div className="profile-pic">
               <img
                 className="text-center avatar rounded-circle m-auto"
+                id="prpic"
                 src="https://placeimg.com/444/445"
                 alt="Card cap"
               />

@@ -13,7 +13,7 @@ class CourseDetails extends Component {
     console.log(`CourseDetails: ${this.props.params}`)
     this.state = {
         email: this.props.email,
-        course_id: "d05aeef2-b0bc-4a4a-9255-46ffae2bd5cf"
+        course_id: "8ffdb2ce-2cf2-4377-8d09-bbc41c36027e"
     }
   }
 
