@@ -41,13 +41,6 @@ class Navbar extends Component {
       );
       if (user) {
         console.log(typeof this.state.email);
-        console.log(this.props.GET_USER);
-        // const user_info = await this.props.GET_USER({
-        //     variables: {
-        //       e_mail: this.state.email
-        //     }
-        // });
-        // console.log(user_info);
         this.props.history.push("/about");
         console.log(user);
       } else {
@@ -274,7 +267,4 @@ class Navbar extends Component {
   }
 }
 
-export default withRouter(
-  compose(
-    graphql(addUserMutation, { name: "addUserMutation" }),
-    graphql(GET_USER, { name: "GET_USER" }))(Navbar));
+export default withRouter(compose(graphql(addUserMutation, { name: "addUserMutation" }),)(Navbar));

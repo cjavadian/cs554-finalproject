@@ -51,13 +51,8 @@ class LoggedinNavbar extends Component {
                             <Link className="dropdown-item" to="#" onClick={this.onLogOut}>LogOut</Link>
                         </div>
                     </li>
-                    <li className="nav-item">
-                        {/* <Link className="nav-link " to="#">Disabled</Link> */}
-                        {/* <button className ="btn btn-outline-success my-2 my-sm-0" onClick={this.onLogOut}>LogOut</button> */}
-                    </li>
                 </ul>
                 <form className="form-inline my-2 my-lg-0">
-                    {/* <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"/> */}
                     <Link className="btn btn-outline-success my-2 my-sm-0" to="/courses">Search Courses</Link>
                 </form>
             </div>

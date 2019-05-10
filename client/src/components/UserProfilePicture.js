@@ -107,11 +107,9 @@ class UserProfilePicture extends Component {
                 }
               }
             </Query>
-            
-
           </div>
           <div className="col-9">
-          <img className="laptop" src={require('../images/laptop.png')} alt="laptop image"/>
+            <img className="laptop" src={require('../images/laptop.png')} alt="laptop image"/>
           </div>
           </div>
       </div>
