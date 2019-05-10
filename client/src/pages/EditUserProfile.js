@@ -16,27 +16,22 @@ class EditUserProfile extends Component {
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleUpdate = this.handleUpdate.bind(this);
-    this.handlePasswordUpdate = this.handlePasswordUpdate.bind(this);
   }
   handleChange(event) {
     this.setState({ [event.target.id]: event.target.value });
   }
 
-  handleUpdate(event) {}
+  handleUpdate(event) {
 
-  handlePasswordUpdate(event) {
-    event.preventDefault();
-    Firebase.auth().currentUser.updatePassword(this.state.password);
-    alert("Password updated, please login again")
   }
 
-  render() {
+   render() {
     return (
       <div>
         <LoggedinNavbar />
         <br />
         <h5> Edit User's Profile</h5>
-        <form className="form-edit" onSubmit={this.handlePasswordUpdate}>
+        <form className="form-edit" onSubmit={this.handleUpdate}>
           <div className="form-group">
             <label for="firstname">First Name</label>
             <input
@@ -72,18 +67,6 @@ class EditUserProfile extends Component {
               id="username"
               aria-describedby="username"
               placeholder="Enter Usrname"
-            />
-          </div>
-          <div className="form-group">
-            <label for="password">Password</label>
-            <input
-              type="password"
-              minLength={6}
-              className="form-control"
-              id="password"
-              placeholder="Enter only if you want to change"
-              value={this.state.password}
-              onChange={this.handleChange}
             />
           </div>
           <button type="submit" className="btn btn-outline-success">

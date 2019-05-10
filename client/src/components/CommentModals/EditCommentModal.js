@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import ReactModal from "react-modal";
+import './EditCommentModal.css';
 
 
 ReactModal.setAppElement("#root");
