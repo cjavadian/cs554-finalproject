@@ -14,11 +14,7 @@ class CourseDetails extends Component {
     console.log(`CourseDetails: ${this.props.params}`)
     this.state = {
         email: this.props.email,
-<<<<<<< HEAD
-        course_id: "97f5ccdc-5965-4ec3-8857-59047ae027a2"
-=======
-        course_id: "8ffdb2ce-2cf2-4377-8d09-bbc41c36027e"
->>>>>>> 0a7bdf443e291450ba2e75f217891ba3f10e7067
+        course_id: "97f5ccdc-5965-4ec3-8857-59047ae027a2",
     }
   }
 
