@@ -87,6 +87,7 @@ class ShowList extends Component {
 					{({ data }) => {
 						console.log(`showlist data: ${JSON.stringify(data)}`);
                   const {courses} = data;
+                  console.log("courses",courses);
 						if(!courses) {
 							return (
                         <div>

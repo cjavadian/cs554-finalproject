@@ -48,6 +48,8 @@ const exportedMethods = {
           review_body: review_body,
           likes: 0,
           dislikes: 0,
+          rating: rating,
+          difficulty: difficulty,
           recommend: recommend
       };
       
@@ -72,6 +74,8 @@ const exportedMethods = {
           "review_body": update_review.review_body,
           "likes" : update_review.likes,
           "dislikes": update_review.dislikes,
+          "rating": update_review.rating,
+          "difficulty": update_review.difficulty,
           "recommend" : update_review.recommend} },{ upsert: true });
       if (updatedInfo.modifiedCount === 0) {
           throw "could not add new review to user successfully";
@@ -88,6 +92,8 @@ const exportedMethods = {
           "review_body": update_review.review_body,
           "likes" : update_review.likes,
           "dislikes": update_review.dislikes,
+          "rating": update_review.rating,
+          "difficulty": update_review.difficulty,
           "recommend" : update_review.recommend} },{ upsert: true });
       if (updatedInfo.modifiedCount === 0) {
           throw "could not add new review to user successfully";
