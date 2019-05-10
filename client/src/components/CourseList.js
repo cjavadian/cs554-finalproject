@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Course from '../components/Course';
 import './CourseList.css';
-import {GET_ALL_COURSES} from "../queries/queries"
+import {GET_ALL_COURSES, GET_COURSE_BY_TITLE} from "../queries/queries"
 import { Query } from 'react-apollo';
 
 
@@ -12,8 +12,7 @@ class ShowList extends Component {
    constructor(props) {
       super(props);
       this.state = {
-         data: undefined,
-         loading: false,
+         reload: false,
          searchTerm: undefined
       };
    }
@@ -23,8 +22,11 @@ class ShowList extends Component {
    }
 
    handleChange = (e) => {
+      e.preventDefault();
       let value = e.target.value;
+      console.log(`ShowList: ${value}`);
       this.setState({ searchTerm: value });
+      this.setState({reload: true});
    }
 
    onSubmit(e) {
@@ -53,25 +55,46 @@ class ShowList extends Component {
       let body = null;
       let li = null;
       const { searchTerm } = this.state;
+      console.log(`search course by title: ${searchTerm}`);
 
-      if (searchTerm) {
-         li = 
-         searchTerm && searchTerm.map(course => {
+      if (this.state.reload && searchTerm) {
+         li = <Query query={GET_COURSE_BY_TITLE} variables={{ title: searchTerm }}>
+         {({ data }) => {
+            console.log(`search course by title: ${JSON.stringify(data)}`);
+            const {course} = data;
+            if(!course) {
                return (
-                  <li key={course.id}>
-                     <Link to={`/coursedetails/${course.id}`}>{course.coursename}</Link>
-                  </li>
+                  <div>
+                     <li>
+                     <p>Course not Found</p>
+                     </li>
+                  </div>
                );
-            });
+            }
+            return (
+               <div>
+                  <li key={course._id}>
+                     <Link className="showlink" to={`/coursedetails/${course._id}`}>{course.title}</Link>
+                  </li>
+               </div>
+            );
+         }}
+      </Query>
       } 
-
+      else {
          li = 
       <Query query={GET_ALL_COURSES}>
 					{({ data }) => {
 						console.log(`showlist data: ${JSON.stringify(data)}`);
                   const {courses} = data;
 						if(!courses) {
-							return null;
+							return (
+                        <div>
+                           <li>
+                           <p>Course not Found</p>
+                           </li>
+                        </div>
+                     );
                   }
 						return (
 							<div>
@@ -87,7 +110,7 @@ class ShowList extends Component {
 						);
 					}}
 				</Query>
-      
+      }
       body = (
          <div className="container">
             <form className="my-form" method="POST " name="formName" onSubmit={this.onSubmit}>
@@ -98,9 +121,10 @@ class ShowList extends Component {
                  <input
                      type="text"
                      name="searchTerm"
+                     value={this.state.value} 
+                     onChange={this.handleChange}
                   />
                </label>
-               <button type="submit" onClick={this.handleChange}>Submit</button>
             </form>
             <ul className="list-unstyled">{li}</ul>
          </div>
