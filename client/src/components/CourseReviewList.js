@@ -1,7 +1,26 @@
 import React, { Component } from "react";
-import {Link} from "react-router-dom";
-import './CourseReviewList.css';
+import { Link } from "react-router-dom";
+import "./CourseReviewList.css";
+import EditCommentModal from "./EditCommentModal";
 class CourseReviewList extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      showEditModal: false,
+      showDeleteModal: false
+    };
+    this.handleOpenEditModal = this.handleOpenEditModal.bind(this);
+    this.handleCloseModals = this.handleCloseModals.bind(this);
+  }
+  handleOpenEditModal() {
+    this.setState({
+      showEditModal: true
+    });
+  }
+
+  handleCloseModals() {
+    this.setState({ showEditModal: false });
+  }
   render() {
     return (
       <div>
@@ -14,7 +33,7 @@ class CourseReviewList extends Component {
           </thead>
           <tbody>
             <tr className="active">
-              <td className="rating success" >
+              <td className="rating success">
                 <div className="date">Date: </div>
                 <div className="rating-block-awesome">
                   <div className="rating-wrapper">
@@ -26,12 +45,12 @@ class CourseReviewList extends Component {
                       Attendance:
                       <span className="response"> Not Mandatory</span>
                     </span>
-                    <br/>
+                    <br />
                     <span className="grade">
                       Grade Recieved:
                       <span className="response"> A+</span>
                     </span>
-                    <br/>
+                    <br />
                     <span className="textbook">
                       Campus:
                       <span className="response"> Main/Web</span>
@@ -51,13 +70,24 @@ class CourseReviewList extends Component {
                   </Link>
                   <Link to="#" className="not helpful">
                     <span className="count">0 </span>
-                    <span className="grouping">people did not find this useful</span>
+                    <span className="grouping">
+                      people did not find this useful
+                    </span>
                   </Link>
-                
                 </div>
-                <br/>
-                <button type="button" className="btn btn-outline-success">Edit</button>
-                <button type="button" className="btn btn-outline-success">Delete</button>
+                <br />
+                <button
+                  type="button"
+                  className="btn btn-outline-success"
+                  onClick={() => {
+                    this.handleOpenEditModal();
+                }}
+                >
+                  Edit
+                </button>
+                <button type="button" className="btn btn-outline-success">
+                  Delete
+                </button>
               </td>
             </tr>
             <tr>
@@ -70,6 +100,12 @@ class CourseReviewList extends Component {
             </tr>
           </tbody>
         </table>
+        {this.state && this.state.showEditModal &&  (
+          <EditCommentModal
+          isOpen={this.state.showEditModal}
+          handleClose={this.handleCloseModals}
+        />
+        )}
       </div>
     );
   }
