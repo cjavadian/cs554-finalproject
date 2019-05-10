@@ -8,12 +8,13 @@ class UserProfilePicture extends Component {
     super(props);
     this.state = {
       file: "",
-      imagePreviewUrl: ""
+      imagePreviewUrl: "",
+      email: this.props.useremail
     };
     this.handleImageChange = this.handleImageChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
-
+ 
   handleSubmit(e) {
     e.preventDefault();
     console.log("handle uploading-", this.state.file);
