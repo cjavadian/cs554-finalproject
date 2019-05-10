@@ -21,7 +21,14 @@ export class AddCommentModal extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      showAddModal: this.props.isOpen
+      showAddModal: this.props.isOpen,
+      coursename:"",
+      professorname:"",
+      comment:"",
+      overallquality: 0,
+      recommended: true,
+      levelofdifficulty: 0,
+      rateprofessor:""
     };
     this.handleOpenAddModal = this.handleOpenAddModal.bind(this);
     this.handleCloseAddModal = this.handleCloseAddModal.bind(this);
@@ -36,6 +43,12 @@ export class AddCommentModal extends Component {
     this.props.handleClose(false);
   }
 
+  async submitForm(e){
+        e.preventDefault();
+        console.log(this.props)
+        console.log(this.state)
+  }
+
   render() {
     let body;
     if (this.props.modal === "addReview") {
@@ -47,7 +60,7 @@ export class AddCommentModal extends Component {
       let levelofdifficulty;
       let rateprofessor;
       body = (
-        <form>
+        <form onSubmit = {this.submitForm.bind(this)}>
           <p>Course Name: </p>
           <div className="form-group">
             <label>
@@ -59,6 +72,7 @@ export class AddCommentModal extends Component {
                 // }}
                 required
                 autoFocus={true}
+                onChange={(e)=>this.setState({professorname: e.target.value})}
               />
             </label>
           </div>
@@ -72,6 +86,7 @@ export class AddCommentModal extends Component {
                 // }}
                 required
                 autoFocus={true}
+                onChange={(e)=>this.setState({comment: e.target.value})}
               />
             </label>
           </div>
@@ -79,39 +94,36 @@ export class AddCommentModal extends Component {
             <label>
               Overall Quality:
               <br />
-              <input
-                // ref={(node) => {console.log("node:");console.log(node)
-                // professorname = node;
-                // }}
-                required
-                autoFocus={true}
-              />
+              <select name = "Quality" onChange={(e)=>this.setState({overallquality: e.target.value})}>
+                <option value = {1}>1</option>
+                <option value = {2}>2</option>
+                <option value = {3}>3</option>
+                <option value = {4}>4</option>
+                <option value = {5}>5</option>       
+              </select>
             </label>
           </div>
           <div className="form-group">
             <label>
               Recommended:
               <br />
-              <input
-                // ref={(node) => {console.log("node:");console.log(node)
-                // professorname = node;
-                // }}
-                required
-                autoFocus={true}
-              />
+              <select name = "recommend" onChange={(e)=>this.setState({recommended: e.target.value})}>
+                <option value = {true}>True</option>
+                <option value = {false}>False</option>    
+              </select>
             </label>
           </div>
           <div className="form-group">
             <label>
               Level Of Difficulty:
               <br />
-              <input
-                // ref={(node) => {console.log("node:");console.log(node)
-                // professorname = node;
-                // }}
-                required
-                autoFocus={true}
-              />
+              <select name = "Difficulty" onChange={(e)=>this.setState({levelofdifficulty: e.target.value})}>
+                <option value = {1}>1</option>
+                <option value = {2}>2</option>
+                <option value = {3}>3</option>
+                <option value = {4}>4</option>
+                <option value = {5}>5</option>      
+              </select>
             </label>
           </div>
           <div className="form-group">
@@ -124,6 +136,7 @@ export class AddCommentModal extends Component {
                 // }}
                 required
                 autoFocus={true}
+                onChange={(e)=>this.setState({rateprofessor: e.target.value})}
               />
             </label>
           </div>
