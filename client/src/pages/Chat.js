@@ -63,7 +63,7 @@ class Chat extends React.Component{
                                 }
                                 console.log(userInfo.user);
                                 return (
-                                        <div><input type="text" placeholder="Username" value={userInfo.user.username} onChange={ev => this.setState({username: ev.target.value})} className="form-control"/></div>
+                                        <div><input type="text" placeholder={userInfo.user.user_name} value={userInfo.user.user_name} onChange={ev => this.setState({username: ev.target.value})} className="form-control"/></div>
                                 )
                                 }
                             }

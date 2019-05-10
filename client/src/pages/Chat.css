@@ -4,49 +4,48 @@ html, body {
    height:100%;
 }
 
-.wrap {
+/* .wrap {
     min-height: 100%;
     height: auto !important;
     height: 100%;
     margin: 0 auto -60px;
-}
+} */
 
-.chat-container {
+/* .chat-container {
     min-height:100%;
     position:relative;
-}
+} */
 
-.button-container {
+/* .button-container {
     position: absolute;
     bottom: 0;
     justify-content: flex-end;
     display:flex;
-}
+} */
 
-.message-container {
+/* .message-container {
     position: absolute;
     bottom: 0;
     justify-content: flex-end;
     display:flex;
-}
+} */
 
-.form-control {
+/* .form-control {
     width: 100%;
-}
+} */
 
-.footer {
-    /* position:absolute; */
+/* .footer {
     position: absolute;
     right: 0;
     bottom: 0;
     left: 0;
     text-align: center;
- }
-
+ } */
+/* 
  .body-container {
     position: relative;
- }
+ } */
 
- .chat-body {
+ /* .chat-body {
      padding: 475px 0;
- }
+ } */
