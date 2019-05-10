@@ -63,23 +63,6 @@ const exportedMethods = {
       }
       
   },//post /users
-  async updateUser(user_old_name, first_name, last_name, user_name) {
-      try{
-          const user_collection = await user();
-          let updateUser = await this.getUserByName(user_old_name);
-          
-          const updatedInfo = await user_collection.updateOne({_id: update_user._id}, { $set: {"first_name" : first_name, "last_name" : last_name, "user_name" : user_name,
-            "email" : update_user.email} },{ upsert: true });
-          if (updatedInfo.modifiedCount === 0) {
-            throw "could not update user successfully";
-          }
-          return await this.getUserByName(update_user.user_name);
-      }
-      catch(e){
-          console.log(e);
-      }
-      
-  },//post /users
   async addCourseUser(user_id, course_id){
     try{
         const user_collection = await user();
