@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Show from '../components/Show';
 import './ShowList.css';
+import {GET_ALL_COURSES} from "../queries/queries"
+import { Query } from 'react-apollo';
 
 
 class ShowList extends Component {
@@ -88,13 +90,29 @@ class ShowList extends Component {
                );
             });
       } else {
-         li =
-            this.state.data &&
-            this.state.data.map(course => (
-               <li key={course.id}>
-                  <Link className="showlink" to={`/course/${course.id}`}>{course.coursename}</Link>
-               </li>
-            ));
+
+         li = 
+      <Query query={GET_ALL_COURSES}>
+					{({ data }) => {
+						console.log(`showlist data: ${JSON.stringify(data)}`);
+						const {courses} = data;
+						if(!courses) {
+							return null;
+						}
+						return (
+							<div>
+								{courses.map((course) => {
+                           console.log(JSON.stringify(course));
+									return (
+                                 <li key={course.id}>
+                                    <Link className="showlink" to={`/course/${course.title}`}>{course.title}</Link>
+                                 </li>
+									);
+								})}
+							</div>
+						);
+					}}
+				</Query>
       }
       body = (
          <div className="container">
@@ -111,7 +129,6 @@ class ShowList extends Component {
                </label>
             </form>
             <ul className="list-unstyled">{li}</ul>
-
          </div>
 
       );
