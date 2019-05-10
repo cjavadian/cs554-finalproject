@@ -77,6 +77,7 @@ const courseType = new GraphQLObjectType({
 		title: {type: GraphQLString},
 		campus: {type: GraphQLBoolean},
 		ratings: {type: GraphQLFloat},
+		difficulty: {type: GraphQLFloat},
 		review: {
 			type: new GraphQLList(courseReview),
 			async resolve(course, args) {
@@ -276,11 +277,12 @@ const RootMutation =  new GraphQLObjectType({
 				professor: {type: new GraphQLNonNull(GraphQLString)},
 				review_body: {type: new GraphQLNonNull(GraphQLString)},
 				recommended: {type: new GraphQLNonNull(GraphQLBoolean)},
-				ratings: {type: new GraphQLNonNull(GraphQLInt)}
+				ratings: {type: new GraphQLNonNull(GraphQLInt)},
+				difficulty: {type: new GraphQLNonNull(GraphQLInt)}
 			},
 			async resolve(parent, args) {
 				try {
-					await review.addReview(args.user_id, args.course_id, args.professor, args.review_body, args.recommended, args.ratings);
+					await review.addReview(args.user_id, args.course_id, args.professor, args.review_body, args.recommended, args.ratings, args.difficulty);
 					return await course.getCourseById(args.course_id);
 				} catch (e) {
 					console.log(e);

@@ -68,15 +68,18 @@ const exportedMethods = {
 
       return await this.getCourseById(update_course._id);
   },
-  async addRatingCourse(course_id, rating){
+  async addRatingCourse(course_id, rating, difficulty){
       const course_collection = await course();
       let update_course = await this.getCourseById(course_id);
       update_course.ratings = (update_course.ratings * update_course.rating_number + rating) / (update_course.rating_number + 1);
+      update_course.difficulty = (update_course.difficulty * update_course.rating_number + difficulty) / (update_course.rating_number + 1);
       update_course.rating_number++;
+
       const updatedInfo = await course_collection.updateOne({_id: update_course._id}, { $set: { "title" : update_course.title,
           "campus" : update_course.campus,
           "reviews" : update_course.reviews,
           "ratings" : update_course.ratings,
+          "difficulty": update_course.difficulty,
           "rating_number": update_course.rating_number} },{ upsert: true });
       if (updatedInfo.modifiedCount === 0) {
           throw "could not add new review to user successfully";

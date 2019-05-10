@@ -67,6 +67,7 @@ query($id: String!){
     title
     campus
     ratings
+    difficulty
     review{
       _id
       professor
@@ -85,6 +86,7 @@ query($title: String!){
     title
     campus
     ratings
+    difficulty
     review{
       _id
       professor
@@ -97,12 +99,13 @@ query($title: String!){
 `
 
 const REVIEW_COURSE = gql`
-mutation($course_id: String!, $user_id: String!, $professor: String, $review_body: String!, $recommended: Boolean!, $ratings: Number){
-    reviewCourse(course_id: $course_id, user_id: $user_id, professor: $professor, review_body: $review_body, recommended: $recommended, ratings: $ratings){
+mutation($course_id: String!, $user_id: String!, $professor: String, $review_body: String!, $recommended: Boolean!, $ratings: Number!, $difficulty: Number!){
+    reviewCourse(course_id: $course_id, user_id: $user_id, professor: $professor, review_body: $review_body, recommended: $recommended, ratings: $ratings, difficulty: $difficulty){
       _id
       title
       campus
       ratings
+      difficulty
       review{
         _id
         user{
@@ -128,6 +131,7 @@ mutation($review_id: String!, $course_id: String!){
       title
       campus
       ratings
+      difficulty
       review{
         _id
         user{
