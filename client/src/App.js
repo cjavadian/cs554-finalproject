@@ -14,8 +14,12 @@ import { withRouter } from "react-router";
 import ShowList from "./components/ShowList";
 import EditUserProfile from "./pages/EditUserProfile";
 import Chat from "./pages/Chat";
+import { InMemoryCache } from 'apollo-cache-inmemory';
+
+const cache = new InMemoryCache();
 const client = new ApolloClient({
-  uri: 'http://localhost:7050/graphql'
+  uri: 'http://localhost:7050/graphql',
+  cache
 })
 
 class App extends Component {
@@ -54,7 +58,7 @@ class App extends Component {
           <Route path="/about/" exact render={() => <IsAuthenticated><About /></IsAuthenticated>} />
           <Route path="/shows/" exact render={() => <IsAuthenticated><ShowsContainer /></IsAuthenticated>} />     
           <Route path="/course/:id" exact render={() => <IsAuthenticated><CourseDetails /></IsAuthenticated>} />
-          <Route path="/course" exact render={() => <IsAuthenticated><CourseDetails /></IsAuthenticated>} />
+          <Route path="/course" exact render={() => <IsAuthenticated><ShowList /></IsAuthenticated>} />
           <Route path="/editprofile" exact render={() => <IsAuthenticated><EditUserProfile/></IsAuthenticated>} />
           <Route path="/chat" exact render={() => <IsAuthenticated><Chat/></IsAuthenticated>} />
         </Router>
