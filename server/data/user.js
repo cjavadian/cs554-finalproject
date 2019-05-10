@@ -27,6 +27,15 @@ const exportedMethods = {
       if(result === null) throw "No such task in MongoDB";
       return result;
   },// get /users/:id
+  async getUserByEmail(e_mail){
+    if (e_mail == null || e_mail == undefined || e_mail == "") throw "You must provide the email to search for";
+    if (typeof(e_mail) !== 'string') throw "Invalid type, it should be string";
+
+    const user_collection = await user();
+    const result = await user_collection.findOne({email : e_mail});
+    if(result === null) throw "No such task in MongoDB";
+    return result;
+    },
   async getUserCourseById(id){
       const user_collection = await user();
       let query_user = await this.getUserById(id);
@@ -123,5 +132,3 @@ const exportedMethods = {
 }
 
 module.exports = exportedMethods;
-//用user_name读取user
-//

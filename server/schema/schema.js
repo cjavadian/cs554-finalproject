@@ -171,10 +171,10 @@ const RootQuery = new GraphQLObjectType({
 	fields:{
 		user:{
 			type: userType,
-			args: {username: {type: new GraphQLNonNull(GraphQLString)}},//username as query parameter
+			args: {e_mail: {type: new GraphQLNonNull(GraphQLString)}},//username as query parameter
 			async resolve(parent,args){
 				try {
-					const userInfo = await userData.getUserByName(args.username);
+					const userInfo = await userData.getUserByEmail(args.e_mail);
 					console.log(JSON.stringify(userInfo));
 					return userInfo;
 				} catch (e) {

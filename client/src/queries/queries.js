@@ -9,8 +9,8 @@ const addUserMutation = gql`
 `
 
 const GET_USER = gql`
-query($username: String!){
-    user(username: $username){
+query($e_mail: String!){
+    user(e_mail: $e_mail){
       _id
     first_name
     last_name
