@@ -25,6 +25,15 @@ const exportedMethods = {
       if(result === null) throw "No such course in MongoDB";
       return result;
   },// get /users/:id
+  async getCourseByTitle(title){
+    if (title == null || title == undefined || title == "") throw "You must provide an title to search for";
+    if (typeof(title) !== 'string') throw "Invalid type";
+
+    const course_collection = await course();
+    const result = await course_collection.findOne({title:title});
+    if(result === null) throw "No such course in MongoDB";
+    return result;
+    },
   async addCourse(title, campus) {
 
       const newCourse = {
