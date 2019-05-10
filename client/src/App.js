@@ -13,6 +13,7 @@ import IsAuthenticated from "./components/isAuthenticated"
 import { withRouter } from "react-router";
 import CourseList from "./components/CourseList";
 import EditUserProfile from "./pages/EditUserProfile";
+import EditPassword from "./pages/EditPassword";
 import Chat from "./pages/Chat";
 import { InMemoryCache } from 'apollo-cache-inmemory';
 
@@ -60,6 +61,7 @@ class App extends Component {
           <Route path="/coursedetails/:id" exact render={() => <IsAuthenticated><CourseDetails email={this.state.user}/></IsAuthenticated>} />
           {/* <Route path="/course" exact render={() => <IsAuthenticated><CourseList /></IsAuthenticated>} /> */}
           <Route path="/editprofile" exact render={() => <IsAuthenticated><EditUserProfile email={this.state.user}/></IsAuthenticated>} />
+          <Route path="/editpassword" exact render={() => <IsAuthenticated><EditPassword email={this.state.user}/></IsAuthenticated>} />
           <Route path="/chat" exact render={() => <IsAuthenticated><Chat/></IsAuthenticated>} />
         </Router>
       </ApolloProvider>
