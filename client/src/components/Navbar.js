@@ -6,7 +6,7 @@ import { FaUser, FaLock, FaAt, FaAddressBook } from "react-icons/fa";
 import { graphql, compose } from "react-apollo";
 import { addUserMutation } from "../queries/queries";
 import { withRouter } from "react-router";
-import {GET_USER} from "../queries/queries";
+import { GET_USER } from "../queries/queries";
 
 class Navbar extends Component {
   constructor(props) {
@@ -40,9 +40,14 @@ class Navbar extends Component {
         this.state.password
       );
       if (user) {
-        console.log(this.state.email);
-        const query = GET_USER;
-        console.log(query);
+        console.log(typeof this.state.email);
+        console.log(this.props.GET_USER);
+        // const user_info = await this.props.GET_USER({
+        //     variables: {
+        //       e_mail: this.state.email
+        //     }
+        // });
+        // console.log(user_info);
         this.props.history.push("/about");
         console.log(user);
       } else {
@@ -266,4 +271,7 @@ class Navbar extends Component {
   }
 }
 
-export default withRouter(compose(graphql(addUserMutation, { name: "addUserMutation" }))(Navbar));
+export default withRouter(
+  compose(
+    graphql(addUserMutation, { name: "addUserMutation" }),
+    graphql(GET_USER, { name: "GET_USER" }))(Navbar));
