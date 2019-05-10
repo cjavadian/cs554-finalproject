@@ -18,12 +18,13 @@ const main = async () =>{
     await user.addCourseUser(new_user._id, new_course._id);
     await course.addRatingCourse(new_course._id,97);
     await review.addLike(new_review._id);
+    await review.adddisLike(new_review._id);
     let comment = await review.getReviewByUserId(new_user._id);
     console.log("commet",comment);
     let new_comment = await review.getReviewByCourseId(new_course._id);
     console.log("new commet",new_comment);
-    let re_course = await user.getUserCourseById(new_user._id);
-    console.log("course",re_course);
+    //let re_course = await user.getUserCourseById(new_user._id);
+    //console.log("course",re_course);
     let course_list = await course.getAllCourse();
     console.log("course list",course_list);
     //console.log(new_review);

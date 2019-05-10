@@ -15,11 +15,12 @@ class About extends Component {
 
   }
   render() {
+    console.log("about",this.props.email);
     return (
       <div>
         <LoggedinNavbar />
         <div className="container-fluid">
-          <UserProfilePicture useremail={this.state.email}/>
+          <UserProfilePicture useremail={this.props.email}/>
           </div>
           
         <Footer /> 

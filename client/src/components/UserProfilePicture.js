@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { FaCamera } from "react-icons/fa";
 import "./UserProfilePicture.css";
+import { GET_USER } from "../queries/queries";
+import { Query } from "react-apollo";
 
 class UserProfilePicture extends Component {
   constructor(props) {
@@ -34,6 +36,7 @@ class UserProfilePicture extends Component {
   }
 
   render() {
+    console.log("pic",this.props.useremail);
     return (
       <div>
         <div class="row">
@@ -59,14 +62,30 @@ class UserProfilePicture extends Component {
             <br />
             <br />
             <br />
-            <h4 className="card-title text-left">First Name Last Name</h4>
-            <hr />
-            <dl className="text-secondary">
-              <dt>Username: </dt>
-              <dd>User's user name</dd>
-              <dt>Email: </dt>
-              <dd>User's email</dd>
-            </dl>
+            <Query query={GET_USER} variables ={{e_mail: this.props.useremail}}>
+              {({data}) => {
+                const userInfo = data;
+                if(!userInfo || userInfo.user === undefined){
+                  return null;
+                }
+                console.log(userInfo.user);
+                return (
+                    <div>
+                    <h4 className="card-title text-left">{userInfo.user.first_name} {userInfo.user.last_name}</h4>
+                    
+                    <dl className="text-secondary">
+                      <dt>Username: </dt>
+                      <dd>{userInfo.user.user_name}</dd>
+                      <dt>Email: </dt>
+                      <dd>{userInfo.user.email}</dd>
+                    </dl>
+                    </div>
+                  )
+                }
+              }
+            </Query>
+            
+
           </div>
           <div className="col-9">
           <img className="laptop" src={require('../images/laptop.png')} alt="laptop image"/>

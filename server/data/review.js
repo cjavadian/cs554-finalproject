@@ -38,7 +38,7 @@ const exportedMethods = {
       if(result === null) throw "No such task in MongoDB";
       return result;
   },
-  async addReview(user_id, course_id, professor, review_body, recommend, rating) {
+  async addReview(user_id, course_id, professor, review_body, recommend, rating, difficulty) {
 
       const newReview = {
           _id: uuidv4(),
@@ -47,6 +47,7 @@ const exportedMethods = {
           professor: professor,
           review_body: review_body,
           likes: 0,
+          dislikes: 0,
           recommend: recommend
       };
       
@@ -58,7 +59,7 @@ const exportedMethods = {
 
       //await user.addReviewUser(user_id, newId);
       //await course.addReviewCourse(course_id, newId);
-      await course.addRatingCourse(course_id, rating);
+      await course.addRatingCourse(course_id, rating, difficulty);
       return await this.getReviewById(newId);
   },//post /users
   async addLike(review_id){
@@ -70,6 +71,23 @@ const exportedMethods = {
           "professor": update_review.professor,
           "review_body": update_review.review_body,
           "likes" : update_review.likes,
+          "dislikes": update_review.dislikes,
+          "recommend" : update_review.recommend} },{ upsert: true });
+      if (updatedInfo.modifiedCount === 0) {
+          throw "could not add new review to user successfully";
+      }
+      return await this.getReviewById(update_review._id);
+  },
+  async adddisLike(review_id){
+      const review_collection = await review();
+      let update_review = await this.getReviewById(review_id);
+      update_review.dislikes++;
+      const updatedInfo = await review_collection.updateOne({_id: update_review._id}, { $set: { "user_id" : update_review.user_id,
+          "course_id": update_review.course_id,
+          "professor": update_review.professor,
+          "review_body": update_review.review_body,
+          "likes" : update_review.likes,
+          "dislikes": update_review.dislikes,
           "recommend" : update_review.recommend} },{ upsert: true });
       if (updatedInfo.modifiedCount === 0) {
           throw "could not add new review to user successfully";
