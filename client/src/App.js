@@ -22,7 +22,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      user: {}
+      user: undefined
     };
   }
 
@@ -33,8 +33,9 @@ class App extends Component {
   authListener() {
     Firebase.auth().onAuthStateChanged(user => {
       console.log("user:", user);
-      if (user) {
-        this.setState({ user });
+      console.log("user:", user.email);
+      if (user.email && !this.state.user) {
+        this.setState({ user: user.email });
         localStorage.setItem("user", user.uid);
       } else {
         this.setState({ user: null });
@@ -45,6 +46,7 @@ class App extends Component {
   }
 
   render() {
+    
     return (
       <ApolloProvider client={client}>
         <Router>
@@ -58,7 +60,8 @@ class App extends Component {
         </Router>
       </ApolloProvider>
     );
-  }
+    }    
+
 }
 
 export default App;

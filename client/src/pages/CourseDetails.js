@@ -5,12 +5,22 @@ import CourseReviewStatistics from '../components/CourseReviewStatistics';
 import CourseReviewList from '../components/CourseReviewList';
 
 class CourseDetails extends Component {
+  constructor(props) {
+    super(props);
+    
+    this.state = {
+        course_id: ""
+    }
+  }
+
   render() {
     return (
       <div>
         <LoggedinNavbar/>
         <br/>
-        <h5>Course CS-554 Details</h5>
+        {this.state && this.state.course_id && (
+          <h5>Course CS-554 Details</h5>
+        )}
         <br/>
         
         <div className="container">

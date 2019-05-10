@@ -102,10 +102,10 @@ class ShowList extends Component {
 						return (
 							<div>
 								{courses.map((course) => {
-                           console.log(JSON.stringify(course));
+                           console.log(course._id);
 									return (
-                                 <li key={course.id}>
-                                    <Link className="showlink" to={`/course/${course.title}`}>{course.title}</Link>
+                                 <li key={course._id}>
+                                    <Link className="showlink" to={`/course/${course._id}`}>{course.title}</Link>
                                  </li>
 									);
 								})}
@@ -127,6 +127,7 @@ class ShowList extends Component {
                      onChange={this.handleChange}
                   />
                </label>
+               <button type="submit">Submit</button>
             </form>
             <ul className="list-unstyled">{li}</ul>
          </div>
