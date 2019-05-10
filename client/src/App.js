@@ -13,16 +13,20 @@ import IsAuthenticated from "./components/isAuthenticated"
 import { withRouter } from "react-router";
 import ShowList from "./components/ShowList";
 import EditUserProfile from "./pages/EditUserProfile";
+import Chat from "./pages/Chat";
+import { InMemoryCache } from 'apollo-cache-inmemory';
 
+const cache = new InMemoryCache();
 const client = new ApolloClient({
-  uri: 'http://localhost:7050/graphql'
+  uri: 'http://localhost:7050/graphql',
+  cache
 })
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      user: {}
+      user: undefined
     };
   }
 
@@ -33,8 +37,9 @@ class App extends Component {
   authListener() {
     Firebase.auth().onAuthStateChanged(user => {
       console.log("user:", user);
-      if (user) {
-        this.setState({ user });
+      console.log("user:", user.email);
+      if (user.email && !this.state.user) {
+        this.setState({ user: user.email });
         localStorage.setItem("user", user.uid);
       } else {
         this.setState({ user: null });
@@ -45,27 +50,22 @@ class App extends Component {
   }
 
   render() {
+    
     return (
       <ApolloProvider client={client}>
         <Router>
-          {/* {<div>{this.state.user ? <About/> : <Home />}</div>    */}
           <Route path="/" exact component={Home} />
           <Route path="/about/" exact render={() => <IsAuthenticated><About /></IsAuthenticated>} />
           <Route path="/shows/" exact render={() => <IsAuthenticated><ShowsContainer /></IsAuthenticated>} />     
-          <Route path="/course/:id" exact exact render={() => <IsAuthenticated><CourseDetails /></IsAuthenticated>} />
-          <Route path="/course" exact exact render={() => <IsAuthenticated><CourseDetails /></IsAuthenticated>} />
-          <Route path="/editprofile" exact exact render={() => <IsAuthenticated><EditUserProfile/></IsAuthenticated>} />
-          {/* <div>{this.state.user ? <CourseDetails/> : <Home />}</div> */}
-
+          <Route path="/course/:id" exact render={() => <IsAuthenticated><CourseDetails /></IsAuthenticated>} />
+          <Route path="/course" exact render={() => <IsAuthenticated><ShowList /></IsAuthenticated>} />
+          <Route path="/editprofile" exact render={() => <IsAuthenticated><EditUserProfile/></IsAuthenticated>} />
+          <Route path="/chat" exact render={() => <IsAuthenticated><Chat/></IsAuthenticated>} />
         </Router>
-
-
-
-
-
       </ApolloProvider>
     );
-  }
+    }    
+
 }
 
 export default App;

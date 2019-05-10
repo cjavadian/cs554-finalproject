@@ -25,7 +25,7 @@ io.on('connection', socket => {
     })
 })
 
-server.listen(port, () => console.log(`Listening on port ${port}`))
+server.listen(port, () => console.log(`Socket.io server listening on port ${port}`))
 // var path = require('path');
 // var server = require('http').createServer(app);
 // const http = require('http').Server(app);
@@ -105,5 +105,5 @@ app.use("/graphql",expressgraphql({
 
 app.listen(7050,()=>{
  	console.log("We've got a server!");
- 	console.log("Your routes will be running on http://localhost:7050");
+ 	console.log("Your graphql server will be running on http://localhost:7050");
 });
