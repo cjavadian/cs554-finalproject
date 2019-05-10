@@ -57,7 +57,7 @@ class Navbar extends Component {
         this.state.email,
         this.state.password
       );
-      this.props.addUserMutation({
+      await this.props.addUserMutation({
         variables: {
           first_name: this.state.firstname,
           last_name: this.state.lastname,
@@ -65,7 +65,7 @@ class Navbar extends Component {
           email: this.state.email
         }
       });
-      console.log(user);
+      console.log("user",user);
       window.location.reload();
       this.props.history.push("/");
     } catch (error) {
@@ -262,5 +262,4 @@ class Navbar extends Component {
   }
 }
 
-export default withRouter(Navbar);
-compose(graphql(addUserMutation, { name: "addUserMutation" }));
+export default withRouter(compose(graphql(addUserMutation, { name: "addUserMutation" }))(Navbar));
