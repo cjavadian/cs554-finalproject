@@ -29,6 +29,7 @@ query($e_mail: String!){
   }
 `
 
+
 const UPDATE_USER = gql`
 mutation($user_old_name: String!, $first_name: String, $last_name: String, $user_name: String){
     updateUser(user_old_name: $user_old_name,first_name: $first_name,last_name: $last_name,user_name: $user_name){

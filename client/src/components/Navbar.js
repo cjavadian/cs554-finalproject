@@ -39,7 +39,8 @@ class Navbar extends Component {
         this.state.password
       );
       if (user) {
-        const query = GET_USER(this.state.email);
+        console.log(this.state.email);
+        const query = GET_USER;
         console.log(query);
         this.props.history.push("/about");
         console.log(user);
