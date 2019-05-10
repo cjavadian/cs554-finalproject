@@ -38,7 +38,7 @@ class Chat extends React.Component{
             // <div className="container">
             //     <div className="row">
             //         <div className="col-4">
-                        <div className="card scroll">
+                        <div className="card-chat scroll">
                             <div className="card-body">
                                 <div className="card-title">Chat Room</div>
                                 <hr/>
