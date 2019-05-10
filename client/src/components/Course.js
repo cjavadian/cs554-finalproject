@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 //import noImage from '../img/download.jpeg';
-import './ShowList.css'
+import './CourseList.css'
 
-class Show extends Component {
+class Course extends Component {
    constructor(props) {
       super(props);
       this.state = {
@@ -12,10 +12,10 @@ class Show extends Component {
       };
    }
    componentWillMount() {
-      this.getShow();
+      this.getCourse();
    }
    
-   async getShow() {
+   async getCourse() {
       this.setState({
          loading: true
       });
@@ -40,7 +40,7 @@ class Show extends Component {
       if (this.state.loading) {
          body = (
             <div>
-               <h1>Shows</h1>
+               <h1>Courses</h1>
                <br />
                Loading...
             </div>
@@ -54,10 +54,10 @@ class Show extends Component {
       } else {
          let img = null;
          if (this.state.data.image) {
-            img = <img alt="Show" src={this.state.data.image.medium} />;
+            img = <img alt="Course" src={this.state.data.image.medium} />;
          } 
          // else {
-         //    img = <img alt="Show" src={noImage} />;
+         //    img = <img alt="Course" src={noImage} />;
          // }
          body = (
             <div>
@@ -92,4 +92,4 @@ class Show extends Component {
    }
 }
 
-export default Show;
+export default Course;

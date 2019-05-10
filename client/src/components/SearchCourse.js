@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 
 
-class SearchShows extends Component {
+class SearchCourse extends Component {
     constructor(props){
         super(props);
         this.state={searchTerm:undefined,searchResults: undefined}
@@ -45,4 +45,4 @@ class SearchShows extends Component {
  }
 }
 
-export default SearchShows;
+export default SearchCourse;

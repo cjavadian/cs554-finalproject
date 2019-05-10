@@ -2,13 +2,13 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import Show from '../components/Show';
-import './ShowList.css';
+import Course from './Course';
+import './CourseList.css';
 import {GET_ALL_COURSES} from "../queries/queries"
 import { Query } from 'react-apollo';
 
 
-class ShowList extends Component {
+class CourseList extends Component {
    constructor(props) {
       super(props);
       this.state = {
@@ -18,7 +18,7 @@ class ShowList extends Component {
          searchData: undefined
       };
    }
-   async getShows() {
+   async getCourses() {
       try {
          //  const response = await axios.get('http://api.tvmaze.com/shows');
          const response = [
@@ -43,20 +43,20 @@ class ShowList extends Component {
       }
    }
    componentDidMount() {
-      this.getShows();
+      this.getCourses();
    }
 
    handleChange = (e) => {
       let value = e.target.value;
       this.setState({ searchTerm: value }, () => {
-         this.searchShows();
+         this.searchCourses();
       });
    }
 
    onSubmit(e) {
       e.preventDefault();
    }
-   async searchShows() {
+   async searchCourses() {
       const { searchTerm, data } = this.state
       if (searchTerm) {
          try {
@@ -85,7 +85,7 @@ class ShowList extends Component {
             searchData && searchData.map(course => {
                return (
                   <li key={course.id}>
-                     <Link to={`/course/${course.id}`}>{course.coursename}</Link>
+                     <Link to={`/coursedetails/${course.id}`}>{course.coursename}</Link>
                   </li>
                );
             });
@@ -105,7 +105,7 @@ class ShowList extends Component {
                            console.log(course._id);
 									return (
                                  <li key={course._id}>
-                                    <Link className="showlink" to={`/course/${course._id}`}>{course.title}</Link>
+                                    <Link className="showlink" to={`/coursedetails/${course._id}`}>{course.title}</Link>
                                  </li>
 									);
 								})}
@@ -139,4 +139,4 @@ class ShowList extends Component {
 
 }
 
-export default ShowList;
+export default CourseList;
