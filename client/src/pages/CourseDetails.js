@@ -7,14 +7,16 @@ import CourseReviewList from '../components/CourseReviewList';
 class CourseDetails extends Component {
   constructor(props) {
     super(props);
-    
     this.state = {
         course_id: ""
+        
     }
   }
 
   render() {
+    console.log(this.props)
     return (
+      
       <div>
         <LoggedinNavbar/>
         <br/>

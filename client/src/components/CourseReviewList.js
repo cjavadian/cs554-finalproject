@@ -3,17 +3,22 @@ import { Link } from "react-router-dom";
 import "./CourseReviewList.css";
 import EditCommentModal from "./CommentModals/EditCommentModal";
 import AddCommentModal from "./CommentModals/AddCommentModal";
+import { FaThumbsUp,FaThumbsDown } from "react-icons/fa";
 class CourseReviewList extends Component {
   constructor(props) {
     super(props);
     this.state = {
       showEditModal: false,
       showDeleteModal: false,
-      showAddModal: false
+      showAddModal: false,
+      likes:0,
+      dislikes:0
     };
     this.handleOpenEditModal = this.handleOpenEditModal.bind(this);
     this.handleCloseModals = this.handleCloseModals.bind(this);
     this.handleOpenAddModal = this.handleOpenAddModal.bind(this);
+    this.handleLikes = this.handleLikes.bind(this);
+    this.handleDislikes = this.handleDislikes.bind(this);
   }
   handleOpenEditModal() {
     this.setState({
@@ -28,6 +33,18 @@ class CourseReviewList extends Component {
   handleOpenAddModal() {
     this.setState({ showAddModal: true });
   }
+
+  handleLikes() {
+    let count=this.state.likes;
+    count+=1;
+    this.setState({likes:count});
+  }
+  handleDislikes() {
+    let count=this.state.dislikes;
+    count+=1;
+    this.setState({dislikes:count});
+  }
+
 
   render() {
     return (
@@ -72,16 +89,15 @@ class CourseReviewList extends Component {
                   technologies
                 </p>
                 <div className="helpful-links-thumbs">
-                  <Link to="#" className="helpful">
-                    <span className="count">0 </span>
-                    <span className="grouping">people found this useful</span>
-                  </Link>
-                  <Link to="#" className="not helpful">
-                    <span className="count">0 </span>
-                    <span className="grouping">
-                      people did not find this useful
-                    </span>
-                  </Link>
+                  <button to="#" className="helpful">
+                    <span className="count" onClick={this.handleLikes}><FaThumbsUp/></span>
+                    {this.state.likes}
+                  </button>
+                  
+                  <button to="#" className="nothelpful">
+                    <span className="count"  onClick={this.handleDislikes}><FaThumbsDown/> </span>
+                   {this.state.dislikes}
+                  </button>
                 </div>
                 <br />
                 <button
