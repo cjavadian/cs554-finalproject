@@ -89,16 +89,16 @@ class ShowList extends Component {
                   </li>
                );
             });
-      } else {
+      } 
 
          li = 
       <Query query={GET_ALL_COURSES}>
 					{({ data }) => {
 						console.log(`showlist data: ${JSON.stringify(data)}`);
-						const {courses} = data;
+                  const {courses} = data;
 						if(!courses) {
 							return null;
-						}
+                  }
 						return (
 							<div>
 								{courses.map((course) => {
@@ -113,7 +113,7 @@ class ShowList extends Component {
 						);
 					}}
 				</Query>
-      }
+      
       body = (
          <div className="container">
             <form className="my-form" method="POST " name="formName" onSubmit={this.onSubmit}>
