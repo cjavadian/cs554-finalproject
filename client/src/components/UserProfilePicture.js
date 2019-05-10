@@ -34,8 +34,6 @@ class UserProfilePicture extends Component {
     
   }
 
-  getUserInfo
-
   render() {
     return (
       <div>
