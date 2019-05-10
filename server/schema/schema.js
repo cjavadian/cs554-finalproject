@@ -230,7 +230,20 @@ const RootMutation =  new GraphQLObjectType({
 			}
 		},
 		updateUser: {
-			type: userType
+			type: userType,
+			args:{
+				user_old_name: {type: new GraphQLNonNull(GraphQLString)},
+				first_name: {type: GraphQLString},
+				last_name: {type: GraphQLString},
+				user_name: {type: GraphQLString}
+			},
+			async resolve(parent, args){
+				try{
+					return await userData.updateUser(args.user_old_name, args.first_name, args.last_name, args.user_name);
+				} catch(e) {
+					console.log(e);
+				}
+			}
 		},
 		deleteUser: {
 			type: userType
