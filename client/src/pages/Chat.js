@@ -3,6 +3,8 @@ import io from "socket.io-client";
 import LoggedinNavbar from "../components/LoggedinNavbar";
 import Footer from "../components/Footer";
 import "./Chat.css";
+import { GET_USER } from "../queries/queries";
+import { Query } from "react-apollo";
 
 class Chat extends React.Component{
     constructor(props){
@@ -11,7 +13,8 @@ class Chat extends React.Component{
         this.state = {
             username: '',
             message: '',
-            messages: []
+            messages: [],
+            email: this.props.email
         };
 
         this.socket = io('localhost:4001');
@@ -37,12 +40,12 @@ class Chat extends React.Component{
         }
         
     }
+
     render(){
         return (
             <div>
                 <LoggedinNavbar />
                     <h1>Chat Room</h1>
-                    <hr/>
                     <div className="chat-body">
                         <div className="messages">
                         {this.state.messages.map(message => {
@@ -52,15 +55,27 @@ class Chat extends React.Component{
                         })}
                         </div>
                         <div className="chat-container">
-                            <input type="text" placeholder="Username" value={this.state.username} onChange={ev => this.setState({username: ev.target.value})} className="form-control"/>
+                        <Query query={GET_USER} variables = {{e_mail: this.props.email}}>
+                            {({data}) => {
+                                const userInfo = data;
+                                if(!userInfo || userInfo.user === undefined){
+                                return null;
+                                }
+                                console.log(userInfo.user);
+                                return (
+                                        <div><input type="text" placeholder="Username" value={userInfo.user.username} onChange={ev => this.setState({username: ev.target.value})} className="form-control"/></div>
+                                )
+                                }
+                            }
+                            </Query>
                             <br/>
                             <div class="button-container">
                                 <input type="text" placeholder="Message" className="form-control" value={this.state.message} onChange={ev => this.setState({message: ev.target.value})}/>
                                 <button onClick={this.sendMessage} className="btn btn-primary form-chat-control">Send</button>
                             </div>
                         </div>
-                    </div>
                 <Footer />
+                </div>
              </div>
         );
     }

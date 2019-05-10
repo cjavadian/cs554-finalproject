@@ -32,6 +32,7 @@ html, body {
 
 .form-control {
     width: 100%;
+    background-color: grey;
 }
 
 .footer {
@@ -45,4 +46,8 @@ html, body {
 
  .body-container {
     position: relative;
+ }
+
+ .chat-body {
+     padding: 475px 0;
  }
