@@ -60,7 +60,7 @@ class Navbar extends Component {
   }
 
   async onSignup(e) {
-     e.preventDefault();
+    e.preventDefault();
     try {
       const user = await Firebase.auth().createUserWithEmailAndPassword(
         this.state.email,
@@ -74,7 +74,7 @@ class Navbar extends Component {
           email: this.state.email
         }
       });
-      console.log("user",user);
+      console.log("user", user);
       window.location.reload();
       this.props.history.push("/");
     } catch (error) {
@@ -83,7 +83,7 @@ class Navbar extends Component {
     }
   }
   render() {
-    const isInvalid = this.state.password!==this.state.confirmpassword;
+    const isInvalid = this.state.password !== this.state.confirmpassword;
     return (
       <div>
         <nav className="navbar navbar-expand-lg  navbar-dark  justify-content-end">
@@ -166,87 +166,90 @@ class Navbar extends Component {
                         <span aria-hidden="true">&times;</span>
                       </button>
                     </div>
-                    <div className="modal-body mx-3">
+                    <div className="modal-body clsSignupForm">
                       <div class="registration-form">
                         <form onSubmit={this.onSignup}>
-                          <div class="form-group mb-4">
-                            <FaUser />
-                            <input
-                              required
-                              type="text"
-                              id="firstname"
-                              className="form-control validate"
-                              minLength={3}
-                              placeholder="First Name"
-                              value={this.state.firstname}
-                              onChange={this.handleChange}
-                            />
-                          </div>
-                          <div class="form-group mb-4">
-                            <FaUser />
-                            <input
-                              required
-                              type="text"
-                              id="lastname"
-                              className="form-control validate"
-                              minLength={3}
-                              placeholder="Last Name"
-                              value={this.state.lastname}
-                              onChange={this.handleChange}
-                            />
-                          </div>
-                          <div class="form-group mb-4">
-                            <FaAddressBook />
-                            <input
-                              required
-                              type="text"
-                              id="username"
-                              className="form-control validate"
-                              minLength={3}
-                              placeholder="username"
-                              value={this.state.username}
-                              onChange={this.handleChange}
-                            />
-                          </div>
-                          <div class="form-group mb-4">
-                            <FaAt />
-                            <input
-                              required
-                              type="email"
-                              id="email"
-                              className="form-control validate"
-                              placeholder="Email"
-                              value={this.state.email}
-                              onChange={this.handleChange}
-                            />
-                          </div>
-                          <div class="form-group mb-4">
-                            <FaLock />
-                            <input
-                              required
-                              type="password"
-                              id="password"
-                              className="form-control validate"
-                              minLength={6}
-                              placeholder="Password"
-                              value={this.state.password}
-                              onChange={this.handleChange}
-                            />
-                          </div>
-                          <div className="md-form mb-4">
-                            <FaLock />
-                            <input
-                              required
-                              type="password"
-                              id="confirmpassword"
-                              className="form-control validate"
-                              placeholder="Confirm Password"
-                              value={this.state.confirmpassword}
-                              onChange={this.handleChange}
-                            />
+                          <div className= "clsFormDiv">
+                            <div class="form-group mb-4">
+                              <FaUser />
+                              <input
+                                required
+                                type="text"
+                                id="firstname"
+                                className="form-control validate"
+                                minLength={3}
+                                placeholder="First Name"
+                                value={this.state.firstname}
+                                onChange={this.handleChange}
+                              />
+                            </div>
+                            <div class="form-group mb-4">
+                              <FaUser />
+                              <input
+                                required
+                                type="text"
+                                id="lastname"
+                                className="form-control validate"
+                                minLength={3}
+                                placeholder="Last Name"
+                                value={this.state.lastname}
+                                onChange={this.handleChange}
+                              />
+                            </div>
+                            <div class="form-group mb-4">
+                              <FaAddressBook />
+                              <input
+                                required
+                                type="text"
+                                id="username"
+                                className="form-control validate"
+                                minLength={3}
+                                placeholder="username"
+                                value={this.state.username}
+                                onChange={this.handleChange}
+                              />
+                            </div>
+                            <div class="form-group mb-4">
+                              <FaAt />
+                              <input
+                                required
+                                type="email"
+                                id="email"
+                                className="form-control validate"
+                                placeholder="Email"
+                                value={this.state.email}
+                                onChange={this.handleChange}
+                              />
+                            </div>
+                            <div class="form-group mb-4">
+                              <FaLock />
+                              <input
+                                required
+                                type="password"
+                                id="password"
+                                className="form-control validate"
+                                minLength={6}
+                                placeholder="Password"
+                                value={this.state.password}
+                                onChange={this.handleChange}
+                              />
+                            </div>
+                            <div className="md-form mb-4">
+                              <FaLock />
+                              <input
+                                required
+                                type="password"
+                                id="confirmpassword"
+                                className="form-control validate"
+                                placeholder="Confirm Password"
+                                value={this.state.confirmpassword}
+                                onChange={this.handleChange}
+                              />
+                            </div>
+
                           </div>
                           <div className="modal-footer d-flex justify-content-center">
-                            <div className="form-group mb-4">
+                            <div className="form-group mb-4 clsSignupBtn">
                               <button
                                 className="btn btn-outline-success"
                                 disabled={isInvalid}

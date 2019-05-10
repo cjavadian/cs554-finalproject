@@ -15,11 +15,22 @@
     background-color:#192A56
 }
 .modal-footer {
-    background-color:#192A56;
+    padding-left: 41%;
+    padding-right: 41%;
+    background-color: #192A56;
     margin-left: 0%;
-    margin-right: 100%;
-    width: 100%
+    display: inline-block!important;
 }
 .btn{
     font-family: Georgia, 'Times New Roman', Times, serif;
+}
+.clsFormDiv{
+    padding:20px 20px !important;
+}
+.clsSignupForm{
+ padding:0px;
+ margin:0px;
+}
+.clsSignupBtn{
+    margin: 0%!important;
 }
