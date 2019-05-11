@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import "./CourseReviewList.css";
 import EditCommentModal from "./CommentModals/EditCommentModal";
 import AddCommentModal from "./CommentModals/AddCommentModal";
-import { FaThumbsUp,FaThumbsDown } from "react-icons/fa";
+import { FaThumbsUp,FaThumbsDown,FaEdit,FaTrash } from "react-icons/fa";
 class CourseReviewList extends Component {
   constructor(props) {
     super(props);
@@ -49,36 +49,36 @@ class CourseReviewList extends Component {
   render() {
     console.log("list",this.props.email);
     return (
-      <div>
+      <div class = "tablecontainer">
         <table className="table table-hover">
           <thead>
             <tr>
-              <th scope="col">Rating</th>
-              <th scope="col">Comment</th>
+              <th scope="col">RATING</th>
+              <th scope="col">COMMENT</th>
             </tr>
           </thead>
           <tbody>
             <tr className="active">
               <td className="rating success">
-                <div className="date">Date: </div>
+                <div className="date">DATE: </div>
                 <div className="rating-block-awesome">
                   <div className="rating-wrapper">
                     <div className="icon awesome-icon" />
-                    <span className="rating-type">Student Name : </span>
+                    <span className="rating-type">STUDENT NAME : </span>
                   </div>
                   <div className="courseclass">
                     <span className="attendance">
-                      Attendance:
+                      ATTENDANCE:
                       <span className="response"> Not Mandatory</span>
                     </span>
                     <br />
                     <span className="grade">
-                      Grade Recieved:
+                      GRADE RECIEVED:
                       <span className="response"> A+</span>
                     </span>
                     <br />
                     <span className="textbook">
-                      Campus:
+                      CAMPUS:
                       <span className="response"> Main/Web</span>
                     </span>
                   </div>
@@ -90,12 +90,12 @@ class CourseReviewList extends Component {
                   technologies
                 </p>
                 <div className="helpful-links-thumbs">
-                  <button to="#" className="helpful">
+                  <button type = "button" to="#" className="helpful btn-outline-primary">
                     <span className="count" onClick={this.handleLikes}><FaThumbsUp/></span>
                     {this.state.likes}
                   </button>
                   
-                  <button to="#" className="nothelpful">
+                  <button type = "button" to="#" className="nothelpful btn-outline-primary">
                     <span className="count"  onClick={this.handleDislikes}><FaThumbsDown/> </span>
                    {this.state.dislikes}
                   </button>
@@ -103,15 +103,15 @@ class CourseReviewList extends Component {
                 <br />
                 <button
                   type="button"
-                  className="btn btn-outline-success"
+                  className="btn"
                   onClick={() => {
                     this.handleOpenEditModal();
                   }}
                 >
-                  Edit
+                  <FaEdit/>
                 </button>
-                <button type="button" className="btn btn-outline-success">
-                  Delete
+                <button type="button" className="btn ">
+                 <FaTrash/> 
                 </button>
               </td>
             </tr>

@@ -34,13 +34,13 @@ class LoggedinNavbar extends Component {
                     <li className="nav-item active">
                         <Link className="nav-link" to="/dashboard">Home <span className="sr-only">(current)</span></Link>
                     </li>
-                    <li className="nav-item">
+                    {/* <li className="nav-item">
                         <Link className="nav-link" to="/coursedetails">CourseList</Link>
-                    </li>
-                    <li className="nav-item">
+                    </li> */}
+                    <li className="nav-item active">
                     <Link className="nav-link" to="/chat">Chat</Link>
                     </li>
-                    <li className="nav-item dropdown">
+                    <li className="nav-item dropdown active">
                         <Link className="nav-link dropdown-toggle" to="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <FaUser/>
                         </Link>
