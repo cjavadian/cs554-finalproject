@@ -63,28 +63,31 @@ class UserProfilePicture extends Component {
       <div>
         <div className="row">
           <div className="col-3">
-            <div className="profile-pic">
-              <img
-                className="text-center avatar rounded-circle m-auto"
-                id="prpic"
-                src="https://placeimg.com/444/445"
-                alt="Card cap"
+          <div class="card border-light w-100 h-100">
+          <div class="card-header">
+          <div className="profile-pic">
+            <img
+              className="text-center avatar rounded-circle m-auto"
+              id="prpic"
+              src="https://placeimg.com/444/445"
+              alt="Card cap"
+            />
+          </div>
+          <div className="p-image">
+            {/* <FaCamera upload-button /> */}
+            <form onSubmit={this.handleSubmit}>
+              <input
+                className="file-upload"
+              type="file"
+              accept="image/*"
+              onChange={this.handleImageChange}
               />
-            </div>
-            <div className="p-image">
-              {/* <FaCamera upload-button /> */}
-              <form onSubmit={this.handleSubmit}>
-                <input
-                  className="file-upload"
-                type="file"
-                accept="image/*"
-                onChange={this.handleImageChange}
-                />
-              </form>
-            </div>
-            <br />
-            <br />
-            <br />
+            </form>
+          </div>
+          <br />
+          <br />
+          <br />
+          </div>
             <Query query={GET_USER} variables ={{e_mail: this.props.useremail}}>
               {({data}) => {
                 const userInfo = data;
@@ -94,21 +97,40 @@ class UserProfilePicture extends Component {
                 console.log(userInfo.user);
                 return (
                     <div>
-                    <h4 className="card-title text-left">{userInfo.user.first_name} {userInfo.user.last_name}</h4>
-                    <dl className="text-secondary">
-                      <dt>Username: </dt>
-                      <dd>{userInfo.user.user_name}</dd>
-                      <dt>Email: </dt>
-                      <dd>{userInfo.user.email}</dd>
-                    </dl>
+                      <div class="card-body">
+                        <h4 className="card-title text-left">{userInfo.user.first_name} {userInfo.user.last_name}</h4>
+                        <dl className="text-secondary">
+                          <dt>Username: </dt>
+                          <dd>{userInfo.user.user_name}</dd>
+                          <dt>Email: </dt>
+                          <dd>{userInfo.user.email}</dd>
+                        </dl>
+                        </div>
                     </div>
                   )
                 }
               }
             </Query>
           </div>
+          </div>
           <div className="col-9">
-            <img className="laptop" src={require('../images/laptop.png')} alt="laptop image"/>
+              <br />
+              <h2>Welcome Back!</h2>
+              <hr />
+            <img className="cycle" src={require('../images/course-review-process.png')} alt="cycle"/>
+              <br />
+              <h5>Signing up for classes and don't know what to take?</h5>
+              <p>CourseReview is a website for Stevens students to review courses offered.
+                This gives students an idea of what to expect when taking certain courses from other students
+                who have taken the course before.
+              </p>
+              <p>
+                You can search and view ratings about courses from other students and add your own as well.
+                As a user, you can also like comments if they're helpful!
+              </p>
+              <p>
+                Feel free to chat with other Stevens students online as well!
+              </p>
           </div>
           </div>
       </div>
