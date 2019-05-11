@@ -32,56 +32,60 @@ class EditUserProfile extends Component {
       <div>
         <LoggedinNavbar />
         <div class="card-container d-flex h-100">
-          <div class="card h-100 w-50">
-          <div class="card-header"><h1>Edit User's Profile</h1></div>
-          <div class="card-body text-dark">
-            <p class="card-text">
-            <form className="form-edit" onSubmit={this.handleUpdate}>
-            <div className="form-group">
-              <label for="firstname">First Name</label>
-              <input
-                type="text"
-                minLength={3}
-                className="form-control"
-                id="firstname"
-                aria-describedby="firstName"
-                placeholder="Enter First name"
-                value={this.state.firstname}
-                onChange={this.handleChange}
-              />
+          <div class="row align-self-center w-100">
+          <div class="col-6 mx-auto">
+              <div class="card h-100 w-100">
+              <div class="card-header"><h1>Edit User's Profile</h1></div>
+              <div class="card-body text-dark">
+                <p class="card-text">
+                <form className="form-edit" onSubmit={this.handleUpdate}>
+                <div className="form-group">
+                  <label for="firstname">First Name</label>
+                  <input
+                    type="text"
+                    minLength={3}
+                    className="form-control"
+                    id="firstname"
+                    aria-describedby="firstName"
+                    placeholder="Enter First name"
+                    value={this.state.firstname}
+                    onChange={this.handleChange}
+                  />
+                </div>
+                <div className="form-group">
+                  <label for="lastname">Last Name</label>
+                  <input
+                    type="text"
+                    minLength={3}
+                    className="form-control"
+                    id="lastname"
+                    aria-describedby="lastName"
+                    placeholder="Enter Last name"
+                    value={this.state.lastname}
+                    onChange={this.handleChange}
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="username">User Name</label>
+                  <input
+                    minLength={3}
+                    type="text"
+                    class="form-control"
+                    id="username"
+                    aria-describedby="username"
+                    placeholder="Enter Username"
+                  />
+                </div>
+                <button type="submit" className="btn btn-dark">
+                  Submit
+                </button>
+              </form>
+                </p>
+              </div>
             </div>
-            <div className="form-group">
-              <label for="lastname">Last Name</label>
-              <input
-                type="text"
-                minLength={3}
-                className="form-control"
-                id="lastname"
-                aria-describedby="lastName"
-                placeholder="Enter Last name"
-                value={this.state.lastname}
-                onChange={this.handleChange}
-              />
-            </div>
-            <div class="form-group">
-              <label for="username">User Name</label>
-              <input
-                minLength={3}
-                type="text"
-                class="form-control"
-                id="username"
-                aria-describedby="username"
-                placeholder="Enter Username"
-              />
-            </div>
-            <button type="submit" className="btn btn-dark">
-              Submit
-            </button>
-          </form>
-            </p>
           </div>
         </div>
-      </div>
+        </div>
       <Footer />
       </div>
     );

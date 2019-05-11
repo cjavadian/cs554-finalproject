@@ -1,16 +1,15 @@
-.card {
+/* .card {
     margin: 0 auto;
-    float: none;
-    margin-bottom: 10px;
-    width: 350px;
-    height: 375px;
-}
+    float: none; 
+    margin-bottom: 10px; 
+} */
 
 .card-header {
     text-align: center;
 }
 
 .card-container {
-    padding-top: 80px;
+    padding-top: 30px;
+    width: 100%;
 }
 
