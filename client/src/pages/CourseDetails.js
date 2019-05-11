@@ -14,7 +14,7 @@ class CourseDetails extends Component {
     console.log(`CourseDetails: ${this.props.params}`)
     this.state = {
         email: this.props.email,
-        course_id: "8ffdb2ce-2cf2-4377-8d09-bbc41c36027e",
+        course_id: "a132aeca-81af-4989-bb8e-0a83ff8c4c8a",
     }
   }
   
@@ -26,7 +26,8 @@ class CourseDetails extends Component {
 
   render() {
   	const id = this.getUrl(window.location.href);
-    console.log("course_details",this.props)
+    console.log("course_details",this.props);
+    console.log(this.props.id);
     return (
       
       <div className="courseconatiner">
