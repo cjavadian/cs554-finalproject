@@ -4,6 +4,8 @@ import "./Dashboard.css";
 import Firebase from '../components/Firebase/firebase'
 import { graphql, compose } from "react-apollo";
 import { GET_USER } from "../queries/queries";
+import Footer from "../components/Footer";
+import './EditUserProfile.css';
 
 class EditUserProfile extends Component {
   constructor(props) {
@@ -29,9 +31,11 @@ class EditUserProfile extends Component {
     return (
       <div>
         <LoggedinNavbar />
-        <br />
-        <h5> Edit User's Profile</h5>
-        <form className="form-edit" onSubmit={this.handleUpdate}>
+        <div class="card h-100 w-50">
+        <div class="card-header"><h1>Edit User's Profile</h1></div>
+        <div class="card-body text-dark">
+          <p class="card-text">
+          <form className="form-edit" onSubmit={this.handleUpdate}>
           <div className="form-group">
             <label for="firstname">First Name</label>
             <input
@@ -66,13 +70,17 @@ class EditUserProfile extends Component {
               class="form-control"
               id="username"
               aria-describedby="username"
-              placeholder="Enter Usrname"
+              placeholder="Enter Username"
             />
           </div>
-          <button type="submit" className="btn btn-outline-success">
+          <button type="submit" className="btn btn-dark">
             Submit
           </button>
         </form>
+          </p>
+        </div>
+      </div>
+      <Footer />
       </div>
     );
   }

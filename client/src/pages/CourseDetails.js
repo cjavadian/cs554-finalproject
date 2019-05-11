@@ -17,8 +17,15 @@ class CourseDetails extends Component {
         course_id: "8ffdb2ce-2cf2-4377-8d09-bbc41c36027e",
     }
   }
+  
+  getUrl(url){
+  	for(let i = url.length - 1; i >= 0; i--){
+  		if(url[i] ==='/') return url.substring(i+1,);
+  	}
+  }
 
   render() {
+  	const id = this.getUrl(window.location.href);
     console.log("course_details",this.props)
     return (
       
@@ -26,7 +33,7 @@ class CourseDetails extends Component {
         <LoggedinNavbar/>
         <br/>
 
-        <Query query={GET_COURSE_BY_ID} variables={{ id: this.state.course_id }}>
+        <Query query={GET_COURSE_BY_ID} variables={{ id: id }}>
           {({ data }) => {
             console.log(`course info: ${JSON.stringify(data)}`);
             const {course} = data;

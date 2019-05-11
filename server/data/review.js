@@ -39,7 +39,7 @@ const exportedMethods = {
       return result;
   },
   async addReview(user_id, course_id, professor, review_body, recommend, rating, difficulty) {
-
+    let timeStamp = new Date();
       const newReview = {
           _id: uuidv4(),
           user_id: user_id,
@@ -50,7 +50,8 @@ const exportedMethods = {
           dislikes: 0,
           rating: rating,
           difficulty: difficulty,
-          recommend: recommend
+          recommend: recommend,
+          time: timeStamp.toDateString()
       };
       
       const review_collection = await review();

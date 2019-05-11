@@ -95,7 +95,6 @@ class UserProfilePicture extends Component {
                 return (
                     <div>
                     <h4 className="card-title text-left">{userInfo.user.first_name} {userInfo.user.last_name}</h4>
-                    
                     <dl className="text-secondary">
                       <dt>Username: </dt>
                       <dd>{userInfo.user.user_name}</dd>
