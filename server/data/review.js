@@ -17,7 +17,7 @@ const exportedMethods = {
 
       const review_collection = await review();
       const result = await review_collection.findOne({_id:id});
-      if(result === null) throw "No such task in MongoDB";
+      if(result === null) throw "No such review in MongoDB";
       return result;
   },
   async getReviewByUserId(user_id){
@@ -26,7 +26,7 @@ const exportedMethods = {
 
       const review_collection = await review();
       const result = await review_collection.find({user_id: user_id}).toArray();
-      if(result === null) throw "No such task in MongoDB";
+      if(result === null) throw "No review for this user in MongoDB";
       return result;
   },
   async getReviewByCourseId(course_id){
@@ -35,7 +35,7 @@ const exportedMethods = {
 
       const review_collection = await review();
       const result = await review_collection.find({course_id: course_id}).toArray();
-      if(result === null) throw "No such task in MongoDB";
+      if(result === null) throw "No review for this course in MongoDB";
       return result;
   },
   async addReview(user_id, course_id, professor, review_body, recommend, rating, difficulty) {

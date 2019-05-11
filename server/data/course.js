@@ -31,10 +31,13 @@ const exportedMethods = {
 
     const course_collection = await course();
     const result = await course_collection.findOne({title:title});
-    if(result === null) throw "No such course in MongoDB";
+    if(result === null) return null;
     return result;
     },
   async addCourse(title, campus, instructor, description) {
+      const course_collection = await course();
+      const fetch_course = await this.getCourseByTitle(title);
+      if(fetch_course != null) return "Course exists";
 
       const newCourse = {
           _id: uuidv4(),
@@ -46,8 +49,6 @@ const exportedMethods = {
           difficulty: 0.0,
           rating_number: 0
       };
-      
-      const course_collection = await course();
 
       const newInsertInformation = await course_collection.insertOne(newCourse);
       if (newInsertInformation.insertedCount === 0)throw "Could not add task";

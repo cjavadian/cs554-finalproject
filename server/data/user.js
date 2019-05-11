@@ -15,16 +15,16 @@ const exportedMethods = {
 
       const user_collection = await user();
       const result = await user_collection.findOne({_id:id});
-      if(result === null) throw "No such task in MongoDB";
+      if(result === null) throw "No such user in MongoDB";
       return result;
   },// get /users/:id
   async getUserByName(user_name){
       if (user_name == null || user_name == undefined || user_name == "") throw "You must provide an user name to search for";
-      if (typeof(user_name) !== 'string') throw "Invalid id";
+      if (typeof(user_name) !== 'string') throw "Invalid user name";
 
       const user_collection = await user();
       const result = await user_collection.findOne({user_name : user_name});
-      if(result === null) throw "No such task in MongoDB";
+      if(result === null) throw "No such user in MongoDB";
       return result;
   },// get /users/:id
   async getUserByEmail(e_mail){
@@ -33,7 +33,7 @@ const exportedMethods = {
 
     const user_collection = await user();
     const result = await user_collection.findOne({email : e_mail});
-    if(result === null) throw "No such task in MongoDB";
+    if(result === null) return null;
     return result;
     },
   async getUserCourseById(id){
@@ -44,11 +44,13 @@ const exportedMethods = {
           let tmp = await course.getCourseById(query_user.courses[i]);
           result.push(tmp);
       }
-      //if(result === null) throw "No such task in MongoDB";
       return result;
   },// get /users/:id
   async addUser(first_name,last_name,user_name,email) {
       try{
+          const user_collection = await user();
+          const fetch_user = await this.getUserByEmail(email);
+          if(fetch_user != null) return "User exists";
           const newUser = {
             _id: uuidv4(),
             first_name: first_name,
@@ -58,8 +60,6 @@ const exportedMethods = {
             //courses:[],
             //reviews:[]
           };
-      
-          const user_collection = await user();
 
           const newInsertInformation = await user_collection.insertOne(newUser);
           if (newInsertInformation.insertedCount === 0)throw "Could not add task";
