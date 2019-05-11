@@ -47,6 +47,7 @@ class CourseReviewList extends Component {
 
 
   render() {
+    console.log("list",this.props.email);
     return (
       <div>
         <table className="table table-hover">
@@ -145,6 +146,8 @@ class CourseReviewList extends Component {
         <AddCommentModal
           isOpen={this.state.showAddModal}
           handleClose={this.handleCloseModals}
+          course = {this.props.course}
+          email = {this.props.email}
           modal='addReview'
           />
         )}

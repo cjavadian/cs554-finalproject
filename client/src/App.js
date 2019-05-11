@@ -62,7 +62,7 @@ class App extends Component {
           {/* <Route path="/course" exact render={() => <IsAuthenticated><CourseList /></IsAuthenticated>} /> */}
           <Route path="/editprofile" exact render={() => <IsAuthenticated><EditUserProfile email={this.state.user}/></IsAuthenticated>} />
           <Route path="/editpassword" exact render={() => <IsAuthenticated><EditPassword email={this.state.user}/></IsAuthenticated>} />
-          <Route path="/chat" exact render={() => <IsAuthenticated><Chat/></IsAuthenticated>} />
+          <Route path="/chat" exact render={() => <IsAuthenticated><Chat email={this.state.user}/></IsAuthenticated>} />
         </Router>
       </ApolloProvider>
     );

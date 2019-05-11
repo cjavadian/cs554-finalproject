@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-//import noImage from '../img/download.jpeg';
 import './CourseList.css'
 
 class Course extends Component {

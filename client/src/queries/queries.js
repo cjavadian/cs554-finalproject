@@ -30,6 +30,26 @@ query($e_mail: String!){
   }
 `
 
+const getUser = gql`
+mutation($e_mail: String!){
+    user(e_mail: $e_mail){
+      _id
+    first_name
+    last_name
+    user_name
+    email
+    courses_reviewed{
+      review_id
+      course_id
+      course_title
+      professor
+      review_content
+      recommend
+      likes
+    }
+    }
+  }
+`
 
 const UPDATE_USER = gql`
 mutation($user_old_name: String!, $first_name: String, $last_name: String, $user_name: String){
@@ -67,7 +87,6 @@ query($id: String!){
     title
     campus
     ratings
-    difficulty
     review{
       _id
       professor
@@ -86,7 +105,6 @@ query($title: String!){
     title
     campus
     ratings
-    difficulty
     review{
       _id
       professor
@@ -99,13 +117,12 @@ query($title: String!){
 `
 
 const REVIEW_COURSE = gql`
-mutation($course_id: String!, $user_id: String!, $professor: String, $review_body: String!, $recommended: Boolean!, $ratings: Number!, $difficulty: Number!){
+mutation($course_id: String!, $user_id: String!, $professor: String!, $review_body: String!, $recommended: Boolean!, $ratings: Int!, $difficulty: Int!){
     reviewCourse(course_id: $course_id, user_id: $user_id, professor: $professor, review_body: $review_body, recommended: $recommended, ratings: $ratings, difficulty: $difficulty){
       _id
       title
       campus
       ratings
-      difficulty
       review{
         _id
         user{
@@ -131,7 +148,6 @@ mutation($review_id: String!, $course_id: String!){
       title
       campus
       ratings
-      difficulty
       review{
         _id
         user{
@@ -152,6 +168,7 @@ mutation($review_id: String!, $course_id: String!){
 
 export{
     addUserMutation,
+    getUser,
     GET_USER,
     UPDATE_USER,
     GET_ALL_COURSES,

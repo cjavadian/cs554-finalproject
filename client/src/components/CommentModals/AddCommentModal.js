@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import ReactModal from "react-modal";
+import { REVIEW_COURSE, getUser } from "../../queries/queries";
+import { graphql, compose } from 'react-apollo';
 
 //For react-modal
 ReactModal.setAppElement("#root");
@@ -45,8 +47,25 @@ export class AddCommentModal extends Component {
 
   async submitForm(e){
         e.preventDefault();
-        console.log(this.props)
-        console.log(this.state)
+        const email = this.props.email;
+        const userInfo = await this.props.getUser({
+          variables: {
+            e_mail: email, 
+          }
+        });
+        console.log("info",userInfo.data);
+        console.log("name",this.state.professorname);
+        await this.props.REVIEW_COURSE({
+          variables: {
+            course_id: this.props.course._id, 
+            user_id: userInfo.data.user._id, 
+            professor: this.state.professorname, 
+            review_body: this.state.comment, 
+            recommended: Boolean(this.state.recommended), 
+            ratings: Number(this.state.overallquality), 
+            difficulty: Number(this.state.levelofdifficulty)
+          }
+      });
   }
 
   render() {
@@ -59,6 +78,7 @@ export class AddCommentModal extends Component {
       let recommended;
       let levelofdifficulty;
       let rateprofessor;
+      console.log(this.props);
       body = (
         <form onSubmit = {this.submitForm.bind(this)}>
           <p>Course Name: </p>
@@ -95,6 +115,7 @@ export class AddCommentModal extends Component {
               Overall Quality:
               <br />
               <select name = "Quality" onChange={(e)=>this.setState({overallquality: e.target.value})}>
+                <option>Not Select</option>
                 <option value = {1}>1</option>
                 <option value = {2}>2</option>
                 <option value = {3}>3</option>
@@ -108,8 +129,9 @@ export class AddCommentModal extends Component {
               Recommended:
               <br />
               <select name = "recommend" onChange={(e)=>this.setState({recommended: e.target.value})}>
-                <option value = {true}>True</option>
-                <option value = {false}>False</option>    
+                <option>Not Select</option>
+                <option value = {1}>True</option>
+                <option value = {0}>False</option>    
               </select>
             </label>
           </div>
@@ -118,6 +140,7 @@ export class AddCommentModal extends Component {
               Level Of Difficulty:
               <br />
               <select name = "Difficulty" onChange={(e)=>this.setState({levelofdifficulty: e.target.value})}>
+                <option>Not Select</option>
                 <option value = {1}>1</option>
                 <option value = {2}>2</option>
                 <option value = {3}>3</option>
@@ -167,4 +190,4 @@ export class AddCommentModal extends Component {
   }
 }
 
-export default AddCommentModal;
+export default compose(graphql(REVIEW_COURSE, {name: "REVIEW_COURSE"}),graphql(getUser, {name: "getUser"}))(AddCommentModal);

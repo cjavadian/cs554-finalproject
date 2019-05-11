@@ -7,19 +7,14 @@
   max-height: 200px;
   display: block;
   position: relative;
-  /* background: yellow; */
 }
 
 .file-upload {
-  /* left:270px; */
-  /* margin-bottom: 55px; */
-  /* margin-top: 45px; */
   position: relative;
   left: 325px;
 }
 
 .rounded-circle {
-  /* border-radius: 6000px !important; */
   overflow: hidden;
   width: 200px;
   height: 200px;
@@ -51,12 +46,6 @@
 .pl-2 {
   margin-top:250px;
 }
-
-/* .container-fluid {
-  text-align: center;
-  height: 100%;
-  width: 100%;
-} */
 
 .chat-container {
   position: relative;

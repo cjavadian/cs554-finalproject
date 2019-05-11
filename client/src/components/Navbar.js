@@ -274,7 +274,4 @@ class Navbar extends Component {
   }
 }
 
-export default withRouter(
-  compose(
-    graphql(addUserMutation, { name: "addUserMutation" }),
-    graphql(GET_USER, { name: "GET_USER" }))(Navbar));
+export default withRouter(compose(graphql(addUserMutation, { name: "addUserMutation" }),)(Navbar));
