@@ -59,22 +59,9 @@ class Chat extends React.Component{
                     </body>
                     <div className="chat-body">
                         <div className="chat-fluid">
-                            <div className="chat-container">
-                                <Query query={GET_USER} variables = {{e_mail: this.props.email}}>
-                                {({data}) => {
-                                    const userInfo = data;
-                                    if(!userInfo || userInfo.user === undefined){
-                                    return null;
-                                    }
-                                    return (
-                                        <div><input type="text" placeholder={userInfo.user.user_name} value={this.state.username} onChange={ev => this.setState({username: ev.target.value})} className="form-user-control"/></div>
-                                    )
-                                    }
-                                }
-                                </Query>
-                            </div>
                             <div class="col-lg">
                                 <div class="button-container">
+                                <input type="text" placeholder="Chat Name" value={this.state.username} onChange={ev => this.setState({username: ev.target.value})} className="form-control"/>
                                     <input type="text" placeholder="Message" className="form-message-control" value={this.state.message} onChange={ev => this.setState({message: ev.target.value})}/>
                                     <button onClick={this.sendMessage} className="btn btn-primary form-chat-control">Send</button>
                                 </div>
