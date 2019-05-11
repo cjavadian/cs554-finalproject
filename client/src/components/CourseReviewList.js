@@ -3,7 +3,8 @@ import { Link } from "react-router-dom";
 import "./CourseReviewList.css";
 import EditCommentModal from "./CommentModals/EditCommentModal";
 import AddCommentModal from "./CommentModals/AddCommentModal";
-import { FaThumbsUp,FaThumbsDown,FaEdit,FaTrash } from "react-icons/fa";
+import DeleteCommentModal from "./CommentModals/DeleteCommentModal";
+import { FaThumbsUp, FaThumbsDown, FaEdit, FaTrash } from "react-icons/fa";
 class CourseReviewList extends Component {
   constructor(props) {
     super(props);
@@ -11,8 +12,8 @@ class CourseReviewList extends Component {
       showEditModal: false,
       showDeleteModal: false,
       showAddModal: false,
-      likes:0,
-      dislikes:0
+      likes: 0,
+      dislikes: 0
     };
     this.handleOpenEditModal = this.handleOpenEditModal.bind(this);
     this.handleCloseModals = this.handleCloseModals.bind(this);
@@ -26,8 +27,19 @@ class CourseReviewList extends Component {
     });
   }
 
+  handleOpenDeleteModal() {
+    this.setState({
+      showDeleteModal: true
+      //deleteComment: todo
+    });
+  }
+
   handleCloseModals() {
-    this.setState({ showEditModal: false, showAddModal: false });
+    this.setState({
+      showAddModal: false,
+      showEditModal: false,
+      showDeleteModal: false
+    });
   }
 
   handleOpenAddModal() {
@@ -35,21 +47,20 @@ class CourseReviewList extends Component {
   }
 
   handleLikes() {
-    let count=this.state.likes;
-    count+=1;
-    this.setState({likes:count});
+    let count = this.state.likes;
+    count += 1;
+    this.setState({ likes: count });
   }
   handleDislikes() {
-    let count=this.state.dislikes;
-    count+=1;
-    this.setState({dislikes:count});
+    let count = this.state.dislikes;
+    count += 1;
+    this.setState({ dislikes: count });
   }
 
-
   render() {
-    console.log("list",this.props.email);
+    console.log("list", this.props.email);
     return (
-      <div class = "tablecontainer">
+      <div className="tablecontainer">
         <table className="table table-hover">
           <thead>
             <tr>
@@ -90,25 +101,59 @@ class CourseReviewList extends Component {
                   technologies
                 </p>
                 <div className="helpful-links-thumbs">
-                  <button type = "button" to="#" className="helpful btn-outline-primary">
-                    <span className="count" onClick={this.handleLikes}><FaThumbsUp/></span>
+                  <button
+                    type="button"
+                    to="#"
+                    className="helpful btn-outline-primary"
+                  >
+                    <span className="count" onClick={this.handleLikes}>
+                      <FaThumbsUp />
+                    </span>
                     {this.state.likes}
                   </button>
-                  
-                  <button type = "button" to="#" className="nothelpful btn-outline-primary">
-                    <span className="count"  onClick={this.handleDislikes}><FaThumbsDown/> </span>
-                   {this.state.dislikes}
+
+                  <button
+                    type="button"
+                    to="#"
+                    className="nothelpful btn-outline-primary"
+                  >
+                    <span className="count" onClick={this.handleDislikes}>
+                      <FaThumbsDown />{" "}
+                    </span>
+                    {this.state.dislikes}
                   </button>
                 </div>
                 <br />
                 <div>
-                <button type="button" to="#" className="btn btn-outline-primary"> 
-                  
-                  <span className ="edit" onClick={() => {this.handleOpenEditModal();}}><FaEdit/></span> 
-                </button>
-                <button type="button" to ="#" className="btn btn-outline-primary">
-                 <span className = "delete"> <FaTrash/> </span>
-                </button>
+                  <button
+                    type="button"
+                    to="#"
+                    className="btn btn-outline-primary"
+                  >
+                    <span
+                      className="edit"
+                      onClick={() => {
+                        this.handleOpenEditModal();
+                      }}
+                    >
+                      <FaEdit />
+                    </span>
+                  </button>
+                  <button
+                    type="button"
+                    to="#"
+                    className="btn btn-outline-primary"
+                  >
+                    <span
+                      className="delete"
+                      onClick={() => {
+                        this.handleOpenDeleteModal();
+                      }}
+                    >
+                      {" "}
+                      <FaTrash />{" "}
+                    </span>
+                  </button>
                 </div>
               </td>
             </tr>
@@ -127,12 +172,12 @@ class CourseReviewList extends Component {
           className="btn btn-outline-success"
           onClick={this.handleOpenAddModal}
         >
-        Add Review
+          Add Review
         </button>
 
         {/* Edit Comment Modal */}
         {this.state && this.state.showEditModal && (
-        <EditCommentModal
+          <EditCommentModal
             isOpen={this.state.showEditModal}
             handleClose={this.handleCloseModals}
           />
@@ -140,12 +185,21 @@ class CourseReviewList extends Component {
 
         {/* Add Comment Modal */}
         {this.state && this.state.showAddModal && (
-        <AddCommentModal
-          isOpen={this.state.showAddModal}
-          handleClose={this.handleCloseModals}
-          course = {this.props.course}
-          email = {this.props.email}
-          modal='addReview'
+          <AddCommentModal
+            isOpen={this.state.showAddModal}
+            handleClose={this.handleCloseModals}
+            course={this.props.course}
+            email={this.props.email}
+            modal="addReview"
+          />
+        )}
+
+        {/*Delete Comment Modal */}
+        {this.state && this.state.showDeleteModal && (
+          <DeleteCommentModal
+            isOpen={this.state.showDeleteModal}
+            handleClose={this.handleCloseModals}
+            deleteComment={this.state.deleteComment}
           />
         )}
       </div>
