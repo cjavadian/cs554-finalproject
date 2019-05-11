@@ -77,6 +77,9 @@ const GET_ALL_COURSES = gql `
     courses{
       _id
       title
+      instructor
+      description
+      campus
     }
   }
 `
@@ -85,6 +88,8 @@ query($id: String!){
     course(id: $id){
     _id
     title
+    instructor
+    description
     campus
     ratings
     review{
@@ -92,6 +97,7 @@ query($id: String!){
       professor
       review_body
       likes
+      dislikes
       recommend
       time
     }
@@ -104,6 +110,8 @@ query($title: String!){
     course(title: $title){
     _id
     title
+    instructor
+    description
     campus
     ratings
     review{
@@ -111,6 +119,7 @@ query($title: String!){
       professor
       review_body
       likes
+      dislikes
       recommend
       time
     }
@@ -123,6 +132,8 @@ mutation($course_id: String!, $user_id: String!, $professor: String!, $review_bo
     reviewCourse(course_id: $course_id, user_id: $user_id, professor: $professor, review_body: $review_body, recommended: $recommended, ratings: $ratings, difficulty: $difficulty){
       _id
       title
+      instructor
+      description
       campus
       ratings
       review{
@@ -137,6 +148,7 @@ mutation($course_id: String!, $user_id: String!, $professor: String!, $review_bo
         professor
         review_body
         likes
+        dislikes
         recommend
       }
     }
