@@ -40,14 +40,14 @@ class LoggedinNavbar extends Component {
                     <Link className="nav-link" to="/chat">Chat</Link>
                     </li>
                     <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <FaUser />
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="/editprofile">Edit Profile</a>
-                        <a class="dropdown-item" href="/editpassword">Update Password</a>
-                        <a class="dropdown-item" href="/" onClick={this.onLogOut}>Logout</a>
-                    </div>
+                        <button aria-label="FaUser" class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <FaUser />
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="/editprofile">Edit Profile</a>
+                            <a class="dropdown-item" href="/editpassword">Update Password</a>
+                            <a class="dropdown-item" href="/" onClick={this.onLogOut}>Logout</a>
+                        </div>
                     </div>
                 </ul>
                 <form className="form-inline my-2 my-lg-0">

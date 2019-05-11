@@ -217,7 +217,7 @@ const RootQuery = new GraphQLObjectType({
 				}
 			}
 		},
-		courses: {
+		allcourses: {
 			type: new GraphQLList(courseType),
 			description: "Query all courses",
 			async resolve(parent, args) {

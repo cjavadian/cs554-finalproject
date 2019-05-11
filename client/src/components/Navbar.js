@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import "./Navbar.css";
 import Firebase from "./Firebase/firebase";
 import { FaUser, FaLock, FaAt, FaAddressBook } from "react-icons/fa";

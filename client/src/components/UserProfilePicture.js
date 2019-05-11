@@ -76,13 +76,12 @@ class UserProfilePicture extends Component {
           <div className="p-image">
             {/* <FaCamera upload-button /> */}
             <form onSubmit={this.handleSubmit}>
-              <label
-                for="file-upload"
+              <input aria-label="upload"
+                className="file-upload"
               type="file"
               accept="image/*"
               onChange={this.handleImageChange}
               />
-              <input id="file-upload" />
             </form>
           </div>
           <br />

@@ -20,10 +20,6 @@ class CourseReviewStatistics extends Component {
           <div className="col-6 col-sm-12 clsindirows">LEVEL OF DIFFICULTY
           <p>{this.state.course.difficulty}</p>
           </div>
-
-          {/* <!-- Force next columns to break to new line --> */}
-          {/* <div className="w-100" /> */}
-
           <div className="col-6 col-sm-12 clsindirows">TAGS:
           <p>flexible Cool Professor</p></div>
         </div>

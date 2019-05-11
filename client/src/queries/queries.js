@@ -74,13 +74,21 @@ mutation($user_old_name: String!, $first_name: String, $last_name: String, $user
 
 const GET_ALL_COURSES = gql `
     query{
-    courses{
-      _id
-      title
-      instructor
-      description
-      campus
-    }
+    allCourses{
+        _id
+        title
+        campus
+        ratings
+        difficulty
+        review {
+            _id
+            professor
+            review_body
+            likes
+            recommend
+            time
+        }
+        }
   }
 `
 const GET_COURSE_BY_ID = gql`
