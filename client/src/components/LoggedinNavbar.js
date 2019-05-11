@@ -34,9 +34,9 @@ class LoggedinNavbar extends Component {
                     <li className="nav-item active">
                         <Link className="nav-link" to="/dashboard">Home <span className="sr-only">(current)</span></Link>
                     </li>
-                    {/* <li className="nav-item">
-                        <Link className="nav-link" to="/coursedetails">CourseList</Link>
-                    </li> */}
+                    <li className="nav-item">
+                        <Link className="nav-link" to="/courses">Courses</Link>
+                    </li>
                     <li className="nav-item active">
                     <Link className="nav-link" to="/chat">Chat</Link>
                     </li>
