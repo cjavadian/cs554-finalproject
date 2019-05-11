@@ -105,38 +105,10 @@ class ShowList extends Component {
 						return (
 							<div>
 								{courses.map(course => {
-                           console.log(course);
-                           console.log(course.campus)
 									return (
-                                 <div className="card" key={course._id}>
-                                    <div className="card-body">
-                                       <h5 className="card-title">
-                                          {course.title}
-                                       </h5>
-                                       </div>
-                                       <dt>
-                                          Instructor:
-                                       </dt>
-                                       <dd>
-                                       {course.instructor}
-                                       </dd>
-                                       <dt>
-                                          Description:
-                                       </dt>
-                                       <dd>
-                                          {course.description}
-                                       </dd>
-                                       <dt>
-                                          Campus:
-                                       </dt>
-                                       <dd>
-                                          {course.campus}
-                                       </dd>
-                                       <form action={`/coursedetails/${course._id}`}>
-                                          <input type="submit" value="See more" />
-                                       </form>
-                                    {/* <Link className="showlink" to=>{course.title}</Link> */}
-                                 </div>
+                              <div>
+                                 <Link className="showlink" to={`/coursedetails/${course._id}`}>{course.title}</Link>
+                              </div>
 									);
 								})}
 							</div>
