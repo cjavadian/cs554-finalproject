@@ -60,10 +60,10 @@ class UserProfilePicture extends Component {
   render() {
     console.log("pic",this.props.useremail);
     return (
-      <div>
+      <div >
         <div className="row">
           <div className="col-3">
-          <div class="card border-light w-100 h-100">
+          <div class="card d-flex border-light w-100 h-100">
           <div class="card-header">
           <div className="profile-pic">
             <img

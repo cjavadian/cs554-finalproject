@@ -57,6 +57,9 @@
 .card {
 overflow: hidden;
 background-color: #d8d8d8;
+margin-bottom: 0rem;
+
+
 }
 
 .scroll {
