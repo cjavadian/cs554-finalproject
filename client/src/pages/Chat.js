@@ -35,6 +35,7 @@ class Chat extends React.Component{
                 author: this.state.username,
                 message: this.state.message
             })
+            console.log(this.state.username);
             this.setState({message: ''});
 
         }
@@ -46,6 +47,7 @@ class Chat extends React.Component{
             <div>
                 <LoggedinNavbar />
                     <h1>Chat Room</h1>
+                    <hr />
                     <body>
                         <div className="messages-container">
                         {this.state.messages.map(message => {
@@ -58,21 +60,22 @@ class Chat extends React.Component{
                     <div className="chat-body">
                         <div className="chat-fluid">
                             <div className="chat-container">
-                            <Query query={GET_USER} variables = {{e_mail: this.props.email}}>
+                                <Query query={GET_USER} variables = {{e_mail: this.props.email}}>
                                 {({data}) => {
                                     const userInfo = data;
                                     if(!userInfo || userInfo.user === undefined){
                                     return null;
                                     }
-                                    console.log(userInfo.user);
                                     return (
-                                            <div><input type="text" placeholder={userInfo.user.user_name} value={userInfo.user.user_name} onChange={ev => this.setState({username: userInfo.user.user_name})} className="form-control"/></div>
+                                        <div><input type="text" placeholder={userInfo.user.user_name} value={this.state.username} onChange={ev => this.setState({username: ev.target.value})} className="form-user-control"/></div>
                                     )
                                     }
                                 }
                                 </Query>
+                            </div>
+                            <div class="col-lg">
                                 <div class="button-container">
-                                    <input type="text" placeholder="Message" className="form-control" value={this.state.message} onChange={ev => this.setState({message: ev.target.value})}/>
+                                    <input type="text" placeholder="Message" className="form-message-control" value={this.state.message} onChange={ev => this.setState({message: ev.target.value})}/>
                                     <button onClick={this.sendMessage} className="btn btn-primary form-chat-control">Send</button>
                                 </div>
                             </div>
