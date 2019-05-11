@@ -101,18 +101,15 @@ class CourseReviewList extends Component {
                   </button>
                 </div>
                 <br />
-                <button
-                  type="button"
-                  className="btn"
-                  onClick={() => {
-                    this.handleOpenEditModal();
-                  }}
-                >
-                  <FaEdit/>
+                <div>
+                <button type="button" to="#" className="btn btn-outline-primary"> 
+                  
+                  <span className ="edit" onClick={() => {this.handleOpenEditModal();}}><FaEdit/></span> 
                 </button>
-                <button type="button" className="btn ">
-                 <FaTrash/> 
+                <button type="button" to ="#" className="btn btn-outline-primary">
+                 <span className = "delete"> <FaTrash/> </span>
                 </button>
+                </div>
               </td>
             </tr>
             <tr>
