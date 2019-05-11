@@ -268,7 +268,7 @@ class Navbar extends Component {
             </form>
           </div>
         </nav>
-        <div id="indexError">{this.state.error.message}</div>
+        <div className="alert-danger" id="indexError">{this.state.error.message}</div>
       </div>
     );
   }
