@@ -168,6 +168,31 @@ mutation($review_id: String!, $course_id: String!){
   }
 `
 
+const DIS_LIKES = gql`
+mutation($review_id: String!, $course_id: String!){
+    disLike(review_id: $review_id, course_id: $course_id){
+      _id
+      title
+      campus
+      ratings
+      review{
+        _id
+        user{
+          _id
+          user_name
+          first_name
+          last_name
+          email
+        }
+        professor
+        review_body
+        likes
+        recommend
+      }
+    }
+  }
+`
+
 export{
     addUserMutation,
     getUser,
@@ -177,6 +202,7 @@ export{
     GET_COURSE_BY_ID,
     GET_COURSE_BY_TITLE,
     REVIEW_COURSE,
-    ADD_LIKES
+    ADD_LIKES,
+    DIS_LIKES
 }
 
