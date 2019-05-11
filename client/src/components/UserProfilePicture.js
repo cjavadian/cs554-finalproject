@@ -91,7 +91,7 @@ class UserProfilePicture extends Component {
             <Query query={GET_USER} variables ={{e_mail: this.props.useremail}}>
               {({data}) => {
                 const userInfo = data;
-                if(!userInfo || userInfo.user === undefined){
+                if(!userInfo || userInfo.user === undefined || userInfo.user === null ){
                   return null;
                 }
                 console.log(userInfo.user);
