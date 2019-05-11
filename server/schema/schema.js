@@ -65,7 +65,8 @@ const courseReview = new GraphQLObjectType({
         professor: {type: GraphQLString},
 		review_body: {type: GraphQLString},
 		likes: {type: GraphQLInt},
-		recommend: {type: GraphQLBoolean}
+		recommend: {type: GraphQLBoolean},
+		time: {type: GraphQLString}
 	})
 });
 
@@ -141,6 +142,12 @@ const userCourseReview = new GraphQLObjectType ({
 			type: GraphQLInt,
 			async resolve(userReview, args) {
 				return userReview.likes;
+			}
+		},
+		time: {
+			type: GraphQLString,
+			async resolve(userReview, args) {
+				return userReview.time;
 			}
 		}
 	})
