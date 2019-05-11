@@ -65,6 +65,7 @@ const courseReview = new GraphQLObjectType({
         professor: {type: GraphQLString},
 		review_body: {type: GraphQLString},
 		likes: {type: GraphQLInt},
+		dislikes: {type: GraphQLInt},
 		recommend: {type: GraphQLBoolean},
 		time: {type: GraphQLString}
 	})
@@ -76,6 +77,8 @@ const courseType = new GraphQLObjectType({
  	fields:()=>({
 		_id: {type: GraphQLString},
 		title: {type: GraphQLString},
+		description: {type: GraphQLString},
+		instructor: {type: GraphQLString},
 		campus: {type: GraphQLBoolean},
 		ratings: {type: GraphQLFloat},
 		difficulty: {type: GraphQLFloat},
@@ -84,7 +87,6 @@ const courseType = new GraphQLObjectType({
 			async resolve(course, args) {
 				try {
 					const reviewInfo = await review.getReviewByCourseId(course._id);
-					console.log(JSON.stringify(reviewInfo));
 					return reviewInfo;
 				} catch (e) {
 					console.log(e);
@@ -122,31 +124,37 @@ const userCourseReview = new GraphQLObjectType ({
 		}},
 		professor: {
 			type: GraphQLString,
-			async resolve(userReview, args) {
+			resolve: (userReview, args) => {
 				return userReview.professor;
 			}
 		},
 		review_content: {
 			type: GraphQLString,
-			async resolve(userReview, args) {
+			resolve: (userReview, args) => {
 				return userReview.review_body;
 			}
 		},
 		recommend: {
 			type: GraphQLBoolean,
-			async resolve(userReview, args) {
+			resolve: (userReview, args) => {
 				return userReview.recommend;
 			}
 		},
 		likes: {
 			type: GraphQLInt,
-			async resolve(userReview, args) {
+			resolve: (userReview, args) => {
 				return userReview.likes;
+			}
+		},
+		dislikes: {
+			type: GraphQLInt,
+			resolve: (userReview, args) => {
+				return userReview.dislikes;				;
 			}
 		},
 		time: {
 			type: GraphQLString,
-			async resolve(userReview, args) {
+			resolve: (userReview, args) => {
 				return userReview.time;
 			}
 		}
@@ -277,11 +285,13 @@ const RootMutation =  new GraphQLObjectType({
 			type: courseType,
 			args: {
 				title: {type: GraphQLString},
+				instructor: {type: GraphQLString},
+				description: {type: GraphQLString},
           		campus: {type: GraphQLBoolean}
 			},
 			async resolve(parent, args) {
 				try {
-					return await course.addCourse(args.title, args.campus);
+					return await course.addCourse(args.title, args.campus, args.instructor, args.description);
 				} catch (e) {
 					console.log(e);
 				}
@@ -316,6 +326,21 @@ const RootMutation =  new GraphQLObjectType({
 			async resolve(parent, args) {
 				try {
 					await review.addLike(args.review_id);
+					return await course.getCourseById(args.course_id);
+				} catch(e) {
+					console.log(e);
+				}
+			}
+		},
+		disLike: {
+			type: courseType,
+			args: {
+				review_id: {type: new GraphQLNonNull(GraphQLString)},
+				course_id: {type: new GraphQLNonNull(GraphQLString)}
+			},
+			async resolve(parent, args) {
+				try {
+					await review.adddisLike(args.review_id);
 					return await course.getCourseById(args.course_id);
 				} catch(e) {
 					console.log(e);

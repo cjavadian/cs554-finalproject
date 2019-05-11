@@ -93,6 +93,7 @@ query($id: String!){
       review_body
       likes
       recommend
+      time
     }
   }
 }
@@ -111,6 +112,7 @@ query($title: String!){
       review_body
       likes
       recommend
+      time
     }
   }
 }

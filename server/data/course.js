@@ -34,14 +34,16 @@ const exportedMethods = {
     if(result === null) throw "No such course in MongoDB";
     return result;
     },
-  async addCourse(title, campus) {
+  async addCourse(title, campus, instructor, description) {
 
       const newCourse = {
           _id: uuidv4(),
           title: title,
           campus: campus,//true campus, false off campus
-          reviews: [],
+          instructor,
+          description,
           ratings: 0.0,
+          difficulty: 0.0,
           rating_number: 0
       };
       

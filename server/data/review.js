@@ -48,8 +48,6 @@ const exportedMethods = {
           review_body: review_body,
           likes: 0,
           dislikes: 0,
-          rating: rating,
-          difficulty: difficulty,
           recommend: recommend,
           time: timeStamp.toDateString()
       };
