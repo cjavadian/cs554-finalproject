@@ -2,6 +2,8 @@
     margin: 0 auto;
     float: none;
     margin-bottom: 10px;
+    width: 350px;
+    height: 375px;
 }
 
 .card-header {
@@ -11,3 +13,4 @@
 .card-container {
     padding-top: 80px;
 }
+
