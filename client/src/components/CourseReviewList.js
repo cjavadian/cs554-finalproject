@@ -53,32 +53,32 @@ class CourseReviewList extends Component {
         <table className="table table-hover">
           <thead>
             <tr>
-              <th scope="col">Rating</th>
-              <th scope="col">Comment</th>
+              <th scope="col">RATING</th>
+              <th scope="col">COMMENT</th>
             </tr>
           </thead>
           <tbody>
             <tr className="active">
               <td className="rating success">
-                <div className="date">Date: </div>
+                <div className="date">DATE: </div>
                 <div className="rating-block-awesome">
                   <div className="rating-wrapper">
                     <div className="icon awesome-icon" />
-                    <span className="rating-type">Student Name : </span>
+                    <span className="rating-type">STUDENT NAME : </span>
                   </div>
                   <div className="courseclass">
                     <span className="attendance">
-                      Attendance:
+                      ATTENDANCE:
                       <span className="response"> Not Mandatory</span>
                     </span>
                     <br />
                     <span className="grade">
-                      Grade Recieved:
+                      GRADE RECIEVED:
                       <span className="response"> A+</span>
                     </span>
                     <br />
                     <span className="textbook">
-                      Campus:
+                      CAMPUS:
                       <span className="response"> Main/Web</span>
                     </span>
                   </div>

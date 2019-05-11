@@ -29,7 +29,7 @@ class CourseDetails extends Component {
     console.log("course_details",this.props)
     return (
       
-      <div>
+      <div class="courseconatiner">
         <LoggedinNavbar/>
         <br/>
 

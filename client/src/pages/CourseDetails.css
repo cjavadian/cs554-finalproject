@@ -1,5 +1,9 @@
 .clsCourseContainer{
     margin: auto 7%;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 1.0rem;
+    font-weight:normal;
+    
 }
 .clsCourseContainerCard{
     box-shadow: 1px 0px 7px rgba(0,0,0,0.5);

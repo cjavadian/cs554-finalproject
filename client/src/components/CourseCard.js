@@ -16,10 +16,10 @@ class CourseCard extends Component {
           <img className="card-img-top courseimg" src={Stevens} alt="card" />
           <div className="card-body">
             <p className="card-text">
-              Course Title : {this.state.course.title}
+              COURSE TITLE : {this.state.course.title}
             </p>
             <p className="card-text">
-              On Campus : {this.state.course.campus.toString()}
+              ON CAMPUS : {this.state.course.campus.toString()}
             </p>
           </div>
         </div>
