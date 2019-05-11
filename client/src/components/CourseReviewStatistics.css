@@ -1,0 +1,16 @@
+.clsRow{
+    justify-content: center;
+    display: inline;
+    flex-direction: column;
+    height: 100%;
+}
+.clsindirows{
+    padding: 2rem;
+    flex: 100% 1;
+    flex-direction: column;
+    height: 6rem;
+    border-bottom: 1px solid black;
+}
+.clsindirows:last-child{
+    border-bottom: none;
+}
