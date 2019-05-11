@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import "./CourseReviewList.css";
 import EditCommentModal from "./CommentModals/EditCommentModal";
 import AddCommentModal from "./CommentModals/AddCommentModal";
-import { FaThumbsUp,FaThumbsDown } from "react-icons/fa";
+import { FaThumbsUp,FaThumbsDown,FaEdit,FaTrash } from "react-icons/fa";
 class CourseReviewList extends Component {
   constructor(props) {
     super(props);
@@ -49,7 +49,7 @@ class CourseReviewList extends Component {
   render() {
     console.log("list",this.props.email);
     return (
-      <div>
+      <div class = "tablecontainer">
         <table className="table table-hover">
           <thead>
             <tr>
@@ -90,12 +90,12 @@ class CourseReviewList extends Component {
                   technologies
                 </p>
                 <div className="helpful-links-thumbs">
-                  <button to="#" className="helpful">
+                  <button type = "button" to="#" className="helpful btn-outline-primary">
                     <span className="count" onClick={this.handleLikes}><FaThumbsUp/></span>
                     {this.state.likes}
                   </button>
                   
-                  <button to="#" className="nothelpful">
+                  <button type = "button" to="#" className="nothelpful btn-outline-primary">
                     <span className="count"  onClick={this.handleDislikes}><FaThumbsDown/> </span>
                    {this.state.dislikes}
                   </button>
@@ -103,15 +103,15 @@ class CourseReviewList extends Component {
                 <br />
                 <button
                   type="button"
-                  className="btn btn-outline-success"
+                  className="btn"
                   onClick={() => {
                     this.handleOpenEditModal();
                   }}
                 >
-                  Edit
+                  <FaEdit/>
                 </button>
-                <button type="button" className="btn btn-outline-success">
-                  Delete
+                <button type="button" className="btn ">
+                 <FaTrash/> 
                 </button>
               </td>
             </tr>
