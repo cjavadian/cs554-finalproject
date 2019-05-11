@@ -22,7 +22,6 @@ class Dashboard extends Component {
         <div className="container-fluid">
           <UserProfilePicture useremail={this.props.email}/>
           </div>
-          
         <Footer /> 
       </div>
     );

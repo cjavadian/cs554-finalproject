@@ -183,7 +183,6 @@ const RootQuery = new GraphQLObjectType({
 			async resolve(parent,args){
 				try {
 					const userInfo = await userData.getUserByEmail(args.e_mail);
-					console.log(JSON.stringify(userInfo));
 					return userInfo;
 				} catch (e) {
 					console.log(e);
@@ -249,7 +248,6 @@ const RootMutation =  new GraphQLObjectType({
 			async resolve(parent,args){
 				try {
 					const userInfo = await userData.getUserByEmail(args.e_mail);
-					console.log(JSON.stringify(userInfo));
 					return userInfo;
 				} catch (e) {
 					console.log(e);

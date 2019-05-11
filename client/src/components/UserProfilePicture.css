@@ -64,10 +64,23 @@ background-color: #d8d8d8;
   overflow-y: auto;
 }
 
-/* .laptop {
-padding-top: 20px;
-display: block;
-margin-left: auto;
-margin-right: auto;
+.card-body {
+  color: black;
+}
 
-} */
+.text-secondary {
+  color: black !important;
+}
+
+.cycle {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 30%;
+}
+
+.col-3 {
+  height: 100%;
+  padding: 0px;
+  border-radius: 10px;
+}
