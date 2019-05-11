@@ -19,22 +19,17 @@
     width: 100%
 }
 
-
-/* .container-fluid {
-    width: 100%;
-    background-color: #66ffff;
-} */
-
 .chatbox {
     position: relative;
     left: 50%;
 }
 
-html, body, form{ height: 100%;}
+html, body, form{
+    height: 100%;
+}
 
 div {
     width: 100%
-    /* background-color: #66ffff; */
 }
 
 .form-control{
