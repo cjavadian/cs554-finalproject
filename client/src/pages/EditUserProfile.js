@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import LoggedinNavbar from "../components/LoggedinNavbar";
-import "./About.css";
+import "./Dashboard.css";
 import Firebase from '../components/Firebase/firebase'
 import { graphql, compose } from "react-apollo";
 import { GET_USER } from "../queries/queries";

@@ -41,7 +41,14 @@ class Navbar extends Component {
       );
       if (user) {
         console.log(typeof this.state.email);
-        this.props.history.push("/about");
+        console.log(this.props.GET_USER);
+        // const user_info = await this.props.GET_USER({
+        //     variables: {
+        //       e_mail: this.state.email
+        //     }
+        // });
+        // console.log(user_info);
+        this.props.history.push("/dashboard");
         console.log(user);
       } else {
         this.props.history.push("/");
