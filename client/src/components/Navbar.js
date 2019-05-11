@@ -48,7 +48,7 @@ class Navbar extends Component {
         //     }
         // });
         // console.log(user_info);
-        this.props.history.push("/about");
+        this.props.history.push("/dashboard");
         console.log(user);
       } else {
         this.props.history.push("/");

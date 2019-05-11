@@ -111,6 +111,7 @@ class UserProfilePicture extends Component {
 
           </div>
           <div className="col-9">
+         
           <img className="laptop" src={require('../images/laptop.png')} alt="laptop image"/>
           </div>
           </div>

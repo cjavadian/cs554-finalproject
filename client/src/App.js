@@ -4,7 +4,7 @@ import ApolloClient from "apollo-boost";
 import { ApolloProvider } from "react-apollo";
 import "./App.css";
 import Home from "./pages/Home.js";
-import About from "./pages/About.js";
+import Dashboard from "./pages/Dashboard.js";
 import Firebase from "./components/Firebase/firebase";
 import CourseDetails from "./pages/CourseDetails";
 import CourseContainer from './components/CourseContainer';
@@ -56,7 +56,7 @@ class App extends Component {
       <ApolloProvider client={client}>
         <Router>
           <Route path="/" exact component={Home} />
-          <Route path="/about/" exact render={() => <IsAuthenticated><About email={this.state.user}/></IsAuthenticated>} />
+          <Route path="/dashboard/" exact render={() => <IsAuthenticated><Dashboard email={this.state.user}/></IsAuthenticated>} />
           <Route path="/courses/" exact render={() => <IsAuthenticated><CourseContainer email={this.state.user}/></IsAuthenticated>} />     
           <Route path="/coursedetails/:id" exact render={() => <IsAuthenticated><CourseDetails email={this.state.user}/></IsAuthenticated>} />
           {/* <Route path="/course" exact render={() => <IsAuthenticated><CourseList /></IsAuthenticated>} /> */}

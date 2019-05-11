@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import LoggedinNavbar from "../components/LoggedinNavbar";
 import Footer from "../components/Footer.js";
-import "./About.css";
+import "./Dashboard.css";
 import UserProfilePicture from "../components/UserProfilePicture";
 import Home from './Home'
 import {Route, Redirect} from "react-router"
 
-class About extends Component {
+class Dashboard extends Component {
   constructor(props) {
 		super(props);
 		this.state = {
@@ -29,4 +29,4 @@ class About extends Component {
   }
 }
 
-export default About;
+export default Dashboard;
