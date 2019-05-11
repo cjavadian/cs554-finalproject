@@ -99,9 +99,9 @@ class Navbar extends Component {
             <span className="navbar-toggler-icon" />
           </button>
           <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
-            <Link className="navbar-brand" to="/">
-              Course Review
-            </Link>
+            <h1 className="navbar-brand">
+              Stevens Course Review
+            </h1>
             <ul className="navbar-nav mr-auto" />
             <form className="form-inline my-2 my-lg-0 justify-content-end">
               <input
