@@ -11,23 +11,24 @@
 
 .file-upload {
   position: relative;
-  left: 325px;
+  display: block;
+  width: 100%;
+  height: 100%;
 }
 
 .rounded-circle {
   overflow: hidden;
-  width: 200px;
-  height: 200px;
-  border: 8px solid rgba(255, 255, 255, 0.7);
+  width: 100%;
+  height: 100%;
   display: block;
   margin: 0 auto;
-  top: 72px;
 }
 .p-image {
   position: absolute;
-  top: 230px;
-  right: 300px;
-  color: #666666;
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding-top: 30px;
   transition: all .3s cubic-bezier(.175, .885, .32, 1.275);
 }
 
@@ -37,6 +38,8 @@
 
 .upload-button {
   font-size: 1.2em;
+  width: 100%;
+  height: 100%;
 }
 
 .upload-button:hover {
@@ -50,16 +53,13 @@
 .chat-container {
   position: relative;
   max-width: 100%;
-  background-color: lightgray;
   max-height: 50%;
 }
 
 .card {
-overflow: hidden;
-background-color: #d8d8d8;
-margin-bottom: 0rem;
-
-
+  overflow: hidden;
+  margin-bottom: 0rem;
+  border: 0px;
 }
 
 .scroll {
@@ -79,11 +79,17 @@ margin-bottom: 0rem;
   display: block;
   margin-left: auto;
   margin-right: auto;
-  width: 30%;
+  width: 27%;
 }
 
 .col-3 {
   height: 100%;
-  padding: 0px;
+  position: center;
   border-radius: 10px;
+  padding-top: 40px;
+}
+
+.card-header {
+  border: 0px;
+  background-color: white;
 }

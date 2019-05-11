@@ -5,14 +5,13 @@ import Firebase from '../components/Firebase/firebase'
 import { FaUser} from 'react-icons/fa';
 import EditProfile from '../pages/EditUserProfile';
 import { withRouter } from "react-router";
+import "./LoggedinNavbar.css";
 
 class LoggedinNavbar extends Component {
     constructor(props) {
         super(props);
         this.onLogOut = this.onLogOut.bind(this);
     }
-
-    
       onLogOut() {
         Firebase.auth().signOut();
         this.props.history.push("/")
@@ -34,23 +33,22 @@ class LoggedinNavbar extends Component {
                     <li className="nav-item active">
                         <Link className="nav-link" to="/dashboard">Home <span className="sr-only">(current)</span></Link>
                     </li>
-                    <li className="nav-item">
+                    <li className="nav-item active">
                         <Link className="nav-link" to="/courses">Courses</Link>
                     </li>
                     <li className="nav-item active">
                     <Link className="nav-link" to="/chat">Chat</Link>
                     </li>
-                    <li className="nav-item dropdown active">
-                        <Link className="nav-link dropdown-toggle" to="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <FaUser/>
-                        </Link>
-                        <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <Link className="dropdown-item" to="/editprofile" onClick={this.editProfile}>Edit Profile</Link>
-                            <Link className="dropdown-item" to="/editpassword">Update Password</Link>
-                            <div className="dropdown-divider"></div>
-                            <Link className="dropdown-item" to="#" onClick={this.onLogOut}>LogOut</Link>
-                        </div>
-                    </li>
+                    <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <FaUser />
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="/editprofile">Edit Profile</a>
+                        <a class="dropdown-item" href="/editpassword">Update Password</a>
+                        <a class="dropdown-item" href="/" onClick={this.onLogOut}>Logout</a>
+                    </div>
+                    </div>
                 </ul>
                 <form className="form-inline my-2 my-lg-0">
                     <Link className="btn btn-outline-success my-2 my-sm-0" to="/courses">Search Courses</Link>

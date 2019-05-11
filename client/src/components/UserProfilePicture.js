@@ -62,8 +62,8 @@ class UserProfilePicture extends Component {
     return (
       <div >
         <div className="row">
-          <div className="col-3">
-          <div class="card d-flex border-light w-100 h-100">
+          <div className="col-3 center-block">
+          <div class="card d-flex w-100 h-100">
           <div class="card-header">
           <div className="profile-pic">
             <img
@@ -76,12 +76,13 @@ class UserProfilePicture extends Component {
           <div className="p-image">
             {/* <FaCamera upload-button /> */}
             <form onSubmit={this.handleSubmit}>
-              <input
-                className="file-upload"
+              <label
+                for="file-upload"
               type="file"
               accept="image/*"
               onChange={this.handleImageChange}
               />
+              <input id="file-upload" />
             </form>
           </div>
           <br />
@@ -98,7 +99,8 @@ class UserProfilePicture extends Component {
                 return (
                     <div>
                       <div class="card-body">
-                        <h4 className="card-title text-left">{userInfo.user.first_name} {userInfo.user.last_name}</h4>
+                        <h2 className="card-title text-left">{userInfo.user.first_name} {userInfo.user.last_name}</h2>
+                        <hr />
                         <dl className="text-secondary">
                           <dt>Username: </dt>
                           <dd>{userInfo.user.user_name}</dd>
@@ -115,12 +117,26 @@ class UserProfilePicture extends Component {
           </div>
           <div className="col-9">
               <br />
-              <h2>Welcome Back!</h2>
+              <Query query={GET_USER} variables ={{e_mail: this.props.useremail}}>
+              {({data}) => {
+                const userInfo = data;
+                if(!userInfo || userInfo.user === undefined || userInfo.user === null ){
+                  return null;
+                }
+                console.log(userInfo.user);
+                return (
+                    <div>
+                      <h1>Welcome, {userInfo.user.first_name}! </h1>
+                    </div>
+                  )
+                }
+              }
+            </Query>
               <hr />
             <img className="cycle" src={require('../images/course-review-process.png')} alt="cycle"/>
-              <br />
-              <h5>Signing up for classes and don't know what to take?</h5>
-              <p>CourseReview is a website for Stevens students to review courses offered.
+              <h2>Signing up for classes and don't know what to take?</h2>
+              <hr />
+              <p>You've come to the right place. CourseReview is a website for Stevens students to review courses offered.
                 This gives students an idea of what to expect when taking certain courses from other students
                 who have taken the course before.
               </p>
