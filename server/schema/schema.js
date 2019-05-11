@@ -227,6 +227,26 @@ const RootQuery = new GraphQLObjectType({
 					console.log(e);
 				}
 			}
+		},
+		searchCourses: {
+			type: new GraphQLList(courseType),
+			description: "Search courses",
+			args: {
+				title: {type: GraphQLString}
+			},
+			async resolve(parent, args) {
+				try {
+					const courses = await course.getAllCourse();
+					const searchCourse = courses.filter(course => {
+						if (course.title) {
+						   return course.title.indexOf(args.title) !== -1;
+						}
+					 })
+					 return searchCourse;
+				} catch(e) {
+					console.log(e);
+				}
+			}
 		}
 	}
 });

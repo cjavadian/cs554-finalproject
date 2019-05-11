@@ -204,6 +204,18 @@ mutation($review_id: String!, $course_id: String!){
     }
   }
 `
+const SEARCH_STUPID_COURSES = gql `
+query($title: String!){
+  searchCourses(title: $title){
+  _id
+  title
+  instructor
+  description
+  campus
+}
+}
+`
+
 
 export{
     addUserMutation,
@@ -213,6 +225,7 @@ export{
     GET_ALL_COURSES,
     GET_COURSE_BY_ID,
     GET_COURSE_BY_TITLE,
+    SEARCH_STUPID_COURSES,
     REVIEW_COURSE,
     ADD_LIKES,
     DIS_LIKES
