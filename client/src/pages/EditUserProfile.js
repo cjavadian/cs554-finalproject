@@ -14,7 +14,9 @@ class EditUserProfile extends Component {
       firstname: "",
       lastname: "",
       email: this.props.email,
-      password: ""
+      password: "",
+      username: "",
+      old_username: ""
     };
     this.handleChange = this.handleChange.bind(this);
     this.onUpdate = this.onUpdate.bind(this);
@@ -25,21 +27,34 @@ class EditUserProfile extends Component {
 
   async onUpdate(event) {
     event.preventDefault();
-    // await this.props.UPDATE_USER({
-    //   variables: {
-    //     user_name_old: 
-    //   }
-    // })
+    const updated_user = await this.props.UPDATE_USER({
+      variables: {
+        user_old_name: this.state.old_username,
+        first_name: this.state.firstname,
+        last_name: this.state.lastname,
+        user_name: this.state.username
+      }
+    })
+    console.log(updated_user)
   }
 
   async componentDidMount() {
-    console.log(this.state.email);
+    // console.log(this.state.email);
     const user_info = await this.props.getUser({
       variables: {
         e_mail: this.state.email
       }
     })
-    console.log(user_info)
+    // console.log(user_info)
+    this.setState({
+      firstname: user_info.data.user.first_name,
+      lastname: user_info.data.user.last_name,
+      username: user_info.data.user.user_name,
+      old_username: user_info.data.user.user_name
+    })
+    // console.log(this.state.firstname)
+    // console.log(this.state.lastname)
+    // console.log(this.state.old_username)
   }
 
    render() {
@@ -89,6 +104,8 @@ class EditUserProfile extends Component {
                     id="username"
                     aria-describedby="username"
                     placeholder="Enter Username"
+                    value={this.state.username}
+                    onChange={this.handleChange}
                   />
                 </div>
                 <button type="submit" className="btn btn-dark">
@@ -108,5 +125,5 @@ class EditUserProfile extends Component {
 }
 export default compose(
   graphql(getUser, {name: "getUser"}),
-  graphql(UPDATE_USER, { name: "updateUser"})
+  graphql(UPDATE_USER, { name: "UPDATE_USER"})
 )(EditUserProfile);
