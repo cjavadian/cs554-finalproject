@@ -12,7 +12,6 @@ class Dashboard extends Component {
 		this.state = {
 			email: this.props.email
 		};
-
   }
   render() {
     console.log("about",this.props.email);

@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import Navbar from '../components/Navbar.js'
 import Footer from '../components/Footer.js';
 import './Home.css';
+
 class Home extends Component{
     render(){
         return(
@@ -13,7 +14,6 @@ class Home extends Component{
                             <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
                             <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
                             <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-                            <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
                         </ol>
                         <div className = "carousel-container">
                             <div class="carousel-inner bg-info">

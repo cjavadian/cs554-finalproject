@@ -17,6 +17,8 @@ class Chat extends React.Component{
             email: this.props.email
         };
 
+        console.log(this.state.email);
+
         this.socket = io('localhost:4001');
 
         this.socket.on('RECEIVE_MESSAGE', function(data){

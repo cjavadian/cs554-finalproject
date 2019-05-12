@@ -44,9 +44,10 @@ class LoggedinNavbar extends Component {
                             <FaUser />
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="/editprofile">Edit Profile</a>
-                            <a class="dropdown-item" href="/editpassword">Update Password</a>
-                            <a class="dropdown-item" href="/" onClick={this.onLogOut}>Logout</a>
+                        <Link className="dropdown-item" to="/editprofile" onClick={this.editProfile}>Edit Profile</Link>
+                            <Link className="dropdown-item" to="/editpassword">Update Password</Link>
+                            <div className="dropdown-divider"></div>
+                            <Link className="dropdown-item" to="#" onClick={this.onLogOut}>LogOut</Link>
                         </div>
                     </div>
                 </ul>

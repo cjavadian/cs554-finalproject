@@ -11,8 +11,10 @@ class EditPassword extends Component {
     super(props);
     this.state = {
       password: "",
-      confirmpassword:""
+      confirmpassword:"",
+      email: this.props.email
     };
+    console.log(this.props.email);
     this.handleChange = this.handleChange.bind(this);
     this.handlePasswordUpdate = this.handlePasswordUpdate.bind(this);
   }

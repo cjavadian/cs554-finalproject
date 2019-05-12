@@ -3,7 +3,7 @@ import LoggedinNavbar from "../components/LoggedinNavbar";
 import "./Dashboard.css";
 import Firebase from '../components/Firebase/firebase'
 import { graphql, compose } from "react-apollo";
-import { GET_USER } from "../queries/queries";
+import { getUser, UPDATE_USER } from "../queries/queries";
 import Footer from "../components/Footer";
 import './EditUserProfile.css';
 
@@ -13,18 +13,33 @@ class EditUserProfile extends Component {
     this.state = {
       firstname: "",
       lastname: "",
-      email: "",
+      email: this.props.email,
       password: ""
     };
     this.handleChange = this.handleChange.bind(this);
-    this.handleUpdate = this.handleUpdate.bind(this);
+    this.onUpdate = this.onUpdate.bind(this);
   }
   handleChange(event) {
     this.setState({ [event.target.id]: event.target.value });
   }
 
-  handleUpdate(event) {
+  async onUpdate(event) {
+    event.preventDefault();
+    // await this.props.UPDATE_USER({
+    //   variables: {
+    //     user_name_old: 
+    //   }
+    // })
+  }
 
+  async componentDidMount() {
+    console.log(this.state.email);
+    const user_info = await this.props.getUser({
+      variables: {
+        e_mail: this.state.email
+      }
+    })
+    console.log(user_info)
   }
 
    render() {
@@ -38,7 +53,7 @@ class EditUserProfile extends Component {
               <div class="card-header"><h1>Edit User's Profile</h1></div>
               <div class="card-body text-dark">
                 <p class="card-text">
-                <form className="form-edit" onSubmit={this.handleUpdate}>
+                <form className="form-edit" onSubmit={this.onUpdate}>
                 <div className="form-group">
                   <label for="firstname">First Name</label>
                   <input
@@ -92,5 +107,6 @@ class EditUserProfile extends Component {
   }
 }
 export default compose(
-  graphql(GET_USER, {name: GET_USER})
+  graphql(getUser, {name: "getUser"}),
+  graphql(UPDATE_USER, { name: "updateUser"})
 )(EditUserProfile);
