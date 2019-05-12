@@ -61,7 +61,7 @@ class EditUserProfile extends Component {
           <div class="row align-self-center w-100">
           <div class="col-6 mx-auto">
               <div class="card h-100 w-100">
-              <div class="card-header"><h1>Edit User's Profile</h1></div>
+              <div class="card-header"><h1>Edit Your Profile</h1></div>
               <div class="card-body text-dark">
                 <p class="card-text">
                 <form className="form-edit" onSubmit={this.onUpdate}>
@@ -114,7 +114,7 @@ class EditUserProfile extends Component {
           </div>
         </div>
         </div>
-    {/*  <Footer /> */}
+     <Footer />
       </div>
     );
   }

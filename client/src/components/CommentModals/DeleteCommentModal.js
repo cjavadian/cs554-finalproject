@@ -49,7 +49,7 @@ class DeleteCommentModal extends Component {
                 <ReactModal
                     name='deleteModal'
                     isOpen={this.state.showDeleteModal}
-                    contentLabel='Delete Todo'
+                    contentLabel='Delete Comment'
                     style={customStyles}>
     
                     {/* <Mutation
@@ -83,7 +83,7 @@ class DeleteCommentModal extends Component {
                                     <br />
                                     <br />
                                     <button className='button add-button' type='submit'>
-                                        Delete Todo
+                                        Delete Comment
                                     </button>
                                 </form>
                             </div>
