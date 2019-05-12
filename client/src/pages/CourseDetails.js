@@ -10,11 +10,10 @@ import './CourseDetails.css'
 class CourseDetails extends Component {
   constructor(props) {
     super(props);
-    console.log(`CourseDetails: ${this.props.email}`);
-    console.log(`CourseDetails: ${this.props.params}`)
+
     this.state = {
         email: this.props.email,
-        course_id: "a132aeca-81af-4989-bb8e-0a83ff8c4c8a",
+        course_id: "",
     }
   }
   
@@ -43,12 +42,10 @@ class CourseDetails extends Component {
                   }
             return (
               <div>
-                {/* <h5>{course.title}</h5>
-                <br/> */}
         
                 <div className="clsCourseContainer">
                   <div className="row">
-                    <div className="col-4">
+                    <div className="col-6">
                       <CourseCard course = {course} />
                     </div>
                     <div className="col-4 clsCourseContainerCard">

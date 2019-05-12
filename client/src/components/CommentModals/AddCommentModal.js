@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import ReactModal from "react-modal";
 import { REVIEW_COURSE, getUser } from "../../queries/queries";
 import { graphql, compose } from 'react-apollo';
+import "./AddCommentModal.css"
 
 //For react-modal
 ReactModal.setAppElement("#root");
@@ -30,7 +31,9 @@ export class AddCommentModal extends Component {
       overallquality: 0,
       recommended: true,
       levelofdifficulty: 0,
-      rateprofessor:""
+      rateprofessor:"",
+      course: this.props.course,
+      professorComment: ""
     };
     this.handleOpenAddModal = this.handleOpenAddModal.bind(this);
     this.handleCloseAddModal = this.handleCloseAddModal.bind(this);
@@ -59,7 +62,7 @@ export class AddCommentModal extends Component {
           variables: {
             course_id: this.props.course._id, 
             user_id: userInfo.data.user._id, 
-            professor: this.state.professorname, 
+            professor: this.state.professorComment, 
             review_body: this.state.comment, 
             recommended: Boolean(this.state.recommended), 
             ratings: Number(this.state.overallquality), 
@@ -86,29 +89,17 @@ export class AddCommentModal extends Component {
       console.log(this.props);
       body = (
         <form onSubmit = {this.submitForm.bind(this)}>
-          <p>Course Name: </p>
+          <p>Course Name: {this.state.course.title}</p>
+          <p>
+              Professor Name: {this.state.course.instructor}
+          </p>
           <div className="form-group">
-            <label>
-              Professor Name:
-              <br />
-              <input
-                // ref={(node) => {console.log("node:");console.log(node)
-                // professorname = node;
-                // }}
-                required
-                autoFocus={true}
-                onChange={(e)=>this.setState({professorname: e.target.value})}
-              />
-            </label>
           </div>
           <div className="form-group">
             <label>
-              Comment:
+              Comment Course:
               <br />
-              <input
-                // ref={(node) => {console.log("node:");console.log(node)
-                // professorname = node;
-                // }}
+              <textarea
                 required
                 autoFocus={true}
                 onChange={(e)=>this.setState({comment: e.target.value})}
@@ -133,10 +124,10 @@ export class AddCommentModal extends Component {
             <label>
               Recommended:
               <br />
-              <select name = "recommend" onChange={(e)=>this.setState({recommended: e.target.value})}>
+              <select name = "recommend" onChange={(e)=>this.setState({recommended: e.target.value==="Yes"?true:false})}>
                 <option>Not Select</option>
-                <option value = {1}>True</option>
-                <option value = {0}>False</option>    
+                <option value = {1}>Yes</option>
+                <option value = {0}>No</option>    
               </select>
             </label>
           </div>
@@ -156,20 +147,17 @@ export class AddCommentModal extends Component {
           </div>
           <div className="form-group">
             <label>
-              Rate Professor:
+              Comment Professor:
               <br />
-              <input
-                // ref={(node) => {console.log("node:");console.log(node)
-                // professorname = node;
-                // }}
+              <textarea
                 required
                 autoFocus={true}
-                onChange={(e)=>this.setState({rateprofessor: e.target.value})}
+                onChange={(e)=>this.setState({professorComment: e.target.value})}
               />
             </label>
           </div>
-          <button className="button add-button" type="submit">
-            Add Comment
+          <button id = "addReviewBut" className="button add-button" type="submit">
+          Submit
           </button>
         </form>
       );
@@ -182,11 +170,10 @@ export class AddCommentModal extends Component {
           contentLabel="Add Modal"
           style={customStyles}
         >
-          {body}
-          <button
+          {body} 
+          <button id = "cancelReviewBut"
             className="button cancel-button"
-            onClick={this.handleCloseAddModal}
-          >
+            onClick={this.handleCloseAddModal}>
             Cancel
           </button>
         </ReactModal>

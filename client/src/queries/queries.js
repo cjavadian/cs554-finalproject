@@ -100,6 +100,7 @@ query($id: String!){
     description
     campus
     ratings
+    difficulty
     review{
       _id
       user{

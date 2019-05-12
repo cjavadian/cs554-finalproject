@@ -13,15 +13,16 @@ class CourseReviewStatistics extends Component {
     return (
       <div>
         <div className=" clsRow row">
+          
           <div className="col-6 col-sm-12 clsindirows">OVERALL QUALITY
-          <p>{quality.toString()}%</p>
+          <p>{quality.toFixed(2).toString()}%</p>
           </div>
         
           <div className="col-6 col-sm-12 clsindirows">LEVEL OF DIFFICULTY
-          <p>{this.state.course.difficulty}</p>
+          <p>{this.state.course.difficulty.toString()}</p>
           </div>
-          <div className="col-6 col-sm-12 clsindirows">TAGS:
-          <p>flexible Cool Professor</p></div>
+          <div className="col-6 col-sm-12 clsindirows">INSTRUCTOR:
+          <p>{this.state.course.instructor}</p></div>
         </div>
       </div>
     );
