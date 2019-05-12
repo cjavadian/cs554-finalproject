@@ -42,6 +42,7 @@ Firebase: used for authentication
 #==============================================================================
 
 #Special Thanks to
+
 W3 School
 
 Stack overflow
@@ -51,6 +52,7 @@ Prof. Patrick Hill
 #==============================================================================
 
 #Presenters
+
 Catherine Javadian
 
 Rozy Gupta
