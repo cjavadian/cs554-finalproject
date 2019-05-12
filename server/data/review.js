@@ -115,7 +115,7 @@ const exportedMethods = {
         "recommend" : update_review.recommend,
         time: timeStamp.toDateString()} },{ upsert: true });
     if (updatedInfo.modifiedCount === 0) {
-        throw "could not edit the review to user successfully";
+        throw "could not edit the review successfully";
     }
     return await this.getReviewById(update_review._id);
 },
