@@ -66,8 +66,13 @@ export class AddCommentModal extends Component {
             difficulty: Number(this.state.levelofdifficulty)
           }
       });
+      this.setState({showAddModal:false});
+      alert('Comment is added');
+      this.props.handleClose();
+      window.location.reload();
   }
 
+  
   render() {
     let body;
     if (this.props.modal === "addReview") {
