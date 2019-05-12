@@ -102,6 +102,9 @@ query($id: String!){
     ratings
     review{
       _id
+      user{
+        email
+      }
       professor
       review_body
       likes

@@ -5,6 +5,9 @@ import EditCommentModal from "./CommentModals/EditCommentModal";
 import AddCommentModal from "./CommentModals/AddCommentModal";
 import DeleteCommentModal from "./CommentModals/DeleteCommentModal";
 import { FaThumbsUp, FaThumbsDown, FaEdit, FaTrash } from "react-icons/fa";
+import { GET_USER } from "../queries/queries";
+import { Query } from "react-apollo";
+
 class CourseReviewList extends Component {
   constructor(props) {
     super(props);
@@ -57,48 +60,51 @@ class CourseReviewList extends Component {
     this.setState({ dislikes: count });
   }
 
-  render() {
-    console.log("list", this.props.email);
-    return (
-      <div className="tablecontainer">
-        <table className="table table-hover">
-          <thead>
-            <tr>
-              <th scope="col">RATING</th>
-              <th scope="col">COMMENT</th>
-            </tr>
-          </thead>
-          <tbody>
+  campus(){
+    if(this.props.course.campus === true)return (<p>On campus</p>);
+      else return (<p>Web</p>);
+  }
+
+  name(email){
+    return(<Query query={GET_USER} variables ={{e_mail: email}}>
+              {({data}) => {
+                const userInfo = data;
+                if(!userInfo || userInfo.user === undefined || userInfo.user === null ){
+                  return null;
+                }
+                console.log(userInfo.user);
+                return (
+                    <p>{userInfo.user.user_name}</p>
+                  )
+                }
+              }
+    </Query>)
+  }
+
+  displayComment(){
+      if(this.props.course.review === 0) return null;
+      const reviews = this.props.course.review;
+      return reviews.map(review=>{
+          return (
             <tr className="active">
               <td className="rating success">
-                <div className="date">DATE: </div>
+                <div className="date">COMMENT DATE: {review.time}</div>
                 <div className="rating-block-awesome">
                   <div className="rating-wrapper">
                     <div className="icon awesome-icon" />
-                    <span className="rating-type">STUDENT NAME : </span>
+                    <span className="rating-type">STUDENT NAME : {this.name(review.user.email)}</span>
                   </div>
                   <div className="courseclass">
-                    <span className="attendance">
-                      ATTENDANCE:
-                      <span className="response"> Not Mandatory</span>
-                    </span>
-                    <br />
-                    <span className="grade">
-                      GRADE RECIEVED:
-                      <span className="response"> A+</span>
-                    </span>
-                    <br />
                     <span className="textbook">
                       CAMPUS:
-                      <span className="response"> Main/Web</span>
+                      <span className="response"> {this.campus()}</span>
                     </span>
                   </div>
                 </div>
               </td>
               <td colSpan="2" className="comments">
                 <p className="commentsParagrah">
-                  CS-554 is well structured, teaches new treding web
-                  technologies
+                  {review.review_body}
                 </p>
                 <div className="helpful-links-thumbs">
                   <button
@@ -109,7 +115,7 @@ class CourseReviewList extends Component {
                     <span className="count" onClick={this.handleLikes}>
                       <FaThumbsUp />
                     </span>
-                    {this.state.likes}
+                    {review.likes}
                   </button>
 
                   <button
@@ -120,7 +126,7 @@ class CourseReviewList extends Component {
                     <span className="count" onClick={this.handleDislikes}>
                       <FaThumbsDown />{" "}
                     </span>
-                    {this.state.dislikes}
+                    {review.dislikes}
                   </button>
                 </div>
                 <br />
@@ -157,14 +163,24 @@ class CourseReviewList extends Component {
                 </div>
               </td>
             </tr>
+          );
+      })
+  }
+
+  render() {
+    console.log("list", this.props.email);
+    console.log(this.props.course.review);
+    return (
+      <div className="tablecontainer">
+        <table className="table table-hover">
+          <thead>
             <tr>
-              <th scope="row">2</th>
-              <td colSpan="2">Jacob</td>
+              <th scope="col">RATING</th>
+              <th scope="col">COMMENT</th>
             </tr>
-            <tr>
-              <th scope="row">3</th>
-              <td colSpan="2">Larry the Bird</td>
-            </tr>
+          </thead>
+          <tbody>
+           {this.displayComment()}
           </tbody>
         </table>
         <button
