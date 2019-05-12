@@ -42,25 +42,24 @@ class CourseDetails extends Component {
                   }
             return (
               <div>
-        
-                <div className="clsCourseContainer">
-                  <div className="row">
+                <div className="row">
+                  {/* <div className="clsCourseContainer"> */}
                     <div className="col-6">
                       <CourseCard course = {course} />
                     </div>
-                    <div className="col-4 clsCourseContainerCard">
-                      <CourseReviewStatistics course = {course} />
-                    </div>
+                  {/* </div> */}
+                      {/* <div className="clsCourseContainerCard"> */}
+                      <div className="col-5">
+                        <CourseReviewStatistics course = {course} />
+                      {/* </div> */}
                   </div>
-                  <br/>
-                  <div className="row" >
-                  <CourseReviewList course = {course} email = {this.props.email}/>
-                  </div>
-                  
                 </div>
-              </div>
+                  <br/>
+                  <div className="review-container">
+                    <CourseReviewList course = {course} email = {this.props.email}/>
+                  </div>
+                </div>
             );
-
           }}
         </Query>
       </div>

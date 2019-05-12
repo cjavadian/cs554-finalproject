@@ -11,10 +11,7 @@ class CourseReviewStatistics extends Component {
     const quality = this.state.course.ratings/5 * 100;
     console.log(this.props.course);
     return (
-      
-      <div>
-        <div className=" clsRow row">
-          
+        <div className=" row">
           <div className="col-6 col-sm-12 clsindirows">OVERALL QUALITY
           <p>{quality.toFixed(2).toString()}%</p>
           </div>
@@ -25,7 +22,6 @@ class CourseReviewStatistics extends Component {
           <div className="col-6 col-sm-12 clsindirows">INSTRUCTOR:
           <p>{this.state.course.instructor}</p></div>
         </div>
-      </div>
     );
   }
 }

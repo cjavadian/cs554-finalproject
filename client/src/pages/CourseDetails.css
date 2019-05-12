@@ -9,3 +9,11 @@
     box-shadow: 1px 0px 7px rgba(0,0,0,0.5);
     border-radius: 0.2rem;
 }
+
+.review-container {
+    width: 100%;
+}
+
+.row {
+    padding-left: 10px;
+}

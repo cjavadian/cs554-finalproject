@@ -2,7 +2,6 @@
     justify-content: center;
     display: inline;
     flex-direction: column;
-    height: 100%;
 }
 .clsindirows{
     padding: 2rem;
@@ -13,4 +12,11 @@
 }
 .clsindirows:last-child{
     border-bottom: none;
+}
+
+.card {
+    width: 75%;
+    margin-bottom: 10px;
+    float: none;
+    margin: 0 auto;
 }

@@ -9,12 +9,13 @@ class CourseCard extends Component {
       course: this.props.course
     };
   }
+
   render() {
     return (
       <div>
-        <div className="card" >
+        <div className="card">
           <img className="card-img-top courseimg" src={Stevens} alt="card" />
-          <div className="card-body">
+          <div className="card-body-details">
             <p className="card-text">
               COURSE TITLE : {this.state.course.title}
             </p>

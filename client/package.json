@@ -7,6 +7,7 @@
     "apollo-cache-inmemory": "^1.5.1",
     "axios": "^0.18.0",
     "canvasjs": "^1.8.1",
+    "croppie": "^2.6.4",
     "firebase": "^5.9.4",
     "graphql": "^14.2.1",
     "react": "^16.8.6",

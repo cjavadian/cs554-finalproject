@@ -36,7 +36,6 @@ class ShowList extends Component {
       const { searchTerm, data } = this.state
       if (searchTerm) {
          try {
-            // const response = await axios.get('http://api.tvmaze.com/search/shows?q=' + this.state.searchTerm);
             // filter our data
             console.log("our data:", data)
             const filteredCourse = data.filter(c => {

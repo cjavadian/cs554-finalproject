@@ -3,6 +3,8 @@ import { FaCamera } from "react-icons/fa";
 import "./UserProfilePicture.css";
 import { GET_USER } from "../queries/queries";
 import { Query } from "react-apollo";
+import '../../node_modules/croppie/croppie.css';
+import croppie from "croppie";
 
 class UserProfilePicture extends Component {
   constructor(props) {
@@ -21,7 +23,7 @@ class UserProfilePicture extends Component {
     e.preventDefault();
     console.log("handle uploading-", this.state.file);
   }
-
+  
   async foo(base64url) {
 
   }
@@ -78,6 +80,7 @@ class UserProfilePicture extends Component {
         this.hydrateStateWithLocalStorage();
      }
   
+     
   render() {
     console.log("pic",this.props.useremail);
     return (
