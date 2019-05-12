@@ -8,10 +8,7 @@ import Dashboard from "./pages/Dashboard.js";
 import Firebase from "./components/Firebase/firebase";
 import CourseDetails from "./pages/CourseDetails";
 import CourseContainer from './components/CourseContainer';
-import Course from "./components/Course"
-import IsAuthenticated from "./components/isAuthenticated"
-import { withRouter } from "react-router";
-import CourseList from "./components/CourseList";
+import IsAuthenticated from "./components/isAuthenticated";
 import EditUserProfile from "./pages/EditUserProfile";
 import EditPassword from "./pages/EditPassword";
 import Chat from "./pages/Chat";
@@ -37,7 +34,6 @@ class App extends Component {
 
   authListener() {
     Firebase.auth().onAuthStateChanged(user => {
-      console.log("user:", user);
       if (!this.state.user) {
         this.setState({ user: user.email});
         localStorage.setItem("user", user.uid);
@@ -46,7 +42,6 @@ class App extends Component {
         localStorage.removeItem("user");
 
       }
-      console.log("user email:",this.state.user)
     });
   }
 
@@ -59,7 +54,6 @@ class App extends Component {
           <Route path="/dashboard/" exact render={() => <IsAuthenticated><Dashboard email={this.state.user}/></IsAuthenticated>} />
           <Route path="/courses/" exact render={() => <IsAuthenticated><CourseContainer email={this.state.user}/></IsAuthenticated>} />     
           <Route path="/coursedetails/:id" exact render={() => <IsAuthenticated><CourseDetails email={this.state.user}/></IsAuthenticated>} />
-          {/* <Route path="/course" exact render={() => <IsAuthenticated><CourseList /></IsAuthenticated>} /> */}
           <Route path="/editprofile" exact render={() => <IsAuthenticated><EditUserProfile email={this.state.user}/></IsAuthenticated>} />
           <Route path="/editpassword" exact render={() => <IsAuthenticated><EditPassword email={this.state.user}/></IsAuthenticated>} />
           <Route path="/chat" exact render={() => <IsAuthenticated><Chat email={this.state.user}/></IsAuthenticated>} />

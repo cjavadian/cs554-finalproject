@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import LoggedinNavbar from "../components/LoggedinNavbar";
 import "./Dashboard.css";
-import Firebase from '../components/Firebase/firebase'
 import { graphql, compose } from "react-apollo";
 import { getUser, UPDATE_USER } from "../queries/queries";
 import Footer from "../components/Footer";
@@ -21,26 +20,7 @@ class EditUserProfile extends Component {
     };
     this.handleChange = this.handleChange.bind(this);
     this.onUpdate = this.onUpdate.bind(this);
-    // this.update = this.update.bind(this);
   }
-
-  // async update() {
-  //   try {
-  //     const user_info = await this.props.getUser({
-  //       variables: {
-  //         e_mail: this.state.email
-  //       }
-  //     })
-  //     this.setState({
-  //       firstname: user_info.data.user.first_name,
-  //       lastname: user_info.data.user.last_name,
-  //       username: user_info.data.user.user_name,
-  //       old_username: user_info.data.user.user_name
-  //     })
-  //   } catch (e) {
-  //       console.error(`An error ${e.message} occured while loading quotes`);
-  //   } 
-  // }
 
   handleChange(event) {
     this.setState({ [event.target.id]: event.target.value });
@@ -48,7 +28,7 @@ class EditUserProfile extends Component {
 
   async onUpdate(event) {
     event.preventDefault();
-    const updated_user = await this.props.UPDATE_USER({
+    await this.props.UPDATE_USER({
       variables: {
         user_old_name: this.state.old_username,
         first_name: this.state.firstname,
@@ -56,28 +36,21 @@ class EditUserProfile extends Component {
         user_name: this.state.username
       }
     })
-    console.log(updated_user);
-    // await this.update();
     this.props.history.push("/dashboard");
   }
 
   async componentDidMount() {
-    // console.log(this.state.email);
     const user_info = await this.props.getUser({
       variables: {
         e_mail: this.state.email
       }
     })
-    // console.log(user_info)
     this.setState({
       firstname: user_info.data.user.first_name,
       lastname: user_info.data.user.last_name,
       username: user_info.data.user.user_name,
       old_username: user_info.data.user.user_name
     })
-    // console.log(this.state.firstname)
-    // console.log(this.state.lastname)
-    // console.log(this.state.old_username)
   }
 
    render() {

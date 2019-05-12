@@ -3,8 +3,8 @@ import io from "socket.io-client";
 import LoggedinNavbar from "../components/LoggedinNavbar";
 import Footer from "../components/Footer";
 import "./Chat.css";
-import { GET_USER } from "../queries/queries";
-import { Query } from "react-apollo";
+import { getUser } from "../queries/queries";
+import { graphql, compose } from "react-apollo";
 
 class Chat extends React.Component{
     constructor(props){
@@ -17,18 +17,14 @@ class Chat extends React.Component{
             email: this.props.email
         };
 
-        console.log(this.state.email);
-
         this.socket = io('localhost:4001');
 
         this.socket.on('RECEIVE_MESSAGE', function(data){
             addMessage(data);
         });
-
+        
         const addMessage = data => {
-            console.log(data);
             this.setState({messages: [...this.state.messages, data]});
-            console.log(this.state.messages);
         };
 
         this.sendMessage = ev => {
@@ -37,11 +33,21 @@ class Chat extends React.Component{
                 author: this.state.username,
                 message: this.state.message
             })
-            console.log(this.state.username);
             this.setState({message: ''});
 
         }
         
+    }
+    
+    async componentDidMount() {
+        const user_info = await this.props.getUser({
+            variables: {
+              e_mail: this.state.email
+            }
+        })
+        this.setState({
+            username: user_info.data.user.user_name,
+        })
     }
 
     render(){
@@ -76,4 +82,5 @@ class Chat extends React.Component{
     }
 }
 
-export default Chat;
+export default compose(
+    graphql(getUser, {name: "getUser"}))(Chat);

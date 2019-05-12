@@ -3,8 +3,6 @@ import LoggedinNavbar from "../components/LoggedinNavbar";
 import Footer from "../components/Footer.js";
 import "./Dashboard.css";
 import UserProfilePicture from "../components/UserProfilePicture";
-import Home from './Home'
-import {Route, Redirect} from "react-router"
 
 class Dashboard extends Component {
   constructor(props) {
@@ -14,7 +12,6 @@ class Dashboard extends Component {
 		};
   }
   render() {
-    console.log("about",this.props.email);
     return (
       <div>
         <LoggedinNavbar />

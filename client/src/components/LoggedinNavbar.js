@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Route, NavLink, Link } from 'react-router-dom'
 import './Navbar.css';
 import Firebase from '../components/Firebase/firebase'
 import { FaUser} from 'react-icons/fa';
-import EditProfile from '../pages/EditUserProfile';
 import { withRouter } from "react-router";
 import "./LoggedinNavbar.css";
 
