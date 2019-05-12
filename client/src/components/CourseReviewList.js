@@ -7,6 +7,8 @@ import DeleteCommentModal from "./CommentModals/DeleteCommentModal";
 import { FaThumbsUp, FaThumbsDown, FaEdit, FaTrash } from "react-icons/fa";
 import { GET_USER } from "../queries/queries";
 import { Query } from "react-apollo";
+import { ADD_LIKES, DIS_LIKES } from "../queries/queries";
+import { graphql, compose } from 'react-apollo';
 
 class CourseReviewList extends Component {
   constructor(props) {
@@ -21,8 +23,6 @@ class CourseReviewList extends Component {
     this.handleOpenEditModal = this.handleOpenEditModal.bind(this);
     this.handleCloseModals = this.handleCloseModals.bind(this);
     this.handleOpenAddModal = this.handleOpenAddModal.bind(this);
-    this.handleLikes = this.handleLikes.bind(this);
-    this.handleDislikes = this.handleDislikes.bind(this);
   }
   handleOpenEditModal() {
     this.setState({
@@ -49,15 +49,26 @@ class CourseReviewList extends Component {
     this.setState({ showAddModal: true });
   }
 
-  handleLikes() {
-    let count = this.state.likes;
-    count += 1;
-    this.setState({ likes: count });
+  async handleLikes(review_id, course_id) {
+    //e.preventDefault();
+    console.log("id",review_id,course_id);
+    await this.props.ADD_LIKES({
+          variables: {
+            review_id: review_id,
+            course_id: course_id 
+          }
+    })
   }
-  handleDislikes() {
-    let count = this.state.dislikes;
-    count += 1;
-    this.setState({ dislikes: count });
+
+  async handleDislikes(review_id, course_id) {
+    //e.preventDefault();
+    console.log("id",review_id,course_id);
+    await this.props.DIS_LIKES({
+          variables: {
+            review_id: review_id,
+            course_id: course_id 
+          }
+    })
   }
 
   campus(){
@@ -86,7 +97,7 @@ class CourseReviewList extends Component {
       const reviews = this.props.course.review;
       return reviews.map(review=>{
           return (
-            <tr className="active">
+            <tr className="active" key={review._id}>
               <td className="rating success">
                 <div className="date">COMMENT DATE: </div>
                 <p>{review.time}</p>
@@ -117,7 +128,7 @@ class CourseReviewList extends Component {
                     to="#"
                     className="helpful btn-outline-primary"
                   >
-                    <span className="count" onClick={this.handleLikes}>
+                    <span className="count" onClick={(e)=>this.handleLikes(review._id, this.props.course._id)}>
                       <FaThumbsUp />
                     </span>
                     {review.likes}
@@ -128,7 +139,7 @@ class CourseReviewList extends Component {
                     to="#"
                     className="nothelpful btn-outline-primary"
                   >
-                    <span className="count" onClick={this.handleDislikes}>
+                    <span className="count" onClick={(e)=>this.handleDislikes(review._id, this.props.course._id)}>>
                       <FaThumbsDown />{" "}
                     </span>
                     {review.dislikes}
@@ -174,7 +185,7 @@ class CourseReviewList extends Component {
 
   render() {
     console.log("list", this.props.email);
-    console.log(this.props.course.review);
+    //console.log(this.props.course.review);
     return (
       <div className="tablecontainer">
         <table className="table table-hover">
@@ -228,4 +239,4 @@ class CourseReviewList extends Component {
   }
 }
 
-export default CourseReviewList;
+export default compose(graphql(ADD_LIKES, {name: "ADD_LIKES"}),graphql(DIS_LIKES, {name: "DIS_LIKES"}))(CourseReviewList);
