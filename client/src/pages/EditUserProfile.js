@@ -6,6 +6,7 @@ import { graphql, compose } from "react-apollo";
 import { getUser, UPDATE_USER } from "../queries/queries";
 import Footer from "../components/Footer";
 import './EditUserProfile.css';
+import {withRouter} from 'react-router-dom';
 
 class EditUserProfile extends Component {
   constructor(props) {
@@ -20,7 +21,27 @@ class EditUserProfile extends Component {
     };
     this.handleChange = this.handleChange.bind(this);
     this.onUpdate = this.onUpdate.bind(this);
+    // this.update = this.update.bind(this);
   }
+
+  // async update() {
+  //   try {
+  //     const user_info = await this.props.getUser({
+  //       variables: {
+  //         e_mail: this.state.email
+  //       }
+  //     })
+  //     this.setState({
+  //       firstname: user_info.data.user.first_name,
+  //       lastname: user_info.data.user.last_name,
+  //       username: user_info.data.user.user_name,
+  //       old_username: user_info.data.user.user_name
+  //     })
+  //   } catch (e) {
+  //       console.error(`An error ${e.message} occured while loading quotes`);
+  //   } 
+  // }
+
   handleChange(event) {
     this.setState({ [event.target.id]: event.target.value });
   }
@@ -35,7 +56,9 @@ class EditUserProfile extends Component {
         user_name: this.state.username
       }
     })
-    console.log(updated_user)
+    console.log(updated_user);
+    // await this.update();
+    this.props.history.push("/dashboard");
   }
 
   async componentDidMount() {
@@ -126,4 +149,4 @@ class EditUserProfile extends Component {
 export default compose(
   graphql(getUser, {name: "getUser"}),
   graphql(UPDATE_USER, { name: "UPDATE_USER"})
-)(EditUserProfile);
+)(withRouter(EditUserProfile));
