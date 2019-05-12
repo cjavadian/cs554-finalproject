@@ -91,24 +91,19 @@ class ShowList extends Component {
       <Query query={GET_ALL_COURSES}>
 					{({ data }) => {
 						console.log(`showlist data: ${JSON.stringify(data)}`);
-                  const courses = data.allcourses;
-                  console.log("courses",courses);
-						if(!courses) {
-							return (
-                        <div>
-                           <li>
-                           <p>Course not Found</p>
-                           </li>
-                        </div>
-                     );
+                  const {allcourses} = data;
+                  console.log("courses",allcourses);
+						if(!allcourses) {
+							return null;
                   }
 						return (
 							<div>
-								{courses.map(course => {
+								{allcourses.map((course) => {
+                           console.log(course._id);
 									return (
-                              <div>
-                                 <Link className="showlink" to={`/coursedetails/${course._id}`}>{course.title}</Link>
-                              </div>
+                                 <li key={course._id}>
+                                    <Link className="showlink" to={`/coursedetails/${course._id}`}>{course.title}</Link>
+                                 </li>
 									);
 								})}
 							</div>

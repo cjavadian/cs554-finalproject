@@ -39,8 +39,7 @@
 2. GraphQL
 3. Express
 4. MongoDB
-5. Redis
-6. Firebase Authentication
+5. Firebase Authentication
 
 **Independent Technologies**
 1. Socket.io

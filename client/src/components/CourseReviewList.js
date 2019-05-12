@@ -108,20 +108,23 @@ class CourseReviewList extends Component {
                   </div>
                   <div className="courseclass">
                     <span className="textbook">
-                      CAMPUS:
-                      <span className="response"> {this.campus()}</span>
+                      RECOMMEND:
+                      <span className="response"> {review.recommend === true?"Yes":"No"}</span>
                     </span>
-                    <span className="textbook">
+                   {/* <span className="textbook">
                       <div className="professor">PROFESSOR:</div>
-                      <span className="response"> {review.professor}</span>
-                    </span>
+                      <span className="response"> {this.props.course.instructor}</span>
+                    </span>*/}
                   </div>
                 </div>
               </td>
               <td colSpan="2" className="comments">
                 <p className="commentsParagrah">
-                  {review.review_body}
+                 Course: {review.review_body}
                 </p>
+                <p>
+                  Professor: {review.professor} 
+                  </p>
                 <div className="helpful-links-thumbs">
                   <button
                     type="button"

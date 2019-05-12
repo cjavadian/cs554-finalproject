@@ -19,7 +19,7 @@ class CourseCard extends Component {
               COURSE TITLE : {this.state.course.title}
             </p>
             <p className="card-text">
-              ON CAMPUS : {this.state.course.campus.toString()}
+              ON CAMPUS : {this.state.course.campus === true?"Yes":"No"}
             </p>
           </div>
         </div>
