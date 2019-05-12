@@ -25,8 +25,6 @@
 8. Redirect to React app working 'http://localhost:3000' 
 9. Enjoy!
 
-# How to use our app
-
 # Technologies used
 
 **Front End**
