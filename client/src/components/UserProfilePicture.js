@@ -10,7 +10,8 @@ class UserProfilePicture extends Component {
     this.state = {
       file: "",
       imagePreviewUrl: "",
-      email: this.props.useremail
+      email: this.props.useremail,
+      src:"https://placeimg.com/444/445"
     };
     this.handleImageChange = this.handleImageChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -39,7 +40,7 @@ class UserProfilePicture extends Component {
       profilePic.src = reader.result;
 
       //let updatProfilePic = await foo();
-
+      localStorage.setItem("prpic",reader.result);
       
     }, false);
     //  reader.onloadend = (data) => {
@@ -53,23 +54,45 @@ class UserProfilePicture extends Component {
     //   // });
     // };
     // console.log(baseUrl);
+    // let pic = localStorage.getItem("prpic");
+    // profilePic.setAttribute("src",pic);
+    // this.setState({src: pic});
+    // console.log("src:" +this.state.src);
     console.log("exit handleimage")
     
   }
 
+
+  hydrateStateWithLocalStorage() {
+ 
+        let value = localStorage.getItem("prpic");
+
+
+        try {
+
+          this.setState({ src: value });
+        } catch (e) {
+          // handle empty string
+          this.setState({ src:"https://placeimg.com/444/445" });
+        }
+      }
+      componentDidMount() {
+        this.hydrateStateWithLocalStorage();
+     }
+  
   render() {
     console.log("pic",this.props.useremail);
     return (
       <div >
         <div className="row">
           <div className="col-3 center-block">
-          <div class="card d-flex w-100 h-100">
-          <div class="card-header">
+          <div className="card d-flex w-100 h-100">
+          <div className="card-header">
           <div className="profile-pic">
             <img
               className="text-center avatar rounded-circle m-auto"
               id="prpic"
-              src="https://placeimg.com/444/445"
+              src={this.state.src}
               alt="Card cap"
             />
           </div>
@@ -97,7 +120,7 @@ class UserProfilePicture extends Component {
                 console.log(userInfo.user);
                 return (
                     <div>
-                      <div class="card-body">
+                      <div className="card-body">
                         <h2 className="card-title text-left">{userInfo.user.first_name} {userInfo.user.last_name}</h2>
                         <hr />
                         <dl className="text-secondary">

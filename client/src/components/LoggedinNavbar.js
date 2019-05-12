@@ -38,11 +38,11 @@ class LoggedinNavbar extends Component {
                     <li className="nav-item active">
                     <Link className="nav-link" to="/chat">Chat</Link>
                     </li>
-                    <div class="dropdown">
-                        <button aria-label="FaUser" class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <div className="dropdown">
+                        <button aria-label="FaUser" className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <FaUser />
                         </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
                         <Link className="dropdown-item" to="/editprofile" onClick={this.editProfile}>Edit Profile</Link>
                             <Link className="dropdown-item" to="/editpassword">Update Password</Link>
                             <div className="dropdown-divider"></div>
