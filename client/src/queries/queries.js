@@ -227,6 +227,61 @@ query($title: String!){
 }
 `
 
+const EDIT_COMMENT = gql`
+mutation($review_id:String!,$new_review_body: String!,$course_id: String!){
+  editComment(review_id:$review_id,new_review_body:$new_review_body,course_id:$course_id){
+      _id
+      title
+      instructor
+      description
+      campus
+      ratings
+      review{
+        _id
+        user{
+          _id
+          user_name
+          first_name
+          last_name
+          email
+        }
+        professor
+        review_body
+        likes
+        dislikes
+        recommend
+      }
+    }
+  }
+`
+const DELETE_COMMENT = gql`
+mutation($review_id:String!,$course_id: String!){
+  deleteComment(review_id:$review_id,course_id:$course_id){
+      _id
+      title
+      instructor
+      description
+      campus
+      ratings
+      review{
+        _id
+        user{
+          _id
+          user_name
+          first_name
+          last_name
+          email
+        }
+        professor
+        review_body
+        likes
+        dislikes
+        recommend
+      }
+    }
+  }
+`
+
 
 export{
     addUserMutation,
@@ -239,6 +294,8 @@ export{
     SEARCH_STUPID_COURSES,
     REVIEW_COURSE,
     ADD_LIKES,
-    DIS_LIKES
+    DIS_LIKES,
+    EDIT_COMMENT,
+    DELETE_COMMENT
 }
 

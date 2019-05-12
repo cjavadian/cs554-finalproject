@@ -212,6 +212,9 @@ class CourseReviewList extends Component {
           <EditCommentModal
             isOpen={this.state.showEditModal}
             handleClose={this.handleCloseModals}
+            course={this.props.course}
+            email={this.props.email}
+            modal="editReview"
           />
         )}
 

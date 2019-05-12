@@ -100,11 +100,9 @@ const exportedMethods = {
       return await this.getReviewById(update_review._id);
   },
   async editComment(review_id,new_review_body){
-      console.log(new_review_body)
     let timeStamp = new Date();
     const review_collection = await review();
     let update_review = await this.getReviewById(review_id);
-    console.log(update_review)
     
     const updatedInfo = await review_collection.updateOne({_id: update_review._id}, { $set: { "user_id" : update_review.user_id,
         "course_id": update_review.course_id,
@@ -117,9 +115,16 @@ const exportedMethods = {
         "recommend" : update_review.recommend,
         time: timeStamp.toDateString()} },{ upsert: true });
     if (updatedInfo.modifiedCount === 0) {
-        throw "could not add new review to user successfully";
+        throw "could not edit the review to user successfully";
     }
     return await this.getReviewById(update_review._id);
+},
+async deleteComment(review_id){
+    const review_collection = await review();
+    const delete_review = await review_collection.removeOne({_id:review_id});
+    if (delete_review.deletedCount === 0) {
+        throw "could not delete the review successfully";
+    }
 }
 }
 

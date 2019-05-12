@@ -21,8 +21,11 @@ const customStyles = {
 class EditCommentModal extends Component {
   constructor(props) {
     super(props);
+    console.log("inside editmodal")
+    console.log(this.props.course);
     this.state = {
-      showEditModal: this.props.isOpen
+      showEditModal: this.props.isOpen,
+      comment:''
     };
     this.handleCloseEditModal = this.handleCloseEditModal.bind(this);
   }
