@@ -88,7 +88,8 @@ class CourseReviewList extends Component {
           return (
             <tr className="active">
               <td className="rating success">
-                <div className="date">COMMENT DATE: {review.time}</div>
+                <div className="date">COMMENT DATE: </div>
+                <p>{review.time}</p>
                 <div className="rating-block-awesome">
                   <div className="rating-wrapper">
                     <div className="icon awesome-icon" />
@@ -98,6 +99,10 @@ class CourseReviewList extends Component {
                     <span className="textbook">
                       CAMPUS:
                       <span className="response"> {this.campus()}</span>
+                    </span>
+                    <span className="textbook">
+                      <div className="professor">PROFESSOR:</div>
+                      <span className="response"> {review.professor}</span>
                     </span>
                   </div>
                 </div>
