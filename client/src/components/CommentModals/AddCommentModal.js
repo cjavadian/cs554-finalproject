@@ -58,13 +58,15 @@ export class AddCommentModal extends Component {
         });
         console.log("info",userInfo.data);
         console.log("name",this.state.professorname);
+        let recommend =true;
+        if(this.state.recommended == 0)recommend = false;
         await this.props.REVIEW_COURSE({
           variables: {
             course_id: this.props.course._id, 
             user_id: userInfo.data.user._id, 
             professor: this.state.professorComment, 
             review_body: this.state.comment, 
-            recommended: Boolean(this.state.recommended), 
+            recommended: recommend, 
             ratings: Number(this.state.overallquality), 
             difficulty: Number(this.state.levelofdifficulty)
           }
@@ -124,7 +126,7 @@ export class AddCommentModal extends Component {
             <label>
               Recommended:
               <br />
-              <select name = "recommend" onChange={(e)=>this.setState({recommended: e.target.value==="Yes"?true:false})}>
+              <select name = "recommend" onChange={(e)=>this.setState({recommended: e.target.value})}>
                 <option>Not Select</option>
                 <option value = {1}>Yes</option>
                 <option value = {0}>No</option>    

@@ -49,6 +49,8 @@ const exportedMethods = {
           likes: 0,
           dislikes: 0,
           recommend: recommend,
+          rating: rating,
+          difficulty: difficulty,
           time: timeStamp.toDateString()
       };
       
