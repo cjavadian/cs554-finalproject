@@ -139,7 +139,7 @@ class CourseReviewList extends Component {
                     to="#"
                     className="nothelpful btn-outline-primary"
                   >
-                    <span className="count" onClick={(e)=>this.handleDislikes(review._id, this.props.course._id)}>>
+                    <span className="count" onClick={(e)=>this.handleDislikes(review._id, this.props.course._id)}>
                       <FaThumbsDown />{" "}
                     </span>
                     {review.dislikes}

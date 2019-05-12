@@ -98,7 +98,29 @@ const exportedMethods = {
           throw "could not add new review to user successfully";
       }
       return await this.getReviewById(update_review._id);
-  }
+  },
+  async editComment(review_id,new_review_body){
+      console.log(new_review_body)
+    let timeStamp = new Date();
+    const review_collection = await review();
+    let update_review = await this.getReviewById(review_id);
+    console.log(update_review)
+    
+    const updatedInfo = await review_collection.updateOne({_id: update_review._id}, { $set: { "user_id" : update_review.user_id,
+        "course_id": update_review.course_id,
+        "professor": update_review.professor,
+        "review_body": new_review_body,
+        "likes" : update_review.likes,
+        "dislikes": update_review.dislikes,
+        "rating": update_review.rating,
+        "difficulty": update_review.difficulty,
+        "recommend" : update_review.recommend,
+        time: timeStamp.toDateString()} },{ upsert: true });
+    if (updatedInfo.modifiedCount === 0) {
+        throw "could not add new review to user successfully";
+    }
+    return await this.getReviewById(update_review._id);
+}
 }
 
 module.exports = exportedMethods;
