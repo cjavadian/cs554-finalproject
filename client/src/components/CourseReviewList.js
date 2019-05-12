@@ -7,7 +7,7 @@ import DeleteCommentModal from "./CommentModals/DeleteCommentModal";
 import { FaThumbsUp, FaThumbsDown, FaEdit, FaTrash } from "react-icons/fa";
 import { GET_USER } from "../queries/queries";
 import { Query } from "react-apollo";
-import { ADD_LIKES, DIS_LIKES } from "../queries/queries";
+import { ADD_LIKES, DIS_LIKES, DELETE_COMMENT, getUser} from "../queries/queries";
 import { graphql, compose } from 'react-apollo';
 
 class CourseReviewList extends Component {
@@ -24,17 +24,23 @@ class CourseReviewList extends Component {
     this.handleCloseModals = this.handleCloseModals.bind(this);
     this.handleOpenAddModal = this.handleOpenAddModal.bind(this);
   }
-  handleOpenEditModal() {
+  
+  handleOpenEditModal(email, review_id, course_id) {
+    if(email != this.props.email) return( alert("You are not authorize to modify this comment"));
     this.setState({
       showEditModal: true
     });
   }
 
-  handleOpenDeleteModal() {
-    this.setState({
-      showDeleteModal: true
-      //deleteComment: todo
-    });
+  async handleDelete(email, review_id, course_id) {
+      console.log(email, this.props.email);
+      if(email != this.props.email) return( alert("You are not authorize to delete this comment")); 
+      await this.props.DELETE_COMMENT({
+          variables: {
+            review_id: review_id,
+            course_id: course_id 
+          }
+    }) 
   }
 
   handleCloseModals() {
@@ -69,6 +75,7 @@ class CourseReviewList extends Component {
             course_id: course_id 
           }
     })
+    window.location.reload();
   }
 
   campus(){
@@ -83,7 +90,7 @@ class CourseReviewList extends Component {
                 if(!userInfo || userInfo.user === undefined || userInfo.user === null ){
                   return null;
                 }
-                console.log(userInfo.user);
+                //console.log(userInfo.user);
                 return (
                     <p>{userInfo.user.user_name}</p>
                   )
@@ -93,7 +100,8 @@ class CourseReviewList extends Component {
   }
 
   displayComment(){
-      if(this.props.course.review === 0) return null;
+      if(this.props.course.review.length === 0) return null;
+      console.log(this.props.course.review)
       const reviews = this.props.course.review;
       return reviews.map(review=>{
           return (
@@ -158,7 +166,7 @@ class CourseReviewList extends Component {
                     <span
                       className="edit"
                       onClick={() => {
-                        this.handleOpenEditModal();
+                        this.handleOpenEditModal(review.user.email, review._id, this.props.course._id);
                       }}
                     >
                       <FaEdit />
@@ -172,7 +180,7 @@ class CourseReviewList extends Component {
                     <span
                       className="delete"
                       onClick={() => {
-                        this.handleOpenDeleteModal();
+                        this.handleDelete(review.user.email, review._id, this.props.course._id);
                       }}
                     >
                       {" "}
@@ -245,4 +253,4 @@ class CourseReviewList extends Component {
   }
 }
 
-export default compose(graphql(ADD_LIKES, {name: "ADD_LIKES"}),graphql(DIS_LIKES, {name: "DIS_LIKES"}))(CourseReviewList);
+export default compose(graphql(ADD_LIKES, {name: "ADD_LIKES"}),graphql(DIS_LIKES, {name: "DIS_LIKES"}),graphql(DELETE_COMMENT, {name: "DELETE_COMMENT"}),graphql(getUser, {name: "getUser"}))(CourseReviewList);

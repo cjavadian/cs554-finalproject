@@ -9,8 +9,9 @@ class CourseReviewStatistics extends Component {
   }
   render() {
     const quality = this.state.course.ratings/5 * 100;
-
+    console.log(this.props.course);
     return (
+      
       <div>
         <div className=" clsRow row">
           
