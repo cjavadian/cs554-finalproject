@@ -5,6 +5,7 @@ import Firebase from '../components/Firebase/firebase'
 import { graphql, compose } from "react-apollo";
 import { GET_USER } from "../queries/queries";
 import Footer from "../components/Footer";
+import { Redirect } from 'react-router-dom'
 
 class EditPassword extends Component {
   constructor(props) {
@@ -12,7 +13,8 @@ class EditPassword extends Component {
     this.state = {
       password: "",
       confirmpassword:"",
-      email: this.props.email
+      email: this.props.email,
+      redirect: false
     };
     console.log(this.props.email);
     this.handleChange = this.handleChange.bind(this);
@@ -25,11 +27,16 @@ class EditPassword extends Component {
   handlePasswordUpdate(event) {
     event.preventDefault();
     Firebase.auth().currentUser.updatePassword(this.state.password);
-    alert("Password updated, please login again")
+    alert("Password updated, please login again");
+    this.setState({redirect: true});
   }
 
   render() {
     const isInvalid = this.state.password !== this.state.confirmpassword;
+    if(this.state && this.state.redirect)
+    {
+      return <Redirect to='/' />
+    }
     return (
       <div>
         <LoggedinNavbar />
