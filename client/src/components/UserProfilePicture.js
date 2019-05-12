@@ -66,12 +66,10 @@ class UserProfilePicture extends Component {
   hydrateStateWithLocalStorage() {
  
         let value = localStorage.getItem("prpic");
-
-
-        try {
-
+        if(value){
           this.setState({ src: value });
-        } catch (e) {
+        } 
+        else {
           // handle empty string
           this.setState({ src:"https://placeimg.com/444/445" });
         }
