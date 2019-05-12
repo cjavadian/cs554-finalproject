@@ -25,13 +25,13 @@ export class AddCommentModal extends Component {
     super(props);
     this.state = {
       showAddModal: this.props.isOpen,
-      coursename:"",
-      professorname:"",
-      comment:"",
+      coursename: "",
+      professorname: "",
+      comment: "",
       overallquality: 0,
       recommended: true,
       levelofdifficulty: 0,
-      rateprofessor:"",
+      rateprofessor: "",
       course: this.props.course,
       professorComment: ""
     };
@@ -56,8 +56,8 @@ export class AddCommentModal extends Component {
             e_mail: email, 
           }
         });
-        console.log("info",userInfo.data);
-        console.log("name",this.state.professorname);
+        console.log("info", userInfo.data);
+        console.log("name", this.state.professorname);
         //let recommend =true;
         //if(this.state.recommended == 0)recommend = false;
         await this.props.REVIEW_COURSE({
@@ -81,13 +81,6 @@ export class AddCommentModal extends Component {
   render() {
     let body;
     if (this.props.modal === "addReview") {
-      let coursename;
-      let professorname;
-      let comment;
-      let overallquality;
-      let recommended;
-      let levelofdifficulty;
-      let rateprofessor;
       console.log(this.props);
       body = (
         <form onSubmit = {this.submitForm.bind(this)}>
@@ -112,13 +105,13 @@ export class AddCommentModal extends Component {
             <label>
               Overall Quality:
               <br />
-              <select name = "Quality" onChange={(e)=>this.setState({overallquality: e.target.value})}>
-                <option>Not Select</option>
-                <option value = {1}>1</option>
-                <option value = {2}>2</option>
-                <option value = {3}>3</option>
-                <option value = {4}>4</option>
-                <option value = {5}>5</option>       
+              <select name = "Quality" onChange={(e) => this.setState({overallquality: e.target.value})}>
+                <option value = {6}> Not Select </option>
+                <option value = {1}> 1 </option>
+                <option value = {2}> 2 </option>
+                <option value = {3}> 3 </option>
+                <option value = {4}> 4 </option>
+                <option value = {5}> 5 </option>       
               </select>
             </label>
           </div>
@@ -126,10 +119,10 @@ export class AddCommentModal extends Component {
             <label>
               Recommended:
               <br />
-              <select name = "recommend" onChange={(e)=>this.setState({recommended: e.target.value})}>
-                <option>Not Select</option>
-                <option value = {1}>Yes</option>
-                <option value = {0}>No</option>    
+              <select name = "recommend" onChange={(e) => this.setState({recommended: e.target.value})}>
+                <option value = {2}> Not Select </option>
+                <option value = {1}> Yes </option>
+                <option value = {0}> No </option>    
               </select>
             </label>
           </div>
@@ -137,28 +130,28 @@ export class AddCommentModal extends Component {
             <label>
               Level Of Difficulty:
               <br />
-              <select name = "Difficulty" onChange={(e)=>this.setState({levelofdifficulty: e.target.value})}>
-                <option>Not Select</option>
-                <option value = {1}>1</option>
-                <option value = {2}>2</option>
-                <option value = {3}>3</option>
-                <option value = {4}>4</option>
-                <option value = {5}>5</option>      
+              <select name = "Difficulty" onChange = {(e) => this.setState({levelofdifficulty: e.target.value})}>
+                <option value = {6}> Not Select</option>
+                <option value = {1}> 1 </option>
+                <option value = {2}> 2 </option>
+                <option value = {3}> 3 </option>
+                <option value = {4}> 4 </option>
+                <option value = {5}> 5 </option>      
               </select>
             </label>
           </div>
-          <div className="form-group">
+          <div className ="form-group">
             <label>
               Comment Professor:
               <br />
               <textarea
                 required
-                autoFocus={true}
-                onChange={(e)=>this.setState({professorComment: e.target.value})}
+                autoFocus = {true}
+                onChange = {(e) => this.setState({professorComment: e.target.value})}
               />
             </label>
           </div>
-          <button id = "addReviewBut" className="button add-button" type="submit">
+          <button id = "addReviewBut" className = "button add-button" type = "submit">
           Submit
           </button>
         </form>
@@ -167,15 +160,15 @@ export class AddCommentModal extends Component {
     return (
       <div>
         <ReactModal
-          name="addModal"
-          isOpen={this.state.showAddModal}
-          contentLabel="Add Modal"
-          style={customStyles}
+          name = "addModal"
+          isOpen = {this.state.showAddModal}
+          contentLabel = "Add Modal"
+          style = {customStyles}
         >
           {body} 
           <button id = "cancelReviewBut"
-            className="button cancel-button"
-            onClick={this.handleCloseAddModal}>
+            className = "button cancel-button"
+            onClick = {this.handleCloseAddModal}>
             Cancel
           </button>
         </ReactModal>
@@ -184,4 +177,7 @@ export class AddCommentModal extends Component {
   }
 }
 
-export default compose(graphql(REVIEW_COURSE, {name: "REVIEW_COURSE"}),graphql(getUser, {name: "getUser"}))(AddCommentModal);
+export default compose(
+    graphql(REVIEW_COURSE, {name: "REVIEW_COURSE"}),
+    graphql(getUser, {name: "getUser"})
+)(AddCommentModal);
