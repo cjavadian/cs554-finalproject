@@ -6,6 +6,7 @@ import Course from '../components/Course';
 import './CourseList.css';
 import {GET_ALL_COURSES, GET_COURSE_BY_TITLE, SEARCH_STUPID_COURSES} from "../queries/queries"
 import { Query } from 'react-apollo';
+import {FaSearch } from 'react-icons/fa';
 
 
 class ShowList extends Component {
@@ -101,7 +102,7 @@ class ShowList extends Component {
                            console.log(course._id);
 									return (
                                  <li key={course._id}>
-                                    <Link className="showlink" to={`/coursedetails/${course._id}`}>{course.title}</Link>
+                                   <strong> <Link className="showlink" to={`/coursedetails/${course._id}`}>{course.title}</Link></strong>
                                  </li>
 									);
 								})}
@@ -116,9 +117,9 @@ class ShowList extends Component {
                
               <strong> <label name="searchlabel">
                   {' '}
-                  SEARCH COURSES
+                  <FaSearch/>  SEARCH COURSES
                   <br/>
-                 <input
+                 <input className = "searchbox"
                      type="text"
                      name="searchTerm"
                      value={this.state.value} 

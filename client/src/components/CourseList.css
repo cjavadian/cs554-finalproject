@@ -1,18 +1,26 @@
 .my-form{
-   text-align: left; 
+   text-align: center; 
    position: relative; 
-   top: 100px;
-   margin-left: 400px;
-   
+   top: 90px;
+   margin-left: 200px;
+   color: green;
+   font-stretch: expanded;
+
+   letter-spacing: 2px;
+   display: inline-block;
+   font-size: 32px;
+   transform: scaleY(0.9);
+   transform-origin: 0 0;
+   margin-bottom: -30%;
    
 }
 .searchlabel{
-   text-align: center;
-   right:500px;
+   text-align: center;  
    position: relative;
    bottom: 150px;
    font-family: 'Times New Roman', Times, serif;
    font-weight:900;
+   font-stretch: expanded;
 }
 .showlink {
    padding: 0.4rem 0.8rem;
@@ -22,11 +30,29 @@
    top: 100px;
    margin-left:390px;
    font-family: 'Times New Roman', Times, serif;
-   
+   font-stretch: expanded;
+
+   letter-spacing: 1px;
+   display: inline-block;
+   font-size: 20px;
+   transform: scaleY(0.9);
+   transform-origin: 0 0;
+   margin-bottom: -30%;
 }
 
 .showlink:hover {
    background-color: transparent;
-   color: #192A56;
+   color: green;
    text-decoration: underline;
+   letter-spacing: 1px;
+   display: inline-block;
+   font-size: 20px;
+   transform: scaleY(0.9);
+   transform-origin: 0 0;
+   margin-bottom: -30%;
+}
+.searchbox{
+   width: 720px;
+   border: 1px solid black
+   
 }
