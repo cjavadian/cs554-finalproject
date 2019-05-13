@@ -1,16 +1,28 @@
 .my-form{
    text-align: left; 
    position: relative; 
+   top: 100px;
+   margin-left: 400px;
+   
+   
 }
 .searchlabel{
    text-align: center;
    right:500px;
    position: relative;
+   bottom: 150px;
+   font-family: 'Times New Roman', Times, serif;
+   font-weight: bold;
 }
 .showlink {
    padding: 0.4rem 0.8rem;
    border-radius: 3px;
    color: #192A56;
+   position: relative;
+   top: 100px;
+   margin-left:390px;
+   font-family: 'Times New Roman', Times, serif;
+   
 }
 
 .showlink:hover {

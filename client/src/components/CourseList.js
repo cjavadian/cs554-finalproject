@@ -116,7 +116,7 @@ class ShowList extends Component {
                
                <label name="searchlabel">
                   {' '}
-                  Search Course:
+                  SEARCH COURSES
                   <br/>
                  <input
                      type="text"
