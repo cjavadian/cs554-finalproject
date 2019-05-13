@@ -56,17 +56,17 @@ class EditUserProfile extends Component {
    render() {
     return (
       <div>
-        <LoggedinNavbar />
-        <div class="card-container d-flex h-100">
-          <div class="row align-self-center w-100">
-          <div class="col-6 mx-auto">
-              <div class="card h-100 w-100">
-              <div class="card-header"><h1>Edit Your Profile</h1></div>
-              <div class="card-body text-dark">
-                <p class="card-text">
+        <LoggedinNavbar email={this.props.email}/>
+        <div className="card-container d-flex h-100">
+          <div className="row align-self-center w-100">
+          <div className="col-6 mx-auto">
+              <div className="card h-100 w-100">
+              <div className="card-header"><h1>Edit Your Profile</h1></div>
+              <div className="card-body text-dark">
+                {/* <p className="card-text"> */}
                 <form className="form-edit" onSubmit={this.onUpdate}>
                 <div className="form-group">
-                  <label for="firstname">First Name</label>
+                  <label htmlFor="firstname">First Name</label>
                   <input
                     type="text"
                     minLength={3}
@@ -79,7 +79,7 @@ class EditUserProfile extends Component {
                   />
                 </div>
                 <div className="form-group">
-                  <label for="lastname">Last Name</label>
+                  <label htmlFor="lastname">Last Name</label>
                   <input
                     type="text"
                     minLength={3}
@@ -91,12 +91,12 @@ class EditUserProfile extends Component {
                     onChange={this.handleChange}
                   />
                 </div>
-                <div class="form-group">
-                  <label for="username">User Name</label>
+                <div className="form-group">
+                  <label htmlFor="username">User Name</label>
                   <input
                     minLength={3}
                     type="text"
-                    class="form-control"
+                    className="form-control"
                     id="username"
                     aria-describedby="username"
                     placeholder="Enter Username"
@@ -108,7 +108,7 @@ class EditUserProfile extends Component {
                   Submit
                 </button>
               </form>
-                </p>
+                {/* </p> */}
               </div>
             </div>
           </div>

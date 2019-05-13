@@ -76,7 +76,7 @@ class Chat extends React.Component{
         return (
             
             <div>
-                <LoggedinNavbar />
+                <LoggedinNavbar email={this.props.email}/>
                     <h1>Chat Room</h1>
                     <hr />
                     <div className="container">

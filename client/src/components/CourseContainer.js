@@ -9,7 +9,7 @@ class CourseContainer extends Component {
    render() {
       return (
          <div>
-            <LoggedInNavbar/>
+            <LoggedInNavbar email={this.props.email}/>
             <br/>
             <Switch>
                <Route path="/courses" exact component={CourseList} />

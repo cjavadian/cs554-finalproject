@@ -10,6 +10,7 @@ class LoggedinNavbar extends Component {
     constructor(props) {
         super(props);
         this.onLogOut = this.onLogOut.bind(this);
+        console.log(this.props.email)
     }
       onLogOut() {
         Firebase.auth().signOut();

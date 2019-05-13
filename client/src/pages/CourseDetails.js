@@ -30,7 +30,7 @@ class CourseDetails extends Component {
     return (
       
       <div className="courseconatiner">
-        <LoggedinNavbar/>
+        <LoggedinNavbar email={this.props.email}/>
         <br/>
 
         <Query query={GET_COURSE_BY_ID} variables={{ id: id }}>

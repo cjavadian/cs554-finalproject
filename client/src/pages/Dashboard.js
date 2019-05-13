@@ -24,7 +24,7 @@ class Dashboard extends Component {
   render() {
     return (
       <div>
-        <LoggedinNavbar />
+        <LoggedinNavbar email={this.props.email}/>
         <div className="container-fluid">
           <UserProfilePicture useremail={this.props.email}/>
           </div>
