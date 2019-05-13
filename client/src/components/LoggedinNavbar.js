@@ -5,15 +5,24 @@ import Firebase from '../components/Firebase/firebase'
 import { FaUser} from 'react-icons/fa';
 import { withRouter } from "react-router";
 import "./LoggedinNavbar.css";
+import axios from 'axios'
 
 class LoggedinNavbar extends Component {
     constructor(props) {
         super(props);
         this.onLogOut = this.onLogOut.bind(this);
-        console.log(this.props.email)
+        console.log("LoggedinNavbar email: ", this.props.email)
     }
-      onLogOut() {
+    async pushUser(userEmail){
+        const users = await axios.post('http://localhost:7050/userlog/userout', {
+              username: userEmail
+            });
+            console.log(users);
+      }
+
+     async onLogOut() {
         Firebase.auth().signOut();
+        await this.pushUser(this.props.email);
         this.props.history.push("/")
 
     }
@@ -49,6 +58,8 @@ class LoggedinNavbar extends Component {
                         <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
                         <Link className="dropdown-item" to="/editprofile" onClick={this.editProfile}>Edit Profile</Link>
                             <Link className="dropdown-item" to="/editpassword">Update Password</Link>
+                            {/*<div className="dropdown-divider"></div>
+                            <Link className="dropdown-item" to="/userreview">My Reviews</Link>*/}
                             <div className="dropdown-divider"></div>
                             <Link className="dropdown-item" to="#" onClick={this.onLogOut}>LogOut</Link>
                         </div>
