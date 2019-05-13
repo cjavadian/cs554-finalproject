@@ -64,11 +64,12 @@ class AWSS3 extends Component {
       <div className="App">
         <LoggedinNavbar />
         <center className="magic-upload">
-          <div class="card awss3card">
-            <div class="card-body">
-              <h5 class="card-title">Upload Course Material</h5>
+          <div className="card awss3card">
+            <div className="card-body">
+              <h5 className="card-title">Upload Course Material</h5>
               {this.state.success ? <Success_message /> : null}
-              <input
+              <label for = "myinput"></label>
+              <input id = "myinput"
                 onChange={this.handleChange}
                 ref={ref => {
                   this.uploadInput = ref;
