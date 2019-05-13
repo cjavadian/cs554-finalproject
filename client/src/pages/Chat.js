@@ -49,15 +49,28 @@ class Chat extends React.Component{
     }
     
     async componentDidMount() {
-        console.log("chat componentDidMount", this.state.email);
-        const user_info = await this.props.getUser({
+        console.log("componentDidMount this.props.email: " , this.props.email);
+        
+        console.log("chat componentDidMount localstorage: ", localStorage.getItem("user_email"));
+        let user_info = {};
+        if(this.state.email) {
+            user_info = await this.props.getUser({
             variables: {
               e_mail: this.state.email
             }
-        })
+        });
+        }
+        else {
+            user_info = await this.props.getUser({
+                variables: {
+                  e_mail: localStorage.getItem("user_email")
+                }
+            });
+            this.setState({email: localStorage.getItem("user_email")});
+        }
         this.setState({
             username: user_info.data.user.user_name,
-        })
+        });
         this.getUserOnline();
         setInterval(this.getUserOnline, 30000);
     }
@@ -68,7 +81,7 @@ class Chat extends React.Component{
 
     render(){
         let li = null;
-        if(this.state && this.state.userOnline) {
+        if(this.state && this.state.userOnline && this.state.userOnline.length) {
             console.log(this.state.userOnline);
             li = this.state.userOnline.map((user,index) => {
                 console.log(user);

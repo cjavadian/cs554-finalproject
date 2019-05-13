@@ -41,6 +41,8 @@ app.use("/graphql",expressgraphql({
 
 app.use("/sign_s3", awsRoutes);
 
+app.use("/userlog", user_login);
+
 app.use("*", (req, res) => {
     res.json("404:Page Not Found!")
 });

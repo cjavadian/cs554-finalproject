@@ -14,6 +14,7 @@ import EditPassword from "./pages/EditPassword";
 import Chat from "./pages/Chat";
 import AWSS3 from "./components/AWSS3";
 import { InMemoryCache } from 'apollo-cache-inmemory';
+//import UserReview from "./pages/UserReview"
 
 const cache = new InMemoryCache();
 const client = new ApolloClient({
@@ -38,9 +39,11 @@ class App extends Component {
       if (!this.state.user) {
         this.setState({ user: user.email});
         localStorage.setItem("user", user.uid);
+        localStorage.setItem("user_email", user.email);
       } else {
         this.setState({ user: null });
         localStorage.removeItem("user");
+        localStorage.removeItem("user_email");
 
       }
     });
@@ -58,6 +61,7 @@ class App extends Component {
           <Route path="/editprofile" exact render={() => <IsAuthenticated><EditUserProfile email={this.state.user}/></IsAuthenticated>} />
           <Route path="/editpassword" exact render={() => <IsAuthenticated><EditPassword email={this.state.user}/></IsAuthenticated>} />
           <Route path="/uploadfile" exact render={() => <IsAuthenticated><AWSS3 email={this.state.user}/></IsAuthenticated>} />
+         {/* <Route path="/userreview" exact render={() => <IsAuthenticated><UserReview email={this.state.user}/></IsAuthenticated>} />*/}
           <Route path="/chat" exact render={() => <IsAuthenticated><Chat email={this.state.user}/></IsAuthenticated>} />
         </Router>
       </ApolloProvider>
