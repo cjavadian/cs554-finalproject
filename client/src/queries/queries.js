@@ -257,6 +257,7 @@ mutation($review_id:String!,$new_review_body: String!,$professor_comment: String
         likes
         dislikes
         recommend
+        time
       }
     }
   }

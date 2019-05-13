@@ -7,7 +7,7 @@ import DeleteCommentModal from "./CommentModals/DeleteCommentModal";
 import { FaThumbsUp, FaThumbsDown, FaEdit, FaTrash } from "react-icons/fa";
 import { GET_USER } from "../queries/queries";
 import { Query } from "react-apollo";
-import { ADD_LIKES, DIS_LIKES, DELETE_COMMENT, EDIT_COMMENT, getUser} from "../queries/queries";
+import { ADD_LIKES, DIS_LIKES, DELETE_COMMENT, EDIT_COMMENT, getUser, GET_COURSE_BY_ID} from "../queries/queries";
 import { graphql, compose } from 'react-apollo';
 
 class CourseReviewList extends Component {
@@ -25,11 +25,13 @@ class CourseReviewList extends Component {
       professorComment: "",
       review_user_email: "",
       review_id: "",
-      review: {}
+      review: {},
+      course: this.props.course
     };
     this.handleOpenEditModal = this.handleOpenEditModal.bind(this);
     this.handleCloseModals = this.handleCloseModals.bind(this);
     this.handleOpenAddModal = this.handleOpenAddModal.bind(this);
+    this.setCourse = this.setCourse.bind(this);
   }
   
   handleOpenEditModal(review) {
@@ -38,6 +40,10 @@ class CourseReviewList extends Component {
       showEditModal: true
     });
     this.setState({review: review});
+  }
+
+  setCourse(course) {
+    this.setState({course: course});
   }
 
   async handleDelete(email, review_id, course_id) {
@@ -116,7 +122,8 @@ class CourseReviewList extends Component {
   }
 
   displayComment() {
-    if (this.props.course.review.length === 0) return null;
+    
+    if (this.state && this.state.course && this.state.course.review && this.state.course.review.length === 0) return null;
     console.log(this.props.course.review);
     const reviews = this.props.course.review;
     return reviews.map(review => {
@@ -219,6 +226,7 @@ class CourseReviewList extends Component {
     });
   }
 
+
   render() {
     console.log("list", this.props.email);
     //console.log(this.props.course.review);
@@ -247,6 +255,7 @@ class CourseReviewList extends Component {
             isOpen={this.state.showEditModal}
             handleClose={this.handleCloseModals}
             review = {this.state.review}
+            setCourse = {this.setCourse}
           />
         )}
 

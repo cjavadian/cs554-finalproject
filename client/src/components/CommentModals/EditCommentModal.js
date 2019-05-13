@@ -33,6 +33,7 @@ class EditCommentModal extends Component {
       current_user_email: this.props.email
     };
     this.handleCloseEditModal = this.handleCloseEditModal.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
   handleCloseEditModal() {
     this.setState({ showEditModal: false, todo: null });
@@ -41,20 +42,21 @@ class EditCommentModal extends Component {
   
   async handleEditComment(new_review_body, professor_comment) {
     console.log(`handleEditComment ${this.state.review_user_email}`);
-    await this.props.EDIT_COMMENT({
+    const courseInfo = await this.props.EDIT_COMMENT({
         variables: {
           review_id: this.state.review_id,
           new_review_body: new_review_body,
           professor_comment: professor_comment
         }
-    }) 
+    }); 
+    console.log("handleEditComment: " ,JSON.stringify(courseInfo.data.editComment));
+    this.props.setCourse(courseInfo);
     this.setState({ showEditModal: false, todo: null });
-    this.props.handleClose();
   }
-  handleSubmit = (e) => {
+  async handleSubmit(e) {
     e.preventDefault();
-    this.handleEditComment(this.state.courseComment,this.state.professorComment);
-    this.setState({ showEditModal: false, todo: null });
+    await this.handleEditComment(this.state.courseComment,this.state.professorComment);
+    this.props.handleClose();
   }
   render() {
     return (
