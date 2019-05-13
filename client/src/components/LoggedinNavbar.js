@@ -49,7 +49,7 @@ class LoggedinNavbar extends Component {
                     <Link className="nav-link" to="/chat">Chat</Link>
                     </li>
                     <li className="nav-item active">
-                    <Link className="nav-link" to="/uploadfile">Upload File</Link>
+                    <Link className="nav-link" to="/uploadfile">FileUpload</Link>
                     </li>
                     <div className="dropdown">
                         <button aria-label="FaUser" className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
