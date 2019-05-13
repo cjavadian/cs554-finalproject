@@ -16,7 +16,8 @@ class Chat extends React.Component{
             message: '',
             messages: [],
             email: this.props.email,
-            userOnline: []
+            userOnline: [],
+            receiver: ""
         };
 
         this.socket = io('localhost:4001');
@@ -38,7 +39,7 @@ class Chat extends React.Component{
             this.setState({message: ''});
 
         }
-        
+        this.getUserOnline = this.getUserOnline.bind(this);
     }
 
     async getUserOnline() {
@@ -58,6 +59,11 @@ class Chat extends React.Component{
             username: user_info.data.user.user_name,
         })
         this.getUserOnline();
+        setInterval(this.getUserOnline, 30000);
+    }
+
+    componentWillUnmount() {
+        clearInterval(this.getUserOnline);
     }
 
     render(){
@@ -106,7 +112,7 @@ class Chat extends React.Component{
                                     <div className="chat-fluid">
                                         <div class="col-lg">
                                             <div class="button-container">
-                                            <input type="text" placeholder="Chat Name" value={this.state.username} onChange={ev => this.setState({username: ev.target.value})} className="form-control"/>
+                                            <input type="text" placeholder="Chat Name" value={this.state.receiver} onChange={ev => this.setState({receiver: ev.target.value})} className="form-control"/>
                                                 <input type="text" placeholder="Message" className="form-message-control" value={this.state.message} onChange={ev => this.setState({message: ev.target.value})}/>
                                                 <button onClick={this.sendMessage} className="btn btn-primary form-chat-control">Send</button>
                                             </div>

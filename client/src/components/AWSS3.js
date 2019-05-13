@@ -60,6 +60,7 @@ class AWSS3 extends Component {
       </div>
     );
     return (
+     
       <div className="App">
         <LoggedinNavbar />
         <center className="magic-upload">

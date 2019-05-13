@@ -114,9 +114,9 @@ class ShowList extends Component {
          <div className="container">
             <form className="my-form" method="POST " name="formName" onSubmit={this.onSubmit}>
                
-               <label name="searchlabel">
+              <strong> <label name="searchlabel">
                   {' '}
-                  Search Course:
+                  SEARCH COURSES
                   <br/>
                  <input
                      type="text"
@@ -125,6 +125,7 @@ class ShowList extends Component {
                      onChange={this.handleChange}
                   />
                </label>
+               </strong>
             </form>
             <ul className="list-unstyled">{li}</ul>
          </div>
