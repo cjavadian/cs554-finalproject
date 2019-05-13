@@ -41,6 +41,11 @@ app.use("/graphql",expressgraphql({
 
 app.use("/sign_s3", awsRoutes);
 
+app.use("*", (req, res) => {
+    res.json("404:Page Not Found!")
+});
+
+
 app.listen(7050,()=>{
  	console.log("We've got a server!");
  	console.log("Your graphql server will be running on http://localhost:7050");
