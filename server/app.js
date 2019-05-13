@@ -4,6 +4,7 @@ const schema =  require("./schema/schema.js")
 const cors = require("cors");
 const user_login = require("./user_login");
 const bodyParser = require("body-parser");
+const awsRoutes = require('./aws-s3/controller')
 
 
 
@@ -38,7 +39,7 @@ app.use("/graphql",expressgraphql({
 	graphiql: true
 }));
 
-app.use("/userlog", user_login);
+app.use("/sign_s3", awsRoutes);
 
 app.listen(7050,()=>{
  	console.log("We've got a server!");

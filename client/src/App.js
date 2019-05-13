@@ -12,6 +12,7 @@ import IsAuthenticated from "./components/isAuthenticated";
 import EditUserProfile from "./pages/EditUserProfile";
 import EditPassword from "./pages/EditPassword";
 import Chat from "./pages/Chat";
+import AWSS3 from "./components/AWSS3";
 import { InMemoryCache } from 'apollo-cache-inmemory';
 
 const cache = new InMemoryCache();
@@ -56,6 +57,7 @@ class App extends Component {
           <Route path="/coursedetails/:id" exact render={() => <IsAuthenticated><CourseDetails email={this.state.user}/></IsAuthenticated>} />
           <Route path="/editprofile" exact render={() => <IsAuthenticated><EditUserProfile email={this.state.user}/></IsAuthenticated>} />
           <Route path="/editpassword" exact render={() => <IsAuthenticated><EditPassword email={this.state.user}/></IsAuthenticated>} />
+          <Route path="/uploadfile" exact render={() => <IsAuthenticated><AWSS3 email={this.state.user}/></IsAuthenticated>} />
           <Route path="/chat" exact render={() => <IsAuthenticated><Chat email={this.state.user}/></IsAuthenticated>} />
         </Router>
       </ApolloProvider>
