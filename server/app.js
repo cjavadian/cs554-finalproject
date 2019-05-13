@@ -2,8 +2,13 @@ const express = require("express");
 const expressgraphql = require("express-graphql");
 const schema =  require("./schema/schema.js")
 const cors = require("cors");
+const user_login = require("./user_login");
+const bodyParser = require("body-parser");
+
+
 
 const app = express();
+app.use(bodyParser.json());
 app.use(cors());
 
 const http = require('http')
@@ -32,6 +37,8 @@ app.use("/graphql",expressgraphql({
 	schema:schema,
 	graphiql: true
 }));
+
+app.use("/userlog", user_login);
 
 app.listen(7050,()=>{
  	console.log("We've got a server!");
