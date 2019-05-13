@@ -293,18 +293,11 @@ const GET_REVIEW = gql `
 mutation($user_id:String!){
   getReview(user_id: $user_id){
     _id
-    user{
-      _id
-      user_name
-      first_name
-      last_name
-      email
-    }
     professor
     review_body
+    recommend  
     likes
     dislikes
-    recommend
     time
   }
 }

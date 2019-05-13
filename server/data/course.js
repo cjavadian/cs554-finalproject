@@ -17,7 +17,7 @@ const exportedMethods = {
       return result;
   },
   async getCourseById(id){
-      if (id == null || id == undefined || id == "") throw "You must provide an id to search for";
+      if (id == null || id == undefined || id == "") throw "You must provide an course id to search for";
       if (typeof(id) !== 'string') throw "Invalid id";
 
       const course_collection = await course();

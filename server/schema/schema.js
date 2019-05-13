@@ -51,7 +51,7 @@ const userInfoInCourseReview = new GraphQLObjectType({
 const courseReview = new GraphQLObjectType({
 	name:"courseReview",
 	description: 'Query review by course id',
-	fields:()=>({
+	fields:() => ({
 		_id: {type: GraphQLString},
         user: {
 			type: userInfoInCourseReview,
@@ -74,7 +74,7 @@ const courseReview = new GraphQLObjectType({
 const courseType = new GraphQLObjectType({
 	name:"courseType",
 	description: 'Course query type definition',
- 	fields:()=>({
+ 	fields:() => ({
 		_id: {type: GraphQLString},
 		title: {type: GraphQLString},
 		description: {type: GraphQLString},
@@ -99,7 +99,7 @@ const courseType = new GraphQLObjectType({
 const userCourseReview = new GraphQLObjectType ({
 	name: "userCourseReview",
 	description: "User course review type",
-	fields: ()=>({
+	fields: () => ({
 		review_id: {
 			type: GraphQLString,
 			resolve: (userReview, args) => {
@@ -164,7 +164,7 @@ const userCourseReview = new GraphQLObjectType ({
 const userType = new GraphQLObjectType({
 	name:"userType",
 	description: 'User query type definition',
-	fields:()=>({
+	fields:() => ({
 		_id: {type: GraphQLString},
 		first_name: {type: GraphQLString},
 		last_name: {type: GraphQLString},
@@ -372,13 +372,12 @@ const RootMutation =  new GraphQLObjectType({
 			args: {
 				review_id: {type: new GraphQLNonNull(GraphQLString)},
 				new_review_body: {type : new GraphQLNonNull(GraphQLString)},
-				professor_comment: {type: new GraphQLNonNull(GraphQLString)}
+				course_id: {type: new GraphQLNonNull(GraphQLString)}
 			},
 			async resolve(parent,args) {
 				try {
-					console.log(`editComment: ${args.new_review_body}, ${args.professor_comment}`);
-					const reviewInfo = await review.editComment(args.review_id, args.new_review_body, args.professor_comment);
-					return await course.getCourseById(reviewInfo.course_id);
+					await review.editComment(args.review_id, args.new_review_body);
+					return await course.getCourseById(args.course_id);
 				}catch(e) {
 					console.log(e);
 				}
@@ -400,14 +399,13 @@ const RootMutation =  new GraphQLObjectType({
 			}
 		},
 		getReview:{
-			type: courseReview,
+			type: new GraphQLList(courseReview),
 			args:{
-
+				user_id: {type: new GraphQLNonNull(GraphQLString)}
 			},
 			async resolve(parent,args) {
 				try {
-					await review.deleteComment(args.review_id);
-					return await course.getCourseById(args.course_id);
+					return await review.getReviewByUserId(args.user_id);
 				}catch(e) {
 					console.log(e);
 				}
