@@ -399,7 +399,7 @@ const RootMutation =  new GraphQLObjectType({
 			}
 		},
 		getReview:{
-			type: new GraphQLList(courseReview),
+			type: new GraphQLList(userCourseReview),
 			args:{
 				user_id: {type: new GraphQLNonNull(GraphQLString)}
 			},

@@ -292,9 +292,10 @@ mutation($review_id:String!,$course_id: String!){
 const GET_REVIEW = gql `
 mutation($user_id:String!){
   getReview(user_id: $user_id){
-    _id
+    review_id
+    course_title
     professor
-    review_body
+    review_content
     recommend  
     likes
     dislikes
