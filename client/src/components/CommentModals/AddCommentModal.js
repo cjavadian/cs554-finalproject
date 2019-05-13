@@ -29,7 +29,7 @@ export class AddCommentModal extends Component {
       professorname: "",
       comment: "",
       overallquality: 0,
-      recommended: true,
+      recommended: null,
       levelofdifficulty: 0,
       rateprofessor: "",
       course: this.props.course,
@@ -60,6 +60,10 @@ export class AddCommentModal extends Component {
         console.log("name", this.state.professorname);
         //let recommend =true;
         //if(this.state.recommended == 0)recommend = false;
+        console.log(this.state.recommended, this.state.overallquality, this.state.levelofdifficulty);
+        if(this.state.recommended == null) return alert("Recommended not selected!");
+        if(this.state.overallquality == 0) return alert("Overall quality not selected!");
+        if(this.state.levelofdifficulty == 0) return alert("Level Of Difficulty not selected!");
         await this.props.REVIEW_COURSE({
           variables: {
             course_id: this.props.course._id, 
