@@ -15,7 +15,6 @@ console.log("env var"+ process.env.AWSAccessKeyId);
 
 
 router.post("/", async(req,res) => {
-    console.log("inside aws s3 route")
   const s3 = new aws.S3();  // Create a new instance of S3
   const fileName = req.body.fileName;
   const fileType = req.body.fileType;
