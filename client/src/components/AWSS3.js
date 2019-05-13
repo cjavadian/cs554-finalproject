@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import LoggedinNavbar from "./LoggedinNavbar";
+
 class AWSS3 extends Component {
   constructor(props){
     super(props);
@@ -62,7 +64,9 @@ class AWSS3 extends Component {
       </div>
     )
     return (
+     
       <div className="App">
+       <LoggedinNavbar/>
         <center>
           <h1>UPLOAD A FILE</h1>
           {this.state.success ? <Success_message/> : null}
