@@ -397,8 +397,21 @@ const RootMutation =  new GraphQLObjectType({
 					console.log(e);
 				}
 			}
-		}
+		},
+		getReview:{
+			type: courseReview,
+			args:{
 
+			},
+			async resolve(parent,args) {
+				try {
+					await review.deleteComment(args.review_id);
+					return await course.getCourseById(args.course_id);
+				}catch(e) {
+					console.log(e);
+				}
+			}
+		}
 	}
 });
 

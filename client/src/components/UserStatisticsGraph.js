@@ -6,30 +6,38 @@ import './UserStatisticsGraph.css';
 import {Chart} from "react-charts";
 
 class UserStatisticsGraph extends Component {
-render() {
-   return( 
-//    <div style={{ width: "200px",height: "200px"}} >
-   <div className="userChart" >
-     <Chart
-      data={[
-        {
-          label: "Series 1",
-          data: [[0, 1], [1, 2], [2, 4], [3, 2], [4, 7]]
-        },
-        {
-          label: "Series 2",
-          data: [[0, 3], [1, 1], [2, 5], [3, 6], [4, 4]]
-        }
-      ]}
-      series={{ type: 'bar' }}
-      axes={[
-        { primary: true, type: "linear", position: "bottom" },
-        { type: "linear", position: "left"}
-      ]}
-    />
-  </div>
-);
-}
+  
+  async fetch_statistics(){
+
+  }
+
+  draw(data){
+    return( 
+      <div className="userChart" >
+        <Chart
+          data={[
+            {
+              label: "Series 1",
+              data: [[0, 1], [1, 2], [2, 4], [3, 2], [4, 7]]
+            },
+            {
+              label: "Series 2",
+              data: [[0, 3], [1, 1], [2, 5], [3, 6], [4, 4]]
+            }
+          ]}
+          series={{ type: 'bar' }}
+          axes={[
+            { primary: true, type: "linear", position: "bottom" },
+            { type: "linear", position: "left"}
+          ]}
+        />
+      </div>
+    );
+  }
+
+  render() {
+   return <div>{this.fetch_statistics}</div>;
+  }
 }
 
 // class UserStatisticsGraph extends Component {

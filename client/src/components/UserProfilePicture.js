@@ -5,6 +5,7 @@ import { GET_USER } from "../queries/queries";
 import { Query } from "react-apollo";
 import '../../node_modules/croppie/croppie.css';
 import croppie from "croppie";
+import UserStatisticsGraph from "./UserStatisticsGraph.js";
 
 class UserProfilePicture extends Component {
   constructor(props) {
@@ -156,6 +157,7 @@ class UserProfilePicture extends Component {
               }
             </Query>
               <hr />
+              <UserStatisticsGraph useremail={this.props.email}/>
             <img className="cycle" src={require('../images/course-review-process.png')} alt="cycle"/>
               <h2>Signing up for classes and don't know what to take?</h2>
               <hr />

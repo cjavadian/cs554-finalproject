@@ -283,7 +283,26 @@ mutation($review_id:String!,$course_id: String!){
   }
 `
 
-
+const GET_REVIEW = gql `
+mutation($user_id:String!){
+  getReview(user_id: $user_id){
+    _id
+    user{
+      _id
+      user_name
+      first_name
+      last_name
+      email
+    }
+    professor
+    review_body
+    likes
+    dislikes
+    recommend
+    time
+  }
+}
+`
 export{
     addUserMutation,
     getUser,
@@ -297,6 +316,7 @@ export{
     ADD_LIKES,
     DIS_LIKES,
     EDIT_COMMENT,
-    DELETE_COMMENT
+    DELETE_COMMENT,
+    GET_REVIEW
 }
 
