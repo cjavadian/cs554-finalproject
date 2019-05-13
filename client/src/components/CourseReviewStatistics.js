@@ -22,7 +22,6 @@ class CourseReviewStatistics extends Component {
           <div className="col-6 col-sm-12 clsindirows">PROFESSOR:
           <p>{this.state.course.instructor}</p></div>
         </div>
-      </div>
     );
   }
 }
