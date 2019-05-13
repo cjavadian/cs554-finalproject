@@ -7,13 +7,8 @@ import DeleteCommentModal from "./CommentModals/DeleteCommentModal";
 import { FaThumbsUp, FaThumbsDown, FaEdit, FaTrash } from "react-icons/fa";
 import { GET_USER } from "../queries/queries";
 import { Query } from "react-apollo";
-import {
-  ADD_LIKES,
-  DIS_LIKES,
-  DELETE_COMMENT,
-  getUser
-} from "../queries/queries";
-import { graphql, compose } from "react-apollo";
+import { ADD_LIKES, DIS_LIKES, DELETE_COMMENT, EDIT_COMMENT, getUser} from "../queries/queries";
+import { graphql, compose } from 'react-apollo';
 
 class CourseReviewList extends Component {
   constructor(props) {
@@ -23,19 +18,25 @@ class CourseReviewList extends Component {
       showDeleteModal: false,
       showAddModal: false,
       likes: 0,
-      dislikes: 0
+      dislikes: 0,
+      email: this.props.email,
+      review_user_id: "",
+      courseComment: "",
+      professorComment: "",
+      review_user_email: "",
+      review_id: ""
     };
     this.handleOpenEditModal = this.handleOpenEditModal.bind(this);
     this.handleCloseModals = this.handleCloseModals.bind(this);
     this.handleOpenAddModal = this.handleOpenAddModal.bind(this);
   }
-
-  handleOpenEditModal(email, review_id, course_id) {
-    if (email != this.props.email)
-      return alert("You are not authorize to modify this comment");
+  
+  handleOpenEditModal(email, courseComment, professorComment, review_id) {
+    if(email != this.props.email) return( alert("You are not authorize to modify this comment"));
     this.setState({
       showEditModal: true
     });
+    this.setState({review_user_email: email, courseComment: courseComment, professorComment: professorComment, review_id: review_id});
   }
 
   async handleDelete(email, review_id, course_id) {
@@ -246,9 +247,10 @@ class CourseReviewList extends Component {
           <EditCommentModal
             isOpen={this.state.showEditModal}
             handleClose={this.handleCloseModals}
-            course={this.props.course}
-            email={this.props.email}
-            modal="editReview"
+            courseComment = {this.state.courseComment}
+            professorComment = {this.state.professorComment}
+            review_id = {this.state.review_id}
+            review_user_email = {this.state.review_user_email}
           />
         )}
 
@@ -280,5 +282,6 @@ export default compose(
   graphql(ADD_LIKES, { name: "ADD_LIKES" }),
   graphql(DIS_LIKES, { name: "DIS_LIKES" }),
   graphql(DELETE_COMMENT, { name: "DELETE_COMMENT" }),
+  graphql(EDIT_COMMENT, {name: "EDIT_COMMENT"}),
   graphql(getUser, { name: "getUser" })
 )(CourseReviewList);

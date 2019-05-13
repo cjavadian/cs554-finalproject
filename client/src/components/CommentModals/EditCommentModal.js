@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import ReactModal from "react-modal";
 import './EditCommentModal.css';
-
+import { EDIT_COMMENT } from "../../queries/queries";
+import { graphql, compose } from 'react-apollo';
 
 ReactModal.setAppElement("#root");
 const customStyles = {
@@ -22,16 +23,38 @@ class EditCommentModal extends Component {
   constructor(props) {
     super(props);
     console.log("inside editmodal")
-    console.log(this.props.course);
+    console.log(`EditCommentModal ${JSON.stringify(this.props.review)}`);
     this.state = {
       showEditModal: this.props.isOpen,
-      comment:''
+      review_id: this.props.review_id,
+      review_user_email: this.props.review_user_email,
+      courseComment: this.props.courseComment,
+      professorComment: this.props.professorComment,
+      current_user_email: this.props.email
     };
     this.handleCloseEditModal = this.handleCloseEditModal.bind(this);
   }
   handleCloseEditModal() {
     this.setState({ showEditModal: false, todo: null });
     this.props.handleClose();
+  }
+  
+  async handleEditComment(new_review_body, professor_comment) {
+    console.log(`handleEditComment ${this.state.review_user_email}`);
+    await this.props.EDIT_COMMENT({
+        variables: {
+          review_id: this.state.review_id,
+          new_review_body: new_review_body,
+          professor_comment: professor_comment
+        }
+    }) 
+    this.setState({ showEditModal: false, todo: null });
+    this.props.handleClose();
+  }
+  handleSubmit = (e) => {
+    e.preventDefault();
+    this.handleEditComment(this.state.courseComment,this.state.professorComment);
+    this.setState({ showEditModal: false, todo: null });
   }
   render() {
     return (
@@ -42,24 +65,39 @@ class EditCommentModal extends Component {
           contentLabel="Edit Comment"
           style={customStyles}
         >
-          <form>
-            <div className="form-group">
-              <label>
-                Title:
-                <br />
-                <input
-                  //   ref={node => {
-                  //     title = node;
-                  //   }}
-                  //   defaultValue={this.props.todo.title}
-                  autoFocus={true}
-                />
-              </label>
-            </div>
-            <button className="button add-button" type="submit">
-              Update Comment
-            </button>
-          </form>
+          <form 
+          onSubmit = {this.handleSubmit}>
+          <p>Please input new comment</p>
+          <div className="form-group">
+          </div>
+          <div className="form-group">
+            <label>
+              Comment Course:
+              <br />
+              <textarea
+                value = {this.state.courseComment}
+                required
+                autoFocus={true}
+                onChange={(e)=>this.setState({courseComment: e.target.value})}
+              />
+            </label>
+          </div>
+          <div className="form-group">
+            <label>
+              Comment Professor:
+              <br />
+              <textarea
+              value = {this.state.professorComment}
+                required
+                autoFocus={true}
+                onChange={(e)=>this.setState({professorComment: e.target.value})}
+              />
+            </label>
+          </div>
+          <button className="button add-button" type="submit">
+          Submit
+          </button>
+        </form>
           <button
             className="button cancel-button"
             onClick={this.handleCloseEditModal}
@@ -72,4 +110,4 @@ class EditCommentModal extends Component {
   }
 }
 
-export default EditCommentModal;
+export default compose(graphql(EDIT_COMMENT, {name: "EDIT_COMMENT"}))(EditCommentModal);

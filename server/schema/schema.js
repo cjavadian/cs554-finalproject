@@ -372,12 +372,13 @@ const RootMutation =  new GraphQLObjectType({
 			args: {
 				review_id: {type: new GraphQLNonNull(GraphQLString)},
 				new_review_body: {type : new GraphQLNonNull(GraphQLString)},
-				course_id: {type: new GraphQLNonNull(GraphQLString)}
+				professor_comment: {type: new GraphQLNonNull(GraphQLString)}
 			},
 			async resolve(parent,args) {
 				try {
-					await review.editComment(args.review_id, args.new_review_body);
-					return await course.getCourseById(args.course_id);
+					console.log(`editComment: ${args.new_review_body}, ${args.professor_comment}`);
+					const reviewInfo = await review.editComment(args.review_id, args.new_review_body, args.professor_comment);
+					return await course.getCourseById(reviewInfo.course_id);
 				}catch(e) {
 					console.log(e);
 				}
