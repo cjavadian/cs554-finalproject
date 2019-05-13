@@ -17,3 +17,8 @@
 .row {
     padding-left: 10px;
 }
+
+.description {
+    width: 100%;
+    text-align: center;
+}

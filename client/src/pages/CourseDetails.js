@@ -55,6 +55,10 @@ class CourseDetails extends Component {
                   </div>
                 </div>
                   <br/>
+                  <div className="description">
+                    <p>{course.description}</p>
+                    </div>
+                    <hr/>
                   <div className="review-container">
                     <CourseReviewList course = {course} email = {this.props.email}/>
                   </div>
