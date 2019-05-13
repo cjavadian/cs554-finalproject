@@ -24,24 +24,25 @@ class CourseReviewList extends Component {
       courseComment: "",
       professorComment: "",
       review_user_email: "",
-      review_id: ""
+      review_id: "",
+      review: {}
     };
     this.handleOpenEditModal = this.handleOpenEditModal.bind(this);
     this.handleCloseModals = this.handleCloseModals.bind(this);
     this.handleOpenAddModal = this.handleOpenAddModal.bind(this);
   }
   
-  handleOpenEditModal(email, courseComment, professorComment, review_id) {
-    if(email != this.props.email) return( alert("You are not authorize to modify this comment"));
+  handleOpenEditModal(review) {
+    if(review.user.email !== this.props.email) return( alert("You are not authorize to modify this comment"));
     this.setState({
       showEditModal: true
     });
-    this.setState({review_user_email: email, courseComment: courseComment, professorComment: professorComment, review_id: review_id});
+    this.setState({review: review});
   }
 
   async handleDelete(email, review_id, course_id) {
     console.log(email, this.props.email);
-    if (email != this.props.email) {
+    if (email !== this.props.email) {
       return alert("You are not authorize to delete this comment");
     } else {
       if (window.confirm("Are you sure you want to delete the comment?")) {
@@ -189,9 +190,7 @@ class CourseReviewList extends Component {
                   className="edit"
                   onClick={() => {
                     this.handleOpenEditModal(
-                      review.user.email,
-                      review._id,
-                      this.props.course._id
+                      review
                     );
                   }}
                 >
@@ -247,10 +246,7 @@ class CourseReviewList extends Component {
           <EditCommentModal
             isOpen={this.state.showEditModal}
             handleClose={this.handleCloseModals}
-            courseComment = {this.state.courseComment}
-            professorComment = {this.state.professorComment}
-            review_id = {this.state.review_id}
-            review_user_email = {this.state.review_user_email}
+            review = {this.state.review}
           />
         )}
 

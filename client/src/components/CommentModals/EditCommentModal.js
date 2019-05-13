@@ -26,10 +26,10 @@ class EditCommentModal extends Component {
     console.log(`EditCommentModal ${JSON.stringify(this.props.review)}`);
     this.state = {
       showEditModal: this.props.isOpen,
-      review_id: this.props.review_id,
-      review_user_email: this.props.review_user_email,
-      courseComment: this.props.courseComment,
-      professorComment: this.props.professorComment,
+      review_id: this.props.review._id,
+      review_user_email: this.props.review.user.email,
+      courseComment: this.props.review.courseComment,
+      professorComment: this.props.review.professorComment,
       current_user_email: this.props.email
     };
     this.handleCloseEditModal = this.handleCloseEditModal.bind(this);
