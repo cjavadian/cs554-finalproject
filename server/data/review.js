@@ -49,8 +49,6 @@ const exportedMethods = {
           likes: 0,
           dislikes: 0,
           recommend: recommend,
-          rating: rating,
-          difficulty: difficulty,
           time: timeStamp.toDateString()
       };
       
@@ -101,21 +99,20 @@ const exportedMethods = {
       }
       return await this.getReviewById(update_review._id);
   },
-  async editComment(review_id,new_review_body){
+  async editComment(review_id,new_review_body, professor_comment){
     let timeStamp = new Date();
     const review_collection = await review();
     let update_review = await this.getReviewById(review_id);
     
-    const updatedInfo = await review_collection.updateOne({_id: update_review._id}, { $set: { "user_id" : update_review.user_id,
+    const updatedInfo = await review_collection.updateOne({_id: update_review._id}, 
+        { $set: { "user_id" : update_review.user_id,
         "course_id": update_review.course_id,
-        "professor": update_review.professor,
+        "professor": professor_comment,
         "review_body": new_review_body,
         "likes" : update_review.likes,
         "dislikes": update_review.dislikes,
-        "rating": update_review.rating,
-        "difficulty": update_review.difficulty,
         "recommend" : update_review.recommend,
-        time: timeStamp.toDateString()} },{ upsert: true });
+        "time": timeStamp.toDateString()} },{ upsert: true });
     if (updatedInfo.modifiedCount === 0) {
         throw "could not edit the review successfully";
     }

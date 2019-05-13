@@ -17,9 +17,9 @@ class CourseReviewStatistics extends Component {
           </div>
         
           <div className="col-6 col-sm-12 clsindirows">LEVEL OF DIFFICULTY
-          <p>{this.state.course.difficulty.toString()}</p>
+          <p>{this.state.course.difficulty.toFixed(2).toString()}</p>
           </div>
-          <div className="col-6 col-sm-12 clsindirows">INSTRUCTOR:
+          <div className="col-6 col-sm-12 clsindirows">PROFESSOR:
           <p>{this.state.course.instructor}</p></div>
         </div>
     );

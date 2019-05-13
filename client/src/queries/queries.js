@@ -25,6 +25,7 @@ query($e_mail: String!){
       review_content
       recommend
       likes
+      dislikes
     }
     }
   }
@@ -46,6 +47,7 @@ mutation($e_mail: String!){
       review_content
       recommend
       likes
+      dislikes
     }
     }
   }
@@ -67,6 +69,7 @@ mutation($user_old_name: String!, $first_name: String, $last_name: String, $user
         review_content
         recommend
         likes
+        dislikes
       }
     }
   }
@@ -85,6 +88,7 @@ const GET_ALL_COURSES = gql `
             professor
             review_body
             likes
+            dislikes
             recommend
             time
         }
@@ -186,6 +190,7 @@ mutation($review_id: String!, $course_id: String!){
         professor
         review_body
         likes
+        dislikes
         recommend
       }
     }
@@ -211,6 +216,7 @@ mutation($review_id: String!, $course_id: String!){
         professor
         review_body
         likes
+        dislikes
         recommend
       }
     }
@@ -229,8 +235,8 @@ query($title: String!){
 `
 
 const EDIT_COMMENT = gql`
-mutation($review_id:String!,$new_review_body: String!,$course_id: String!){
-  editComment(review_id:$review_id,new_review_body:$new_review_body,course_id:$course_id){
+mutation($review_id:String!,$new_review_body: String!,$professor_comment: String!){
+  editComment(review_id:$review_id,new_review_body:$new_review_body,professor_comment:$professor_comment){
       _id
       title
       instructor
