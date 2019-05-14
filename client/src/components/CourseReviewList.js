@@ -61,11 +61,11 @@ class CourseReviewList extends Component {
 
   async handleDelete(email, review_id, course_id) {
     console.log(email, this.props.email);
-    /*if (email !== this.props.email) {
+    if (email !== this.props.email) {
       return alert("You are not authorize to delete this comment");
-    } else {}
-      if (window.confirm("Are you sure you want to delete the comment?")) {}*/
-      const courseInfo =  await this.props.NEW_DELETE_COMMENT({
+    } else {
+      if (window.confirm("Are you sure you want to delete the comment?")) {
+        const courseInfo =  await this.props.NEW_DELETE_COMMENT({
           variables: {
             review_id: review_id,
             course_id: course_id
@@ -74,7 +74,8 @@ class CourseReviewList extends Component {
         console.log("delete comment: ", courseInfo.data.newDeleteComment);
         this.setState({course: courseInfo.data.newDeleteComment});
         this.setState({reset_course: true});
-    
+      }
+    }
   }
 
   handleCloseModals() {
