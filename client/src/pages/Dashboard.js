@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import LoggedinNavbar from "../components/LoggedinNavbar";
 import "./Dashboard.css";
 import UserProfilePicture from "../components/UserProfilePicture";
+import axios from 'axios';
 
 class Dashboard extends Component {
   constructor(props) {
@@ -10,10 +11,19 @@ class Dashboard extends Component {
 			email: this.props.email
 		};
   }
+  async pushUser(){
+    const users = await axios.post('http://localhost:7050/userlog/userin', {
+          username: this.state.email
+        })
+        console.log(users);
+  }
+  async componentDidMount() {
+    await this.pushUser();
+  }
   render() {
     return (
       <div>
-        <LoggedinNavbar />
+        <LoggedinNavbar email={this.props.email}/>
         <div className="container-fluid">
           <UserProfilePicture useremail={this.props.email}/>
           </div>
