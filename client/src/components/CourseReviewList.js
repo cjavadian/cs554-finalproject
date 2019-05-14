@@ -523,7 +523,7 @@ class CourseReviewList extends Component {
         </table>
         <button
           type="button"
-          className="btn btn-outline-success"
+          className="btn btn-outline-success addreview"
           onClick={this.handleOpenAddModal}
         >
           Add Review
