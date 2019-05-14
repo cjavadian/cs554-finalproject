@@ -53,6 +53,7 @@ class App extends Component {
     
     return (
       <ApolloProvider client={client}>
+      	<script src="./tota11y.min.js"></script>
         <Router>
           <Route path="/" exact component={Home} />
           <Route path="/dashboard/" exact render={() => <IsAuthenticated><Dashboard email={this.state.user}/></IsAuthenticated>} />
