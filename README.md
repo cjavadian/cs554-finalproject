@@ -62,11 +62,6 @@ The chat page have list the users who are online. When a new user login, it will
 # Presenters
 Catherine Javadian, Rozy Gupta, Vidya Maiya, Xiaojie Gao, Xinzhe Li
 
-#SETUP
-
-
-
-
 
 # Team Member Contribution
 
