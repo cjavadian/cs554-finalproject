@@ -1,11 +1,7 @@
 import React, { Component } from "react";
-import { FaCamera } from "react-icons/fa";
 import "./UserProfilePicture.css";
 import { GET_USER } from "../queries/queries";
 import { Query } from "react-apollo";
-import '../../node_modules/croppie/croppie.css';
-import croppie from "croppie";
-import UserStatisticsGraph from "./UserStatisticsGraph.js";
 
 class UserProfilePicture extends Component {
   constructor(props) {
@@ -22,7 +18,6 @@ class UserProfilePicture extends Component {
  
   handleSubmit(e) {
     e.preventDefault();
-    console.log("handle uploading-", this.state.file);
   }
   
   async foo(base64url) {
@@ -31,38 +26,14 @@ class UserProfilePicture extends Component {
 
    handleImageChange(event) {
     var profilePic = document.getElementById("prpic");
-    console.log(profilePic.src);
-     var baseUrl;
-     console.log("inside handleimage")
     event.preventDefault();
     let file = event.target.files[0];
     let reader = new FileReader();
     reader.readAsDataURL(file);
-
     reader.addEventListener("load", function () {
       profilePic.src = reader.result;
-
-      //let updatProfilePic = await foo();
       localStorage.setItem("prpic",reader.result);
-      
     }, false);
-    //  reader.onloadend = (data) => {
-    //   baseUrl = data.target.result;
-    //   profilePic = data.target.result;
-    //   // console.log(baseUrl);
-    //   //  console.log("data os ::")
-    //   //  console.log(data.target.result);
-    //   //    this.setState({
-    //   //   file: data.target.result
-    //   // });
-    // };
-    // console.log(baseUrl);
-    // let pic = localStorage.getItem("prpic");
-    // profilePic.setAttribute("src",pic);
-    // this.setState({src: pic});
-    // console.log("src:" +this.state.src);
-    console.log("exit handleimage")
-    
   }
 
 
@@ -83,7 +54,6 @@ class UserProfilePicture extends Component {
   
      
   render() {
-    console.log("pic",this.props.useremail);
     return (
       <div >
         <div className="row">
@@ -99,7 +69,6 @@ class UserProfilePicture extends Component {
             />
           </div>
           <div className="p-image">
-            {/* <FaCamera upload-button /> */}
             <form onSubmit={this.handleSubmit}>
               <input aria-label="upload"
                 className="file-upload"
@@ -123,7 +92,7 @@ class UserProfilePicture extends Component {
                 return (
                     <div>
                       <div className="card-body">
-                        <h2 className="card-title text-left">{userInfo.user.first_name} {userInfo.user.last_name}</h2>
+                        <h2 className="card-title-dash text-left">{userInfo.user.first_name} {userInfo.user.last_name}</h2>
                         <hr />
                         <dl className="text-secondary">
                           <dt>Username: </dt>
@@ -157,7 +126,6 @@ class UserProfilePicture extends Component {
               }
             </Query>
               <hr />
-              <UserStatisticsGraph useremail={this.props.email}/>
             <img className="cycle" src={require('../images/course-review-process.png')} alt="cycle"/>
               <h2>Signing up for classes and don't know what to take?</h2>
               <hr />

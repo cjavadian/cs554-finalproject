@@ -1,9 +1,7 @@
 import React, { Component } from "react";
 import LoggedinNavbar from "../components/LoggedinNavbar";
 import "./Dashboard.css";
-import Firebase from '../components/Firebase/firebase'
-import { graphql, compose } from "react-apollo";
-import { GET_USER } from "../queries/queries";
+import Firebase from '../components/Firebase/firebase';
 import Footer from "../components/Footer";
 import { Redirect } from 'react-router-dom'
 

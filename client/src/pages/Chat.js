@@ -49,9 +49,6 @@ class Chat extends React.Component{
     }
     
     async componentDidMount() {
-        console.log("componentDidMount this.props.email: " , this.props.email);
-        
-        console.log("chat componentDidMount localstorage: ", localStorage.getItem("user_email"));
         let user_info = {};
         if(this.state.email) {
             user_info = await this.props.getUser({
@@ -110,8 +107,6 @@ class Chat extends React.Component{
                                         )
                                     })}
                                     </div>
-                              {/* </body> */}{/*className="chat-body"*/}
-                              
                             </div>
                                 <div className="col-4">
                             <ul className = "userOnline">
@@ -125,7 +120,6 @@ class Chat extends React.Component{
                                     <div className="chat-fluid">
                                         <div class="col-lg">
                                             <div class="button-container">
-                                            <input type="text" placeholder="Chat Name" value={this.state.receiver} onChange={ev => this.setState({receiver: ev.target.value})} className="form-control"/>
                                                 <input type="text" placeholder="Message" className="form-message-control" value={this.state.message} onChange={ev => this.setState({message: ev.target.value})}/>
                                                 <button onClick={this.sendMessage} className="btn btn-primary form-chat-control">Send</button>
                                             </div>
