@@ -21,15 +21,13 @@
 5. Copy client's .env file into the client/ folder and server's .env file to the server/ folder.
 6. Set up both MongoDB and Redis Servers
 7. Go to server/data folder and enter command 'node seed.js' **Initialize courses collection**
-8. Go to the redis installation folder and launch redis-cli tool
--  Run the following command : SMEMBERS userNames
-9. Go to server folder using command 'npm start'
+8. Go to server folder using command 'npm start'
 - GraphQL port 7050 
 - Socket.io runs on port 4001
 - Redis port 6379
-10. Go to client folder using command 'npm start'
-11. Redirect to React app working 'http://localhost:3000' 
-12. Enjoy!
+9. Go to client folder using command 'npm start'
+10. Redirect to React app working 'http://localhost:3000' 
+11. Enjoy!
 
 #Notes:
 The chat page have list the users who are online. When a new user login, it will take few minutes(less than 3min) that the others see the new user on their page.
@@ -89,6 +87,14 @@ Rozy Gupta & Vidya Maiya: We worked together almost the entire time. So our cont
 
 
 Xiaojie Gao:
+
+1. Backend GraphQL API, Two MongoDB API and adjust database collections fields. 
+2. Frontend Apollo API, Course Search, Course Detail Display, Edit Comment, Adjust Course comment and add comment features and display. 
+3. Few pages display issues such as non-used Links or unnecessary Footer etc.
+4. Add seed.js initializing courses collection.
+5. Implement display online user list on Chat Room, including both backend and frontend.
+6. Change course comment feature that user only can see the Edit/Delete button on his own comments.
+
 
 Xinzhe Li: 
 1. Backend Express-Graphql server set up 
