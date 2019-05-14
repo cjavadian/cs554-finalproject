@@ -67,6 +67,14 @@ Catherine Javadian, Rozy Gupta, Vidya Maiya, Xiaojie Gao, Xinzhe Li
 
 Catherine Javadian:
 
+1. Chat room page (Socket.io - front end and back end, design)
+2. Bootstrap4 with react on the home page, course, and course details page
+3. Edit profile page (Apollo Client and GraphQL)
+4. Accessibility testing with tota11y and testing
+5. Improving the design throughout all pages
+6. Add to seed.js to populate database
+7. Presentation
+
 Rozy Gupta & Vidya Maiya: We worked together almost the entire time. So our contribution is combined. 
 
 1. Developed the entire frontend in React from scratch.
