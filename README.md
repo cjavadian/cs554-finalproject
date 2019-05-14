@@ -54,6 +54,8 @@ The chat page have list the users who are online. When a new user login, it will
 1. Socket.io
 2. AWS S3
 
+AWS S3 was used instead of ImageMagick because none of the team members have a Mac and could not run it.
+
 # Special Thanks to
 - W3 Schools
 - Stack Overflow
@@ -67,10 +69,10 @@ Catherine Javadian, Rozy Gupta, Vidya Maiya, Xiaojie Gao, Xinzhe Li
 
 Catherine Javadian:
 
-1. Chat room page (Socket.io - front end and back end, design)
+1. Implemented Chat room page (Socket.io - front end and back end, design)
 2. Bootstrap4 with react on the home page, course, and course details page
-3. Edit profile page (Apollo Client and GraphQL)
-4. Accessibility testing with tota11y and testing
+3. Implemented edit profile page (Apollo Client and GraphQL)
+4. Accessibility testing with tota11y and testing for bugs
 5. Improving the design throughout all pages
 6. Add to seed.js to populate database
 7. Presentation
