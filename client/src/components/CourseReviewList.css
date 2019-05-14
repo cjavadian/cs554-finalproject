@@ -1,6 +1,9 @@
 .table {
-    table-layout: auto;
-    width: 1200px;
+    table-layout:auto;
+    width: 1700px;
+    position: relative;
+    right:150px;
+  
 }
 
 .td .rating{
@@ -28,13 +31,127 @@
     padding: 0 10%;
 }
 
-.table thead th {
+.table thead  {
     vertical-align: bottom;
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid #192A56;
 }
 
 .table td, .table th {
     padding: .75rem;
     vertical-align: top;
-    border-top: 1px solid black;
+    border-top: 1px solid #192A56;
+    
+}
+.table-header{
+    color:green;
+    font-size:20px;
+}
+.table-header1{
+    color:green;
+    font-size:20px;
+    position: relative;
+    right:150px;
+}
+.date{
+    color:green;
+    font-weight: 900;
+    font-family: 'Times New Roman', Times, serif;
+}
+.rating-type{
+    color:green;
+    font-weight: 900;
+    font-family: 'Times New Roman', Times, serif;
+}
+.textbook{
+    color: green;
+    font-weight: 900;
+    font-family: 'Times New Roman', Times, serif;
+}
+.commentsParagrah{
+    color:green;
+    font-weight: 900;
+    font-family: 'Times New Roman', Times, serif;
+}
+.tbody, .th{
+    background-image:url("https://background-tiles.com/overview/white/patterns/large/1027.png") ;
+   
+}
+
+.course{
+    color:green;
+    font-weight: 900;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 20px;
+    position:relative;
+    right:150px;
+}
+.professor{
+    color:green;
+    font-weight: 900;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 20px;
+    position:relative;
+    right:150px;
+}
+.value{
+    color:#192A56;
+    font-weight: 900;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 20px;
+   
+}
+.value1{
+    position:relative;
+    right:150px;
+    color:#192A56;
+    font-weight: 900;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 20px;
+}
+.response{
+    color:#192A56;
+    font-weight: 900;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 20px;
+}
+.count{
+    color:green;
+    background-color: aliceblue
+}
+.helpful{
+    background-color:aliceblue;
+    position:relative;
+    right:410px;
+    bottom:210px;
+    align-items: center;
+}
+.nothelpful{
+    background-color:aliceblue;
+    position:relative;
+    right:600px;
+    bottom:210px;
+    align-items: center;
+}
+.edit{
+    background-color:aliceblue;
+    position:relative;
+    left:250px;
+    /* right: 10px; */
+    bottom:300px;  
+    align-items: center;
+}
+.delete{
+    background-color:aliceblue;
+    position:relative;
+     left:350px;
+     bottom:300px;  
+    align-items: center;
+}
+.edit-spa{
+    color:green;
+    background-color: aliceblue
+}
+.delete-spa{
+    color:green;
+    background-color: aliceblue
 }

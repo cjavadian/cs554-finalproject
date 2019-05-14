@@ -5,7 +5,8 @@ import CourseReviewStatistics from '../components/CourseReviewStatistics';
 import CourseReviewList from '../components/CourseReviewList';
 import {GET_COURSE_BY_ID} from "../queries/queries";
 import { Query, Mutation } from 'react-apollo';
-import './CourseDetails.css'
+import './CourseDetails.css';
+import Footer from '../components/Footer'
  
 class CourseDetails extends Component {
   constructor(props) {
@@ -41,7 +42,7 @@ class CourseDetails extends Component {
               return null;
                   }
             return (
-              <div>
+              <div className="cc">
                 <div className="row">
                   {/* <div className="clsCourseContainer"> */}
                     <div className="col-6">
@@ -56,7 +57,8 @@ class CourseDetails extends Component {
                 </div>
                   <br/>
                   <div className="description">
-                    <p>{course.description}</p>
+                  <p className="ldesc">COURSE DESCRIPTION</p>
+                    <p className="course-desc">{course.description}</p>
                     </div>
                     <hr/>
                   <div className="review-container">
@@ -66,6 +68,7 @@ class CourseDetails extends Component {
             );
           }}
         </Query>
+<Footer/>
       </div>
     );
   }

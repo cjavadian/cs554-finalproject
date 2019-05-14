@@ -4,15 +4,46 @@
     display: block;
     margin-left: auto;
     margin-right: auto;
+    
 }
 
 .card-body-details {
     text-align: center;
+    
+   
+
 }
 
 .card {
     width: 75%;
     margin-bottom: 10px;
+   
     float: none;
     margin: 0 auto;
+    background-image:url("https://background-tiles.com/overview/white/patterns/large/1027.png") ;
+}
+.card-text{
+    border-bottom: 1px solid #192A56;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: 900;
+    color: #192A56;
+    font-size:20px;
+    
+}
+.ltitle{
+    color: green;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: 900;
+    font-size:15px;
+}
+.card-text1{
+  
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: 900;
+    color: #192A56;
+    font-size:20px;
+}
+.cardcontainer{
+    background-image:url("https://background-tiles.com/overview/white/patterns/large/1027.png") ;
+   
 }

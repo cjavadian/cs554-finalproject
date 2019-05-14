@@ -12,15 +12,17 @@ class CourseCard extends Component {
 
   render() {
     return (
-      <div>
+      <div claaName="cardcontainer">
         <div className="card">
           <img className="card-img-top courseimg" src={Stevens} alt="card" />
           <div className="card-body-details">
+            <p className = "ltitle">COURSE TITLE :</p>
             <p className="card-text">
-              COURSE TITLE : {this.state.course.title}
+               {this.state.course.title}
             </p>
-            <p className="card-text">
-              ON CAMPUS : {this.state.course.campus === true?"Yes":"No"}
+            <p className= "ltitle">ON CAMPUS : </p>
+            <p className="card-text1">
+               {this.state.course.campus === true?"Yes":"No"}
             </p>
           </div>
         </div>

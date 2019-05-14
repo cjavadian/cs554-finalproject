@@ -3,7 +3,6 @@
     font-family: 'Times New Roman', Times, serif;
     font-size: 1.0rem;
     font-weight:normal;
-    
 }
 .clsCourseContainerCard{
     box-shadow: 1px 0px 7px rgba(0,0,0,0.5);
@@ -21,4 +20,26 @@
 .description {
     width: 100%;
     text-align: center;
+    background-image:url("https://background-tiles.com/overview/white/patterns/large/1027.png") ;
+    
+}
+.course-desc{
+    color:#192A56;
+    text-align: justify;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: 600;
+    font-size: 18px;
+    background-image:url("https://background-tiles.com/overview/white/patterns/large/1027.png") ;
+}
+.ldesc{
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: 900;
+    color:green;
+    border-bottom: 1px solid #192A56;
+    /* border-top: 1px solid #192A56; */
+    font-size:20px;
+    background-image:url("https://background-tiles.com/overview/white/patterns/large/1027.png") ;
+}
+.cc{
+    background-image:url("https://background-tiles.com/overview/white/patterns/large/1027.png") ;
 }

@@ -131,21 +131,23 @@ class CourseReviewList extends Component {
         <tr className="active" key={review._id}>
           <td className="rating success">
             <div className="date">COMMENT DATE: </div>
-            <p>{review.time}</p>
+            <p className="value">{review.time}</p>
             <div className="rating-block-awesome">
               <div className="rating-wrapper">
                 <div className="icon awesome-icon" />
-                <span className="rating-type">
-                  STUDENT NAME : {this.name(review.user.email)}
-                </span>
+                <div className="rating-type">
+                  STUDENT NAME : 
+                </div>
+                <p className="value">{this.name(review.user.email)}</p>
               </div>
               <div className="courseclass">
                 <span className="textbook">
-                  RECOMMEND:
+                  RECOMMEND:      
+                  </span>
                   <span className="response">
                     {" "}
                     {review.recommend === true ? "Yes" : "No"}
-                  </span>
+            
                 </span>
                 {/* <span className="textbook">
                       <div className="professor">PROFESSOR:</div>
@@ -155,25 +157,38 @@ class CourseReviewList extends Component {
             </div>
           </td>
           <td colSpan="2" className="comments">
-            <p className="commentsParagrah">Course: {review.review_body}</p>
-            <p>Professor: {review.professor}</p>
+          <div>
+            <span className="course"> Course: </span>
+            <br/>
+            <span className="value1">{review.review_body}</span>
+            </div>
+            <br/>
+            <div>
+            <span className="professor">Professor: </span>
+            <br/>
+            <span className="value1">{review.professor}</span>
+            </div>
+           
             <div className="helpful-links-thumbs">
+ 
               <button
                 type="button"
                 to="#"
                 className="helpful btn-outline-primary"
               >
+              
                 <span
                   className="count"
                   onClick={e =>
                     this.handleLikes(review._id, this.props.course._id)
                   }
                 >
+               
                   <FaThumbsUp />
                 </span>
                 {review.likes}
               </button>
-
+                 
               <button
                 type="button"
                 to="#"
@@ -192,9 +207,9 @@ class CourseReviewList extends Component {
             </div>
             <br />
             <div>
-              <button type="button" to="#" className="btn btn-outline-primary">
+              <button type="button" to="#" className="edit btn-outline-primary">
                 <span
-                  className="edit"
+                  className="edit-spa"
                   onClick={() => {
                     this.handleOpenEditModal(
                       review
@@ -204,9 +219,9 @@ class CourseReviewList extends Component {
                   <FaEdit />
                 </span>
               </button>
-              <button type="button" to="#" className="btn btn-outline-primary">
+              <button type="button" to="#" className="delete btn-outline-primary">
                 <span
-                  className="delete"
+                  className="delete-spa"
                   onClick={() => {
                     this.handleDelete(
                       review.user.email,
@@ -235,11 +250,11 @@ class CourseReviewList extends Component {
         <table className="table table-hover">
           <thead>
             <tr>
-              <th scope="col">RATING</th>
-              <th scope="col">COMMENT</th>
+              <th  className="table-header" scope="col">RATING</th>
+              <th className="table-header1" scope="col">COMMENT</th>
             </tr>
           </thead>
-          <tbody>{this.displayComment()}</tbody>
+          <tbody className="tbody">{this.displayComment()}</tbody>
         </table>
         <button
           type="button"
