@@ -131,7 +131,7 @@ class Navbar extends Component {
               >
                 Login
               </button>
-              <div class="divider" />
+              <div className = "divider" />
               <button
                 className="btn btn-outline-success my-2 my-sm-0"
                 type="submit"
@@ -168,11 +168,11 @@ class Navbar extends Component {
                         <span aria-hidden="true">&times;</span>
                       </button>
                     </div>
-                    <div className="modal-body clsSignupForm">
-                      <div class="registration-form">
+                    <div className = "modal-body clsSignupForm">
+                      <div className = "registration-form">
                         <form onSubmit={this.onSignup}>
-                          <div className= "clsFormDiv">
-                            <div class="form-group mb-4">
+                          <div className = "clsFormDiv">
+                            <div className = "form-group mb-4">
                               <FaUser />
                               <input
                                 required
@@ -185,7 +185,7 @@ class Navbar extends Component {
                                 onChange={this.handleChange}
                               />
                             </div>
-                            <div class="form-group mb-4">
+                            <div className = "form-group mb-4">
                               <FaUser />
                               <input
                                 required
@@ -198,7 +198,7 @@ class Navbar extends Component {
                                 onChange={this.handleChange}
                               />
                             </div>
-                            <div class="form-group mb-4">
+                            <div className = "form-group mb-4">
                               <FaAddressBook />
                               <input
                                 required
@@ -211,7 +211,7 @@ class Navbar extends Component {
                                 onChange={this.handleChange}
                               />
                             </div>
-                            <div class="form-group mb-4">
+                            <div className = "form-group mb-4">
                               <FaAt />
                               <input
                                 required
@@ -223,7 +223,7 @@ class Navbar extends Component {
                                 onChange={this.handleChange}
                               />
                             </div>
-                            <div class="form-group mb-4">
+                            <div className = "form-group mb-4">
                               <FaLock />
                               <input
                                 required
