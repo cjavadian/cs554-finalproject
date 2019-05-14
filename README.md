@@ -83,7 +83,7 @@ Rozy Gupta & Vidya Maiya: We worked together almost the entire time. So our cont
 
 Xiaojie Gao:
 
-1. Backend GraphQL API, Two MongoDB API and adjust database collections fields. 
+1. Backend GraphQL API, Three MongoDB API and adjust database collections fields. 
 2. Frontend Apollo API, Course Search, Course Detail Display, Edit Comment, Adjust Course comment and add comment features and display. 
 3. Few pages display issues such as non-used Links or unnecessary Footer etc.
 4. Add seed.js initializing courses collection.
