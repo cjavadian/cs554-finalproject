@@ -54,49 +54,31 @@
 }
 .date{
     color:green;
-    font-weight: 900;
-    font-family: 'Times New Roman', Times, serif;
 }
 .rating-type{
     color:green;
-    font-weight: 900;
-    font-family: 'Times New Roman', Times, serif;
 }
 .textbook{
     color: green;
-    font-weight: 900;
-    font-family: 'Times New Roman', Times, serif;
 }
 .commentsParagrah{
     color:green;
-    font-weight: 900;
-    font-family: 'Times New Roman', Times, serif;
-}
-.tbody, .th{
-    background-image:url("https://background-tiles.com/overview/white/patterns/large/1027.png") ;
-   
 }
 
 .course{
     color:green;
-    font-weight: 900;
-    font-family: 'Times New Roman', Times, serif;
     font-size: 20px;
     position:relative;
     right:150px;
 }
 .professor{
     color:green;
-    font-weight: 900;
-    font-family: 'Times New Roman', Times, serif;
     font-size: 20px;
     position:relative;
     right:150px;
 }
 .value{
     color:#192A56;
-    font-weight: 900;
-    font-family: 'Times New Roman', Times, serif;
     font-size: 20px;
    
 }
@@ -104,14 +86,10 @@
     position:relative;
     right:150px;
     color:#192A56;
-    font-weight: 900;
-    font-family: 'Times New Roman', Times, serif;
     font-size: 20px;
 }
 .response{
     color:#192A56;
-    font-weight: 900;
-    font-family: 'Times New Roman', Times, serif;
     font-size: 20px;
 }
 .count{
