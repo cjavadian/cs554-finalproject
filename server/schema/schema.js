@@ -97,6 +97,50 @@ const courseType = new GraphQLObjectType({
  	})
 });
 
+const newCourseReview = new GraphQLObjectType({
+	name:"newCourseReview",
+	description: 'Query review by course id',
+	fields:() => ({
+		_id: {type: GraphQLString},
+        user: {
+			type: userInfoInCourseReview,
+			async resolve(parent, args) {
+				try {
+					return await userData.getUserById(parent.user_id);
+				}catch(e) {
+					console.log(e);
+				}
+		}},
+        professor: {type: GraphQLString},
+		review_body: {type: GraphQLString},
+		likes: {type: GraphQLInt},
+		dislikes: {type: GraphQLInt},
+		recommend: {type: GraphQLBoolean},
+		time: {type: GraphQLString},
+		userStatus: {type: GraphQLInt}
+	})
+});
+
+const newCourseType = new GraphQLObjectType({
+	name:"newCourseType",
+	description: 'Course query type definition',
+ 	fields:() => ({
+		_id: {type: GraphQLString},
+		title: {type: GraphQLString},
+		description: {type: GraphQLString},
+		instructor: {type: GraphQLString},
+		campus: {type: GraphQLBoolean},
+		ratings: {type: GraphQLFloat},
+		difficulty: {type: GraphQLFloat},
+		review: {
+			type: new GraphQLList(newCourseReview),
+			async resolve(course, args) {
+				return course.review;
+			}
+		}
+ 	})
+});
+
 const userCourseReview = new GraphQLObjectType ({
 	name: "userCourseReview",
 	description: "User course review type",
@@ -224,6 +268,22 @@ const RootQuery = new GraphQLObjectType({
 			async resolve(parent, args) {
 				try {
 					return await course.getAllCourse();
+				} catch(e) {
+					console.log(e);
+				}
+			}
+		},
+		showCourseReview: {
+			type: newCourseType,
+			description: "Query a single course and add the user belong status",
+			args: {
+				course_id: {type: new GraphQLNonNull(GraphQLString)},
+				user_email: {type: new GraphQLNonNull(GraphQLString)}
+			},
+			async resolve(parent, args) {
+				try {
+					const courseInfo = await review.getCourseReviewWhitUserBelongStatus(args.course_id, args.user_email);
+					return courseInfo;
 				} catch(e) {
 					console.log(e);
 				}
@@ -368,6 +428,67 @@ const RootMutation =  new GraphQLObjectType({
 				}
 			}
 		},
+		newReviewCourse: {
+			type: newCourseType,
+			args: {
+				course_id: {type: new GraphQLNonNull(GraphQLString)},
+				user_id: {type: new GraphQLNonNull(GraphQLString)},
+				professor: {type: new GraphQLNonNull(GraphQLString)},
+				review_body: {type: new GraphQLNonNull(GraphQLString)},
+				recommended: {type: new GraphQLNonNull(GraphQLBoolean)},
+				ratings: {type: new GraphQLNonNull(GraphQLInt)},
+				difficulty: {type: new GraphQLNonNull(GraphQLInt)}
+			},
+			async resolve(parent, args) {
+				try {
+					const reviewInfo = await review.addReview(args.user_id, args.course_id, args.professor, args.review_body, args.recommended, args.ratings, args.difficulty);
+					//return await course.getCourseById(args.course_id);
+					const userInfo = await userData.getUserById(reviewInfo.user_id);
+					const courseInfo = await review.getCourseReviewWhitUserBelongStatus(reviewInfo.course_id, userInfo.email);
+					//console.log("newEditComment: " , courseInfo);
+					return courseInfo;
+				} catch (e) {
+					console.log(e);
+				}
+			}
+		},
+		newAddLike: {
+			type: newCourseType,
+			args: {
+				review_id: {type: new GraphQLNonNull(GraphQLString)},
+				course_id: {type: new GraphQLNonNull(GraphQLString)},
+				email: {type: new GraphQLNonNull(GraphQLString)}
+			},
+			async resolve(parent, args) {
+				try {
+					const reviewInfo = await review.addLike(args.review_id);
+					console.log("addlike: ",reviewInfo);
+					const courseInfo = await review.getCourseReviewWhitUserBelongStatus(reviewInfo.course_id, args.email);
+					console.log("add like: ", courseInfo);
+					return courseInfo;
+				} catch(e) {
+					console.log(e);
+				}
+			}
+		},
+		newDisLike: {
+			type: newCourseType,
+			args: {
+				review_id: {type: new GraphQLNonNull(GraphQLString)},
+				course_id: {type: new GraphQLNonNull(GraphQLString)},
+				email: {type: new GraphQLNonNull(GraphQLString)}
+			},
+			async resolve(parent, args) {
+				console.log("dislike: ", args);
+				try {
+					const reviewInfo = await review.adddisLike(args.review_id);
+					const courseInfo = await review.getCourseReviewWhitUserBelongStatus(reviewInfo.course_id, args.email);
+					return courseInfo;
+				} catch(e) {
+					console.log(e);
+				}
+			}
+		},
 		editComment: {
 			type:courseType,
 			args: {
@@ -384,6 +505,26 @@ const RootMutation =  new GraphQLObjectType({
 				}
 			}
 		},
+		newEditComment: {
+			type:newCourseType,
+			args: {
+				review_id: {type: new GraphQLNonNull(GraphQLString)},
+				new_review_body: {type : new GraphQLNonNull(GraphQLString)},
+				professor_comment: {type: new GraphQLNonNull(GraphQLString)}
+			},
+			async resolve(parent,args) {
+				try {
+					const reviewInfo = await review.editComment(args.review_id, args.new_review_body, args.professor_comment);
+					//return await course.getCourseById(reviewInfo.course_id);
+					const userInfo = await userData.getUserById(reviewInfo.user_id);
+					const courseInfo = await review.getCourseReviewWhitUserBelongStatus(reviewInfo.course_id, userInfo.email);
+					//console.log("newEditComment: " , courseInfo);
+					return courseInfo;
+				}catch(e) {
+					console.log(e);
+				}
+			}
+		},
 		deleteComment: {
 			type:courseType,
 			args: {
@@ -394,6 +535,24 @@ const RootMutation =  new GraphQLObjectType({
 				try {
 					await review.deleteComment(args.review_id);
 					return await course.getCourseById(args.course_id);
+				}catch(e) {
+					console.log(e);
+				}
+			}
+		},
+		newDeleteComment: {
+			type:newCourseType,
+			args: {
+				review_id: {type: new GraphQLNonNull(GraphQLString)},
+				course_id: {type: new GraphQLNonNull(GraphQLString)}
+			},
+			async resolve(parent,args) {
+				try {
+					const reviewInfo = await review.getReviewById(args.review_id);
+					await review.deleteComment(args.review_id);
+					const userInfo = await userData.getUserById(reviewInfo.user_id);
+					const courseInfo = await review.getCourseReviewWhitUserBelongStatus(reviewInfo.course_id, userInfo.email);
+					return courseInfo;
 				}catch(e) {
 					console.log(e);
 				}

@@ -6,7 +6,19 @@ import AddCommentModal from "./CommentModals/AddCommentModal";
 import { FaThumbsUp, FaThumbsDown, FaEdit, FaTrash } from "react-icons/fa";
 import { GET_USER } from "../queries/queries";
 import { Query } from "react-apollo";
-import { ADD_LIKES, DIS_LIKES, DELETE_COMMENT, EDIT_COMMENT, getUser, GET_COURSE_BY_ID} from "../queries/queries";
+import { 
+  ADD_LIKES, 
+  DIS_LIKES, 
+  DELETE_COMMENT, 
+  EDIT_COMMENT, 
+  getUser, 
+  GET_COURSE_BY_ID,
+  GET_COURSE_REVIEW_WITH_USER_BLONG_STATUS,
+  NEW_ADD_LIKES,
+  NEW_DIS_LIKES,
+  NEW_EDIT_COMMENT,
+  NEW_DELETE_COMMENT
+} from "../queries/queries";
 import { graphql, compose } from 'react-apollo';
 
 class CourseReviewList extends Component {
@@ -25,7 +37,8 @@ class CourseReviewList extends Component {
       review_user_email: "",
       review_id: "",
       review: {},
-      course: this.props.course
+      course: this.props.course,
+      reset_course: false
     };
     this.handleOpenEditModal = this.handleOpenEditModal.bind(this);
     this.handleCloseModals = this.handleCloseModals.bind(this);
@@ -43,22 +56,25 @@ class CourseReviewList extends Component {
 
   setCourse(course) {
     this.setState({course: course});
+    this.setState({reset_course: true});
   }
 
   async handleDelete(email, review_id, course_id) {
     console.log(email, this.props.email);
-    if (email !== this.props.email) {
+    /*if (email !== this.props.email) {
       return alert("You are not authorize to delete this comment");
-    } else {
-      if (window.confirm("Are you sure you want to delete the comment?")) {
-        await this.props.DELETE_COMMENT({
+    } else {}
+      if (window.confirm("Are you sure you want to delete the comment?")) {}*/
+      const courseInfo =  await this.props.NEW_DELETE_COMMENT({
           variables: {
             review_id: review_id,
             course_id: course_id
           }
         });
-      }
-    }
+        console.log("delete comment: ", courseInfo.data.newDeleteComment);
+        this.setState({course: courseInfo.data.newDeleteComment});
+        this.setState({reset_course: true});
+    
   }
 
   handleCloseModals() {
@@ -76,24 +92,30 @@ class CourseReviewList extends Component {
   async handleLikes(review_id, course_id) {
     //e.preventDefault();
     console.log("id", review_id, course_id);
-    await this.props.ADD_LIKES({
+    const courseInfo = await this.props.NEW_ADD_LIKES({
       variables: {
         review_id: review_id,
-        course_id: course_id
+        course_id: course_id,
+        email: this.state.email?this.state.email:localStorage.getItem("user_email")
       }
     });
+    this.setState({course: courseInfo.data.newAddLike});
+    this.setState({reset_course: true});
   }
 
   async handleDislikes(review_id, course_id) {
     //e.preventDefault();
     console.log("id", review_id, course_id);
-    await this.props.DIS_LIKES({
+    const courseInfo = await this.props.NEW_DIS_LIKES({
       variables: {
         review_id: review_id,
-        course_id: course_id
+        course_id: course_id,
+        email: this.state.email?this.state.email:localStorage.getItem("user_email")
       }
     });
-    window.location.reload();
+    //window.location.reload();
+    this.setState({course: courseInfo.data.newDisLike});
+    this.setState({reset_course: true});
   }
 
   campus() {
@@ -122,7 +144,7 @@ class CourseReviewList extends Component {
 
   displayComment() {
     
-    if (this.state && this.state.course && this.state.course.review && this.state.course.review.length === 0) return null;
+  /*  if (this.state && this.state.course && this.state.course.review && this.state.course.review.length === 0) return null;
     console.log(this.props.course.review);
     const reviews = this.props.course.review;
     return reviews.map(review => {
@@ -148,10 +170,6 @@ class CourseReviewList extends Component {
                     {review.recommend === true ? "Yes" : "No"}
             
                 </span>
-                {/* <span className="textbook">
-                      <div className="professor">PROFESSOR:</div>
-                      <span className="response"> {this.props.course.instructor}</span>
-                    </span>*/}
               </div>
             </div>
           </td>
@@ -237,7 +255,254 @@ class CourseReviewList extends Component {
           </td>
         </tr>
       );
+    });*/
+    //if (this.state && this.state.reset_course ===false && !this.state.email) return null;
+    if(this.state && this.state.reset_course === true) {
+      console.log("displaycomment 1: ", this.state.course);
+      const reviews = this.state.course.review;
+      
+    return reviews.map(review => {
+      return (
+        <tr className="active" key={review._id}>
+          <td className="rating success">
+            <div className="date">COMMENT DATE: </div>
+            <p className="value">{review.time}</p>
+            <div className="rating-block-awesome">
+              <div className="rating-wrapper">
+                <div className="icon awesome-icon" />
+                <div className="rating-type">
+                  STUDENT NAME : 
+                </div>
+                <p className="value">{this.name(review.user.email)}</p>
+              </div>
+              <div className="courseclass">
+                <span className="textbook">
+                  RECOMMEND:      
+                  </span>
+                  <span className="response">
+                    {" "}
+                    {review.recommend === true ? "Yes" : "No"}
+            
+                </span>
+              </div>
+            </div>
+          </td>
+          <td colSpan="2" className="comments">
+          <div>
+            <span className="course"> Course: </span>
+            <br/>
+            <span className="value1">{review.review_body}</span>
+            </div>
+            <br/>
+            <div>
+            <span className="professor">Professor: </span>
+            <br/>
+            <span className="value1">{review.professor}</span>
+            </div>
+           
+            <div className="helpful-links-thumbs">
+ 
+              <button
+                type="button"
+                to="#"
+                className="helpful btn-outline-primary"
+              >
+              
+                <span
+                  className="count"
+                  onClick={e =>
+                    this.handleLikes(review._id, this.state.course._id)
+                  }
+                >
+               
+                  <FaThumbsUp />
+                </span>
+                {review.likes}
+              </button>
+                 
+              <button
+                type="button"
+                to="#"
+                className="nothelpful btn-outline-primary"
+              >
+                <span
+                  className="count"
+                  onClick={e =>
+                    this.handleDislikes(review._id, this.state.course._id)
+                  }
+                >
+                  <FaThumbsDown />{" "}
+                </span>
+                {review.dislikes}
+              </button>
+            </div>
+            <br />
+            {review.userStatus === 1 && (
+            <div>
+              <button type="button" to="#" className="edit btn-outline-primary">
+                <span
+                  className="edit-spa"
+                  onClick={() => {
+                    this.handleOpenEditModal(
+                      review
+                    );
+                  }}
+                >
+                  <FaEdit />
+                </span>
+              </button>
+              <button type="button" to="#" className="delete btn-outline-primary">
+                <span
+                  className="delete-spa"
+                  onClick={() => {
+                    this.handleDelete(
+                      review.user.email,
+                      review._id,
+                      this.props.course._id
+                    );
+                  }}
+                >
+                  {" "}
+                  <FaTrash />{" "}
+                </span>
+              </button>
+            </div>)}
+          </td>
+        </tr>
+      );
     });
+    }
+
+    else if(this.state && this.state.reset_course ===false && this.state.course) {
+    return (
+    <Query query={GET_COURSE_REVIEW_WITH_USER_BLONG_STATUS} 
+    variables={{ course_id: this.state.course._id, user_email: this.state.email?this.state.email:localStorage.getItem("user_email")}}>
+         {({ data }) => {
+            console.log(`displayComment data: ${JSON.stringify(data)}`);
+            const {showCourseReview} = data;
+            if(!showCourseReview || !showCourseReview.review) {
+               return null;
+            }
+            const reviews = showCourseReview.review;
+            console.log(`search course by title: ${JSON.stringify(reviews)}`);
+            return reviews.map(review => {
+              return (
+                <tr className="active" key={review._id}>
+                  <td className="rating success">
+                    <div className="date">COMMENT DATE: </div>
+                    <p className="value">{review.time}</p>
+                    <div className="rating-block-awesome">
+                      <div className="rating-wrapper">
+                        <div className="icon awesome-icon" />
+                        <div className="rating-type">
+                          STUDENT NAME : 
+                        </div>
+                        <p className="value">{this.name(review.user.email)}</p>
+                      </div>
+                      <div className="courseclass">
+                        <span className="textbook">
+                          RECOMMEND:      
+                          </span>
+                          <span className="response">
+                            {" "}
+                            {review.recommend === true ? "Yes" : "No"}
+                    
+                        </span>
+                      </div>
+                    </div>
+                  </td>
+                  <td colSpan="2" className="comments">
+                  <div>
+                    <span className="course"> Course: </span>
+                    <br/>
+                    <span className="value1">{review.review_body}</span>
+                    </div>
+                    <br/>
+                    <div>
+                    <span className="professor">Professor: </span>
+                    <br/>
+                    <span className="value1">{review.professor}</span>
+                    </div>
+                   
+                    <div className="helpful-links-thumbs">
+         
+                      <button
+                        type="button"
+                        to="#"
+                        className="helpful btn-outline-primary"
+                      >
+                      
+                        <span
+                          className="count"
+                          onClick={e =>
+                            this.handleLikes(review._id, this.props.course._id)
+                          }
+                        >
+                       
+                          <FaThumbsUp />
+                        </span>
+                        {review.likes}
+                      </button>
+                         
+                      <button
+                        type="button"
+                        to="#"
+                        className="nothelpful btn-outline-primary"
+                      >
+                        <span
+                          className="count"
+                          onClick={e =>
+                            this.handleDislikes(review._id, this.props.course._id)
+                          }
+                        >
+                          <FaThumbsDown />{" "}
+                        </span>
+                        {review.dislikes}
+                      </button>
+                    </div>
+                    <br />
+                    {review.userStatus === 1 && (
+                    <div>
+                      <button type="button" to="#" className="edit btn-outline-primary">
+                        <span
+                          className="edit-spa"
+                          onClick={() => {
+                            this.handleOpenEditModal(
+                              review
+                            );
+                          }}
+                        >
+                          <FaEdit />
+                        </span>
+                      </button>
+                      <button type="button" to="#" className="delete btn-outline-primary">
+                        <span
+                          className="delete-spa"
+                          onClick={() => {
+                            this.handleDelete(
+                              review.user.email,
+                              review._id,
+                              this.props.course._id
+                            );
+                          }}
+                        >
+                          {" "}
+                          <FaTrash />{" "}
+                        </span>
+                      </button>
+                    </div>)}
+                  </td>
+                </tr>
+              );
+            });
+         }}
+      </Query>
+      );
+        }
+        else {
+          return null;
+        }
+        
   }
 
 
@@ -293,5 +558,10 @@ export default compose(
   graphql(DIS_LIKES, { name: "DIS_LIKES" }),
   graphql(DELETE_COMMENT, { name: "DELETE_COMMENT" }),
   graphql(EDIT_COMMENT, {name: "EDIT_COMMENT"}),
-  graphql(getUser, { name: "getUser" })
+  graphql(getUser, { name: "getUser" }),
+  graphql(GET_COURSE_REVIEW_WITH_USER_BLONG_STATUS, { name: "GET_COURSE_REVIEW_WITH_USER_BLONG_STATUS"}),
+  graphql(NEW_ADD_LIKES, {name: "NEW_ADD_LIKES"}),
+  graphql(NEW_DIS_LIKES, {name: "NEW_DIS_LIKES"}),
+  graphql(NEW_DELETE_COMMENT, {name: "NEW_DELETE_COMMENT"}),
+  graphql(NEW_EDIT_COMMENT, {name: "NEW_EDIT_COMMENT"})
 )(CourseReviewList);

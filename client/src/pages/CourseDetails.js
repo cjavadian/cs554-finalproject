@@ -63,7 +63,6 @@ class CourseDetails extends Component {
             );
           }}
         </Query>
-<Footer/>
       </div>
     );
   }

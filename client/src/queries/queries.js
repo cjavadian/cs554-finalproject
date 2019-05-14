@@ -304,6 +304,182 @@ mutation($user_id:String!){
   }
 }
 `
+const GET_COURSE_REVIEW_WITH_USER_BLONG_STATUS = gql `
+query($course_id: String!, $user_email: String!){
+  showCourseReview(course_id: $course_id, user_email: $user_email){
+    _id
+    title
+    description
+    instructor
+    campus
+    ratings
+    difficulty
+    review{
+      _id
+      user{
+        _id
+        user_name
+        first_name
+        last_name
+        email
+      }
+      professor
+      review_body
+      likes
+      dislikes
+      recommend
+      time
+      userStatus
+    }
+  }
+}`
+
+const NEW_EDIT_COMMENT = gql`
+mutation($review_id:String!,$new_review_body: String!,$professor_comment: String!){
+  newEditComment(review_id:$review_id,new_review_body:$new_review_body,professor_comment:$professor_comment){
+      _id
+      title
+      instructor
+      description
+      campus
+      ratings
+      review{
+        _id
+        user{
+          _id
+          user_name
+          first_name
+          last_name
+          email
+        }
+        professor
+        review_body
+        likes
+        dislikes
+        recommend
+        time
+        userStatus
+      }
+    }
+  }
+`
+
+const NEW_REVIEW_COURSE = gql`
+mutation($course_id: String!, $user_id: String!, $professor: String!, $review_body: String!, $recommended: Boolean!, $ratings: Int!, $difficulty: Int!){
+  newReviewCourse(course_id: $course_id, user_id: $user_id, professor: $professor, review_body: $review_body, recommended: $recommended, ratings: $ratings, difficulty: $difficulty){
+      _id
+      title
+      instructor
+      description
+      campus
+      ratings
+      review{
+        _id
+        user{
+          _id
+          user_name
+          first_name
+          last_name
+          email
+        }
+        professor
+        review_body
+        likes
+        dislikes
+        recommend
+        time
+        userStatus
+      }
+    }
+  }
+`
+
+const NEW_ADD_LIKES = gql`
+mutation($review_id: String!, $course_id: String!, $email: String!){
+    newAddLike(review_id: $review_id, course_id: $course_id, email: $email){
+      _id
+      title
+      campus
+      ratings
+      review{
+        _id
+        user{
+          _id
+          user_name
+          first_name
+          last_name
+          email
+        }
+        professor
+        review_body
+        likes
+        dislikes
+        recommend
+        time
+        userStatus
+      }
+    }
+  }
+`
+
+const NEW_DIS_LIKES = gql`
+mutation($review_id: String!, $course_id: String!, $email: String!){
+  newDisLike(review_id: $review_id, course_id: $course_id, email: $email){
+      _id
+      title
+      campus
+      ratings
+      review{
+        _id
+        user{
+          _id
+          user_name
+          first_name
+          last_name
+          email
+        }
+        professor
+        review_body
+        likes
+        dislikes
+        recommend
+        time
+        userStatus
+      }
+    }
+  }
+`
+
+const NEW_DELETE_COMMENT = gql`
+mutation($review_id:String!,$course_id: String!){
+  newDeleteComment(review_id:$review_id,course_id:$course_id){
+      _id
+      title
+      instructor
+      description
+      campus
+      ratings
+      review{
+        _id
+        user{
+          _id
+          user_name
+          first_name
+          last_name
+          email
+        }
+        professor
+        review_body
+        likes
+        dislikes
+        recommend
+        time
+        userStatus
+      }
+    }
+  }
+`
+
 export{
     addUserMutation,
     getUser,
@@ -318,6 +494,12 @@ export{
     DIS_LIKES,
     EDIT_COMMENT,
     DELETE_COMMENT,
-    GET_REVIEW
+    GET_REVIEW,
+    GET_COURSE_REVIEW_WITH_USER_BLONG_STATUS,
+    NEW_EDIT_COMMENT,
+    NEW_REVIEW_COURSE,
+    NEW_ADD_LIKES,
+    NEW_DIS_LIKES,
+    NEW_DELETE_COMMENT
 }
 

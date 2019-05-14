@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import ReactModal from "react-modal";
 import './EditCommentModal.css';
-import { EDIT_COMMENT } from "../../queries/queries";
+import { EDIT_COMMENT, NEW_EDIT_COMMENT } from "../../queries/queries";
 import { graphql, compose } from 'react-apollo';
 
 ReactModal.setAppElement("#root");
@@ -42,15 +42,15 @@ class EditCommentModal extends Component {
   
   async handleEditComment(new_review_body, professor_comment) {
     console.log(`handleEditComment ${this.state.review_user_email}`);
-    const courseInfo = await this.props.EDIT_COMMENT({
+    const courseInfo = await this.props.NEW_EDIT_COMMENT({
         variables: {
           review_id: this.state.review_id,
           new_review_body: new_review_body,
           professor_comment: professor_comment
         }
     }); 
-    console.log("handleEditComment: " ,JSON.stringify(courseInfo.data.editComment));
-    this.props.setCourse(courseInfo);
+    console.log("handleEditComment: " ,JSON.stringify(courseInfo.data.newEditComment));
+    this.props.setCourse(courseInfo.data.newEditComment);
     this.setState({ showEditModal: false, todo: null });
   }
   async handleSubmit(e) {
@@ -112,4 +112,6 @@ class EditCommentModal extends Component {
   }
 }
 
-export default compose(graphql(EDIT_COMMENT, {name: "EDIT_COMMENT"}))(EditCommentModal);
+export default compose(graphql(EDIT_COMMENT, {name: "EDIT_COMMENT"}),
+graphql(NEW_EDIT_COMMENT, {name: "NEW_EDIT_COMMENT"})
+)(EditCommentModal);

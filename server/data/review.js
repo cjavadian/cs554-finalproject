@@ -124,7 +124,29 @@ async deleteComment(review_id){
     if (delete_review.deletedCount === 0) {
         throw "could not delete the review successfully";
     }
-}
+    },
+    async getCourseReviewWhitUserBelongStatus(course_id, user_email){
+        if (course_id == null || course_id == undefined || course_id == "") throw "You must provide course id to search for";
+        if (user_email == null || user_email == undefined || user_email == "") throw "You must provide user email";
+        if (typeof(course_id) !== 'string') throw "Invalid type";
+        if (typeof(user_email) !== 'string') throw "Invalid type";
+    
+        const userInfo = await user.getUserByEmail(user_email);
+        let courseInfo = await course.getCourseById(course_id);
+        let reviewOfCourse = await this.getReviewByCourseId(course_id);
+    
+        reviewOfCourse.map((review) => {
+            if(review.user_id === userInfo._id) {
+                review["userStatus"] = 1;
+            }
+            else {
+                review["userStatus"] = 0;
+            }
+        });
+        courseInfo["review"] = reviewOfCourse;
+        console.log("courseInfo: " , courseInfo);
+        return courseInfo;
+        }
 }
 
 module.exports = exportedMethods;
