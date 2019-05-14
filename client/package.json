@@ -11,6 +11,7 @@
     "firebase": "^5.9.4",
     "graphql": "^14.2.1",
     "react": "^16.8.6",
+    "react-a11y": "^1.1.0",
     "react-apollo": "^2.5.4",
     "react-avatar-editor": "^11.0.7",
     "react-canvas-js": "^1.0.1",
