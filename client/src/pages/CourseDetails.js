@@ -56,6 +56,7 @@ class CourseDetails extends Component {
                   <p className="ldesc">COURSE DESCRIPTION</p>
                     <p className="course-desc">{course.description}</p>
                     </div>
+                    <hr/>
                   <div className="review-container">
                     <CourseReviewList course = {course} email = {this.props.email}/>
                   </div>
