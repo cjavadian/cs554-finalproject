@@ -4,7 +4,7 @@ import CourseCard from '../components/CourseCard';
 import CourseReviewStatistics from '../components/CourseReviewStatistics';
 import CourseReviewList from '../components/CourseReviewList';
 import {GET_COURSE_BY_ID} from "../queries/queries";
-import { Query, Mutation } from 'react-apollo';
+import { Query } from 'react-apollo';
 import './CourseDetails.css';
 import Footer from '../components/Footer'
  
@@ -44,15 +44,11 @@ class CourseDetails extends Component {
             return (
               <div className="cc">
                 <div className="row">
-                  {/* <div className="clsCourseContainer"> */}
                     <div className="col-6">
                       <CourseCard course = {course} />
                     </div>
-                  {/* </div> */}
-                      {/* <div className="clsCourseContainerCard"> */}
-                      <div className="col-5">
+                    <div className="col-5">
                         <CourseReviewStatistics course = {course} />
-                      {/* </div> */}
                   </div>
                 </div>
                   <br/>

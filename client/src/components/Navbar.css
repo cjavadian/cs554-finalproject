@@ -1,10 +1,10 @@
 .navbar{
     background-color:#192A56
 }
-.navbar-brand{
+.navbar-brand {
     color: white;
     font: outline;
-    font-family: Georgia, 'Times New Roman', Times, serif
+    padding-bottom: 0px;
 }
 .divider{
     width:5px;
@@ -20,9 +20,6 @@
     background-color: #192A56;
     margin-left: 0%;
     display: inline-block!important;
-}
-.btn{
-    font-family: Georgia, 'Times New Roman', Times, serif;
 }
 .clsFormDiv{
     padding:20px 20px !important;

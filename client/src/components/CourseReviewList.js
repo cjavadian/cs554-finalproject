@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import "./CourseReviewList.css";
 import EditCommentModal from "./CommentModals/EditCommentModal";
 import AddCommentModal from "./CommentModals/AddCommentModal";
-import DeleteCommentModal from "./CommentModals/DeleteCommentModal";
 import { FaThumbsUp, FaThumbsDown, FaEdit, FaTrash } from "react-icons/fa";
 import { GET_USER } from "../queries/queries";
 import { Query } from "react-apollo";
@@ -282,15 +281,6 @@ class CourseReviewList extends Component {
             course={this.props.course}
             email={this.props.email}
             modal="addReview"
-          />
-        )}
-
-        {/*Delete Comment Modal */}
-        {this.state && this.state.showDeleteModal && (
-          <DeleteCommentModal
-            isOpen={this.state.showDeleteModal}
-            handleClose={this.handleCloseModals}
-            deleteComment={this.state.deleteComment}
           />
         )}
       </div>
