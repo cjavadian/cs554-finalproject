@@ -59,6 +59,7 @@ class CourseDetails extends Component {
                   <div className="review-container">
                     <CourseReviewList course = {course} email = {this.props.email}/>
                   </div>
+                  <Footer/>
                 </div>
             );
           }}
