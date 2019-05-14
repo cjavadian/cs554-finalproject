@@ -51,7 +51,7 @@ const exportedMethods = {
       };
 
       const newInsertInformation = await course_collection.insertOne(newCourse);
-      if (newInsertInformation.insertedCount === 0)throw "Could not add task";
+      if (newInsertInformation.insertedCount === 0)throw "Could not add course";
       const newId = newInsertInformation.insertedId;
 
       return await this.getCourseById(newId);;

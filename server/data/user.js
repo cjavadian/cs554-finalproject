@@ -15,7 +15,7 @@ const exportedMethods = {
 
       const user_collection = await user();
       const result = await user_collection.findOne({_id:id});
-      if(result === null) throw "No such task in MongoDB";
+      if(result === null) throw "No such user in MongoDB";
       return result;
   },// get /users/:id
   async getUserByName(user_name){
@@ -24,7 +24,7 @@ const exportedMethods = {
 
       const user_collection = await user();
       const result = await user_collection.findOne({user_name : user_name});
-      if(result === null) throw "No such task in MongoDB";
+      if(result === null) throw "No such user in MongoDB";
       return result;
   },// get /users/:id
   async getUserByEmail(e_mail){
@@ -33,7 +33,7 @@ const exportedMethods = {
 
     const user_collection = await user();
     const result = await user_collection.findOne({email : e_mail});
-    if(result === null) throw "No such task in MongoDB";
+    if(result === null) throw "No such user in MongoDB";
     return result;
     },
   async getUserCourseById(id){
