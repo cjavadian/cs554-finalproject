@@ -95,6 +95,28 @@ const GET_ALL_COURSES = gql `
         }
   }
 `
+
+const GET_SORTED_COURSES = gql `
+    query{
+      allRatingSortCourses{
+        _id
+        title
+        campus
+        ratings
+        difficulty
+        review {
+            _id
+            professor
+            review_body
+            likes
+            dislikes
+            recommend
+            time
+        }
+        }
+  }
+`
+
 const GET_COURSE_BY_ID = gql`
 query($id: String!){
     course(id: $id){
@@ -500,6 +522,7 @@ export{
     NEW_REVIEW_COURSE,
     NEW_ADD_LIKES,
     NEW_DIS_LIKES,
-    NEW_DELETE_COMMENT
+    NEW_DELETE_COMMENT,
+    GET_SORTED_COURSES
 }
 

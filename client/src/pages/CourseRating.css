@@ -1,0 +1,24 @@
+.review-container {
+    width: 100%;
+}
+ .showRating {
+    list-style: none;
+    padding: 0.4rem 0.8rem;
+    border-radius: 3px;
+    color: #192A56;
+    position: relative;
+    top: 100px;
+    margin-left:390px;
+    font-family: 'Times New Roman', Times, serif;
+ 
+    letter-spacing: 1px;
+    display: inline-block;
+    font-size: 20px;
+    transform: scaleY(0.9);
+    transform-origin: 0 0;
+    margin-bottom: -30%;
+ }
+ 
+ .rate-number {
+    font-size: 30px;
+ }

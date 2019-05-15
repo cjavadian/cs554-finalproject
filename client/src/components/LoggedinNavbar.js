@@ -42,9 +42,20 @@ class LoggedinNavbar extends Component {
                     <li className="nav-item active">
                         <Link className="nav-link" to="/dashboard">Home <span className="sr-only">(current)</span></Link>
                     </li>
-                    <li className="nav-item active">
+                    {/*<li className="nav-item active">
                         <Link className="nav-link" to="/courses">Courses</Link>
-                    </li>
+
+                    </li>*/}
+                     <div className="dropdown">
+                     <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Courses
+                        </button>
+                        <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <Link className="dropdown-item" to="/courses" onClick={this.editProfile}>Search Course</Link>
+                        <div className="dropdown-divider"></div>
+                            <Link className="dropdown-item" to="/coursesrating">Courses Rating</Link>
+                        </div>
+                    </div>
                     <li className="nav-item active">
                     <Link className="nav-link" to="/chat">Chat</Link>
                     </li>

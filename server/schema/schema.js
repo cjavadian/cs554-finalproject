@@ -262,6 +262,18 @@ const RootQuery = new GraphQLObjectType({
 				}
 			}
 		},
+		allRatingSortCourses: {
+			type: new GraphQLList(courseType),
+			description: "Query all courses",
+			async resolve(parent, args) {
+				try {
+					const coursesInfo = await course.getRatingCourses();
+					return coursesInfo;
+				} catch(e) {
+					console.log(e);
+				}
+			}
+		},
 		allcourses: {
 			type: new GraphQLList(courseType),
 			description: "Query all courses",
@@ -300,7 +312,7 @@ const RootQuery = new GraphQLObjectType({
 					const courses = await course.getAllCourse();
 					const searchCourse = courses.filter(course => {
 						if (course.title) {
-						   return course.title.indexOf(args.title) !== -1;
+						   return course.title.toLowerCase().indexOf(args.title) !== -1;
 						}
 					 })
 					 return searchCourse;

@@ -89,6 +89,22 @@ const exportedMethods = {
       }
 
       return await this.getCourseById(update_course._id);
+  },
+  async getRatingCourses(){
+    const courses = await this.getAllCourse();
+    if(courses === null) throw "No course in MongoDB";
+
+    let temp = {};
+    for(let i=0; i<courses.length; i++) {
+        for(let j=i+1; j<courses.length; j++) {
+            if(courses[i].ratings < courses[j].ratings) {
+                temp = courses[j];
+                courses[j] = courses[i];
+                courses[i] = temp;
+            }
+        }
+    }
+    return courses;
   }
 }
 

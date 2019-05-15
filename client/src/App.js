@@ -15,6 +15,7 @@ import Chat from "./pages/Chat";
 import AWSS3 from "./components/AWSS3";
 import { InMemoryCache } from 'apollo-cache-inmemory';
 //import UserReview from "./pages/UserReview"
+import CourseRating from "./pages/CourseRating"
 
 const cache = new InMemoryCache();
 const client = new ApolloClient({
@@ -63,6 +64,7 @@ class App extends Component {
           <Route path="/uploadfile" exact render={() => <IsAuthenticated><AWSS3 email={this.state.user}/></IsAuthenticated>} />
          {/* <Route path="/userreview" exact render={() => <IsAuthenticated><UserReview email={this.state.user}/></IsAuthenticated>} />*/}
           <Route path="/chat" exact render={() => <IsAuthenticated><Chat email={this.state.user}/></IsAuthenticated>} />
+          <Route path="/coursesrating" exact render={() => <IsAuthenticated><CourseRating email={this.state.user}/></IsAuthenticated>} />
         </Router>
       </ApolloProvider>
     );
