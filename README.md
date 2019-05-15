@@ -29,8 +29,9 @@
 10. Redirect to React app working 'http://localhost:3000' 
 11. Enjoy!
 
-#Notes:
+# Notes:
 The chat page have list the users who are online. When a new user login, it will take few minutes(less than 3min) that the others see the new user on their page.
+To have two different users logged in, it is required that two separate browsers are used for some features to work
 
 # Technologies used
 
