@@ -106,6 +106,8 @@ Xinzhe Li:
 1. Backend Express-Graphql server set up 
 2. Backend MongoDB server set up
 3. Implemented MongoDB operations for user, course, review collections
-4. Backend GraphQL API for User Sign Up in backend server
-5. Frontend apollo for User Sign Up, User Login Checking, User Information Display, Course Reviews Display, Course Review Add Like, Course Review Add Dislike, Add Comment features
+4. Database testing
+5. Backend GraphQL API for User Sign Up in backend server
+6. Frontend apollo for User Sign Up, User Login Checking, User Information Display, Course Reviews Display, Course Review Add Like, Course Review Add Dislike, Add Comment features
+7. Fixed some page warning issuses
 
