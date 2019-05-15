@@ -2,6 +2,15 @@
 
 Catherine Javadian:
 
+1. Implemented Chat room page (Socket.io - front end and back end, design)
+2. Bootstrap4 with react on the home page, course, and course details page
+3. Implemented edit profile page (Apollo Client and GraphQL)
+4. Accessibility testing with tota11y and testing for bugs
+5. Improving the design throughout all pages
+6. Add to seed.js to populate database
+7. Presentation
+
+
 Rozy Gupta & Vidya Maiya: We worked together almost the entire time. So our contribution is combined. 
 
 1. Developed the entire frontend in React from scratch.
@@ -24,9 +33,11 @@ Xiaojie Gao:
 4. Add seed.js initializing courses collection.
 5. Implement display online user list on Chat Room, including both backend and frontend.
 6. Change course comment feature that user only can see the Edit/Delete button on his own comments.
+7. Implement the course rating ranking feature for courses recommendation.
 
 
 Xinzhe Li: 
+
 1. Backend Express-Graphql server set up 
 2. Backend MongoDB server set up
 3. Implemented MongoDB operations for user, course, review collections

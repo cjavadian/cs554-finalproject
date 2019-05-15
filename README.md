@@ -103,6 +103,7 @@ Xiaojie Gao:
 
 
 Xinzhe Li: 
+
 1. Backend Express-Graphql server set up 
 2. Backend MongoDB server set up
 3. Implemented MongoDB operations for user, course, review collections
