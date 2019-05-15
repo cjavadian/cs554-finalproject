@@ -24,6 +24,7 @@ Xiaojie Gao:
 4. Add seed.js initializing courses collection.
 5. Implement display online user list on Chat Room, including both backend and frontend.
 6. Change course comment feature that user only can see the Edit/Delete button on his own comments.
+7. Implement the course rating ranking feature for courses recommendation.
 
 
 Xinzhe Li: 
